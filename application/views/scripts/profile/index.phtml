@@ -1,0 +1,159 @@
+<?php
+$this->headTitle()->prepend('Profile');
+$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/user.css");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/profile.js");
+?>
+
+<?php
+$data=$this->data;
+if(empty($data)) 
+{
+    $action= "add";
+}
+else 
+{
+    $action= "update";
+}
+$value=array();
+if(is_object($this->data))
+{
+    $value['hobbies']=$this->data->getHobbies(); 
+    $value['contact']=$this->data->getContactNo();    
+    $value['edu']=$this->data->getEducation();  
+    $value['exp']=$this->data->getExperience(); 
+    $value['loc']=$this->data->getLocation();   
+    $value['desc']=$this->data->getDescription();
+    $value['photo']=$this->data->getPhoto();
+}
+else
+{
+    $value['hobbies']="";  
+    $value['contact']="";   
+    $value['edu']="";  
+    $value['exp']=""; 
+    $value['loc']="";   
+    $value['desc']=""; 
+}
+?>
+<!-- Content Starts -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Profile</h4>
+                </div>
+                <div class="content">
+                    <form action="<?php echo $action ?>"  id="myfrm" enctype="multipart/form-data" method="post">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Select Photo</label>
+                                    <input type="file" name="photo" >                                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Hobbies</label>
+                                    <input type="text" class="form-control" placeholder="Hobbies" name="hobbies" value="<?php echo $value['hobbies'] ?>" >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact No.</label>
+                                    <input type="text" class="form-control" placeholder="Contact No" name="contact_no" value="<?php echo $value['contact'] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Education</label></br>
+                                    <select name="education" style="width: 269px " id="edu">
+                                        <?php if(!empty($value['edu'])) { ?>
+                                        <option value="<?php echo $value['edu'] ?>" selected><?php echo $value['edu'] ?></option>
+                                            <?php } else { ?>
+                                        <option value="select">Choose yours</option>
+                                            <?php } ?>
+                                        <option value="B.Tech">B.Tech</option>
+                                        <option value="MCA">MCA</option>
+                                        <option value="DOCTOR">DOCTOR</option>
+                                        <option value="BA">BA</option>
+                                        <option value="B.Com">B.Com</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Experience</label>
+                                    <input type="text" class="form-control" placeholder="Experience" name="experience" value="<?php echo $value['exp'] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <select name="location" style="width: 269px" id="loc">
+                                        <?php if(!empty($value['loc'])) { ?>
+                                        <option value="<?php echo $value['loc'] ?>" selected><?php echo $value['loc'] ?></option>
+                                        <?php } else { ?>
+                                        <option value="select">Choose yours</option>
+                                        <?php } ?>
+                                        <option value="Chandigarh">Chandigarh</option>
+                                        <option value="Mohali">Mohali</option>
+                                        <option value="Jaipur">Jaipur</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea rows="5" class="form-control" name="description"><?php echo $value['desc'] ?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-fill pull-center" name="submit">Save Profile</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-user">
+                <div class="image">
+                    <img src="https://ununsplash.imgix.net/ photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                </div>
+                <div class="content">
+                    <div class="author">
+                        <a href="#">
+                            <?php if(!empty($value['photo'])) { ?>
+                            <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/uploads/<?php echo $value['photo'] ?>" alt="..."/>
+                            <?php } ?>
+                            <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" alt="..."/>
+                            <h4 class="title">Mike Andrew<br/>
+                                <small>michael24</small>
+                            </h4>
+                        </a>
+                    </div>
+                    <p class="description text-center"> "Lamborghini    Mercy <br>Your chick she so thirsty <br>
+                    I'm in that two seat Lambo"
+                    </p>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                    <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                    <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

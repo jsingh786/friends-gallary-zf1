@@ -1,0 +1,7 @@
+#gitignore - Specifies intentionally untracked files to ignore.
+library/Zend/
+library/Doctrine/
+library/Gedmo/
+application/models/Proxies/
+.idea/
+public/uploads/

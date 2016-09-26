@@ -1,0 +1,21 @@
+<div class="albumout" style="float:left; width: 900px; ">
+<?php for($i=0;$i<count($this->result);$i++) { ?>
+<div class="albumclass" style='
+    border: 1px solid;
+    border-radius: 82px;
+    height: 120px;+
+    width: 123px; 
+    margin: 20px;
+    float: left;'>
+    <img src="<?php echo IMAGE_PATH ?>/uploads/<?php echo $this->result[$i]->getName() ?>" width="200px">
+
+
+
+        <div id="albumtxt" style="margin-top: 45px;
+    text-align: center;">
+        <span><?php echo $this->result[$i]->getDescription() ?></span>
+        </div>
+
+</div>
+<?php } ?>
+</div>
