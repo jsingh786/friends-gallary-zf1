@@ -6,7 +6,7 @@ defined('APPLICATION_PATH')
 
 //Define Project name
 defined('PROJECT_NAME')
-|| define('PROJECT_NAME', "user-management-zf1/");
+|| define('PROJECT_NAME', "friends-gallary-zf1/");
 
 defined('PROJECT_URL')
 || define( 'PROJECT_URL', "http://".$_SERVER['HTTP_HOST'] );
