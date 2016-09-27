@@ -60,15 +60,9 @@ class AuthenticateController extends Zend_Controller_Action
         $usersObj->create($data);
         $this->_helper->redirector('index', 'authenticate', 'default');
     }
-
-    public function logoutAction()
+     public function logoutAction()
     {
-        // 
         session_destroy();
-        $this->_helper->redirector('index', 'authenticate', 'default');
-    }
-    public function registerAction()
-    {
-
-    }
+        $this->_helper->redirector ('index', 'index');
+    } 
 }
