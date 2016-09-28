@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Created by PhpStorm.
+ * Created by PhpStorms.
  * User: jsingh7
  * Date: 9/8/2016
  * Time: 4:01 PM
@@ -25,6 +25,8 @@ class AuthenticateController extends Zend_Controller_Action
 
     public function loginAction()
     {
+
+    
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         if($this->getRequest()->isPost())
@@ -33,6 +35,7 @@ class AuthenticateController extends Zend_Controller_Action
             $auth->setStorage(new Zend_Auth_Storage_Session('frontend_user'));
             $adapter = new Service\Authentication($this->getRequest()->getParam("email"), $this->getRequest()->getParam("pass"));
             $result = $auth->authenticate($adapter);
+             //Creating where conditions of query.
             if ( $result->getCode () == Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID
             || $result->getCode () == Zend_Auth_Result::FAILURE
             || $result->getCode () == Zend_Auth_Result::FAILURE_IDENTITY_AMBIGUOUS
@@ -43,7 +46,7 @@ class AuthenticateController extends Zend_Controller_Action
                 $msg = $result->getMessages();
                 // echo "<pre>"; 
                 // print_r($msg); die;
-                $this->_helper->redirector ('index', 'authenticate');
+                $this->_helper->redirector ('index', 'authenticate');// if the login not successful redirecting on same page.
             }
             else if ( Service\Authentication::hasIdentity() ) //Successful Login
             {
@@ -51,15 +54,12 @@ class AuthenticateController extends Zend_Controller_Action
             }
         }
     }
-
-    public function addAction()
-    {
-        $data=$this->getRequest()->getPost();
-        // print_r($data); die;
-        $usersObj = new \Extended\users();
-        $usersObj->create($data);
-        $this->_helper->redirector('index', 'authenticate', 'default');
-    }
+    
+        /**
+     * This action use to Logout the users from main pages and redirect to login page .
+     * @version 1.0
+     * @author SinghSandeep
+     */
      public function logoutAction()
     {
         session_destroy();

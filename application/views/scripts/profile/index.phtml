@@ -1,40 +1,4 @@
-<?php
-$this->headTitle()->prepend('Profile');
-$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/user.css");
-$this->headScript()->appendFile(PUBLIC_PATH . "/js/profile.js");
-?>
 
-<?php
-$data=$this->data;
-if(empty($data)) 
-{
-    $action= "add";
-}
-else 
-{
-    $action= "update";
-}
-$value=array();
-if(is_object($this->data))
-{
-    $value['hobbies']=$this->data->getHobbies(); 
-    $value['contact']=$this->data->getContactNo();    
-    $value['edu']=$this->data->getEducation();  
-    $value['exp']=$this->data->getExperience(); 
-    $value['loc']=$this->data->getLocation();   
-    $value['desc']=$this->data->getDescription();
-    $value['photo']=$this->data->getPhoto();
-}
-else
-{
-    $value['hobbies']="";  
-    $value['contact']="";   
-    $value['edu']="";  
-    $value['exp']=""; 
-    $value['loc']="";   
-    $value['desc']=""; 
-}
-?>
 <!-- Content Starts -->
 <div class="container-fluid">
     <div class="row">
