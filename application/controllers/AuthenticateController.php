@@ -53,16 +53,15 @@ class AuthenticateController extends Zend_Controller_Action
                 $this->_helper->redirector('index', 'index');
             }
         }
-    }
-    
+    }  
         /**
      * This action use to Logout the users from main pages and redirect to login page .
      * @version 1.0
      * @author SinghSandeep
      */
-     public function logoutAction()
+    public function logoutAction()
     {
-        session_destroy();
-        $this->_helper->redirector ('index', 'index');
+       session_destroy(); 
+       $this->_helper->redirector ('index', 'index', 'default');
     } 
 }
