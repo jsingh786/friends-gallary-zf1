@@ -27,14 +27,9 @@ class profile extends \Entities\profile
         $profileObj->setUsers($result[0]);
 		$em->persist($profileObj);
 		$em->flush(); //here
+		
 	}
-     
-     /**
- * Created by Sublime text 2.
- * User: singhsandeep
- * Date: 10/9/2016
- * Time: 11:15 PM
- */
+
 	public static function edit($data,$image)
 	{
         // echo "<pre>";
@@ -65,20 +60,8 @@ class profile extends \Entities\profile
         // echo "<pre>";
         // \Doctrine\Common\Util\Debug::dump($query); die;
          $query->execute();
+
 	}
-    /**
-     * Returns users data
-     * on the basis of arguments passed.
-     *
-     * @param array $whereConditions (key value pair, where 'key' is column)
-     * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
-     * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
-     *
-     * @return Array Collection
-     * @throws \Zend_Exception
-     * @version 1.0
-     *
-     */
 
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
@@ -89,6 +72,7 @@ class profile extends \Entities\profile
         $alias  = 'usrs';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\profile', $alias);
+
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -100,18 +84,27 @@ class profile extends \Entities\profile
                 $counter++;
             }
         }
+
         //Sorting
         if($order)
         {
             $q_1->orderBy(  $alias.'.'.$order['column'], $order['order'] );
         }
+
         //List length
         if($limitAndOffset)
         {
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
+
+        //Debugging by getting SQL
+        //echo '<pre>';
+        //echo $q_1->getQuery()->getSQL(); 
+        //die;
+
         return $q_1->getQuery()->getResult();
     }
+
 }
 

@@ -28,6 +28,7 @@ class album
     /**
      * @ORM\Column(type="string", length=2000, nullable=false)
      */
+
     private $description;
 
     // private $photo;
@@ -58,6 +59,8 @@ class album
      * @return mixed
      */
     public function getId()
+
+
 
     {
         return $this->id;
@@ -93,7 +96,6 @@ class album
         $this->location = $location;
     }
 
-
     public function getDescription()
     {
         return $this->description;
@@ -124,15 +126,16 @@ class album
      * @return mixed
      */
 
-    // public function getPhoto()
-    // {
-    //     return $this->photo;
-    // }
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
      
-    // public function setPhoto($photo)
-    // {
-    //     $this->photo = $photo;
-    // }
+     public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    }
 
 
     public function getUsers()
