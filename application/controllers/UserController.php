@@ -9,12 +9,12 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
-        //to prevent the user acsess if session is not set
+       //  //to prevent the user acsess if session is not set
 
-        if(!Service\Authentication::hasIdentity()) 
-       {
-           $this->_helper->redirector ('index', 'authenticate');
-       }
+       //  if(!Service\Authentication::hasIdentity()) 
+       // {
+       //     $this->_helper->redirector ('index', 'authenticate');
+       // }
     }
 
     public function indexAction()
