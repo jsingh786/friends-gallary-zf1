@@ -7,7 +7,7 @@ $(function(){
 $.ajax({
         url : "/" + user-management-zf1 + "album/index",
         method : "POST",
-        data : {"limit":limit,"offset": offset},
+        data : {"limit":limit, "offset": offset, 'user_id': user_id},
         type : "post",
         dataType : "json",
         success : function(data) {
