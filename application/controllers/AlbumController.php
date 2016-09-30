@@ -3,7 +3,10 @@ class AlbumController extends Zend_Controller_Action
 {
     public function preDispatch()
     {
-
+        if(!\Service\Authentication::hasIdentity())
+        {
+            $this->_helper->redirector('index', 'authenticate', 'default');
+        }
     }
 
     public function init()
@@ -24,6 +27,12 @@ class AlbumController extends Zend_Controller_Action
         //Doctrine\Common\Util\Debug::dump($result[0]);
          // exit();
         // $this->view->data=$result[0];
+    }
+
+    public function getAllAlbumsOfLoggedinUser()
+    {
+        $result=\Extended\album::get(['users'=>\Service\Authentication::getIdentity()]);
+        echo json_encode($result);
     }
 
     public function addAction()

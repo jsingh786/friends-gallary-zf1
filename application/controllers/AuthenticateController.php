@@ -52,21 +52,16 @@ class AuthenticateController extends Zend_Controller_Action
         }
     }
 
-    //todo Doc missing!
-    public function addAction()
-    {
-        $data=$this->getRequest()->getPost();
-        // print_r($data); die;
-        $usersObj = new \Extended\users();
-        $usersObj->create($data);
-        $this->_helper->redirector('index', 'authenticate', 'default');
-    }
-
-    //todo Doc missing!
+        /**
+     * This action use to Logout the users from main pages and redirect to login page .
+     * @version 1.0
+     * @author SinghSandeep
+     */
     public function logoutAction()
     {
-        session_destroy(); // todo Why you have used this method to destroy session when we have Service\Authentication class for this?
-        $this->_helper->redirector ('index', 'index', 'default');
+       session_destroy(); 
+       $this->_helper->redirector ('index', 'index', 'default');
+
     } 
      public function registerAction()
     {

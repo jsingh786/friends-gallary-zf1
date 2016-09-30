@@ -12,6 +12,12 @@ class UserController extends Zend_Controller_Action
        {
            $this->_helper->redirector ('index', 'authenticate');
        }
+       //  //to prevent the user acsess if session is not set
+
+       //  if(!Service\Authentication::hasIdentity()) 
+       // {
+       //     $this->_helper->redirector ('index', 'authenticate');
+       // }
     }
 
     public function indexAction()

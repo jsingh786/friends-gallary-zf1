@@ -155,10 +155,9 @@
                                     </ul>
                                 </li>
                                 <li>
-<!--                                    todo use PROJECT_URL and PROJECT_NAME for forming URL.
-                                        todo example '<a href="<?php //echo PROJECT_URL.'/'.PROJECT_NAME;?>page/help">Help</a>'
--->
                                      <a href="<?php echo $this->baseUrl('/authenticate/logout'); ?>">Logout</a>
+
+                                   <!--  This is the way to atteched the all pages with Logout link -->
                                     </a>
                                 </li>
                             </ul>
@@ -166,11 +165,6 @@
                     </div>
                 </nav>
                 <?php } ?>
-
-          
-
-
-
                 <div class="content">
                     <?php
                     echo $this->layout()->content;

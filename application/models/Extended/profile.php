@@ -27,6 +27,7 @@ class profile extends \Entities\profile
         $profileObj->setUsers($result[0]);
 		$em->persist($profileObj);
 		$em->flush(); //here
+		
 	}
 
 	public static function edit($data,$image)
@@ -59,6 +60,7 @@ class profile extends \Entities\profile
         // echo "<pre>";
         // \Doctrine\Common\Util\Debug::dump($query); die;
          $query->execute();
+
 	}
 
     public static function get(array $whereConditions = [],
@@ -70,6 +72,7 @@ class profile extends \Entities\profile
         $alias  = 'usrs';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\profile', $alias);
+
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -81,18 +84,27 @@ class profile extends \Entities\profile
                 $counter++;
             }
         }
+
         //Sorting
         if($order)
         {
             $q_1->orderBy(  $alias.'.'.$order['column'], $order['order'] );
         }
+
         //List length
         if($limitAndOffset)
         {
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
+
+        //Debugging by getting SQL
+        //echo '<pre>';
+        //echo $q_1->getQuery()->getSQL(); 
+        //die;
+
         return $q_1->getQuery()->getResult();
     }
+
 }
 
