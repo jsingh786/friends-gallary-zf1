@@ -29,7 +29,7 @@ class users extends \Entities\users
         $user->setStatus($data['status']);
         $em->persist($user);
         $em->flush();
-       //return $user->getId();
+        return $user->getId();
     }
 
     /**
@@ -81,19 +81,7 @@ class users extends \Entities\users
         }
         return $q_1->getQuery()->getResult();
     }
-    public static function select($name)
-    {
-        $em = \Zend_Registry::get('em');
-        $qb = $em->createQueryBuilder();
-        $query = $qb->select('u')
-        ->from('\Entities\users','u');
-        $query    ->where('u.username LIKE :username');
-        //->orWhere('u.EmailId LIKE :email_id')
-        $query     ->setParameter('username', '%'.$name.'%');
-        //->setParameter('email_id', 'email_i%')
-        $data= $query->getQuery()->getArrayResult();
-        return $data;
-    }
+
 
 
 }
