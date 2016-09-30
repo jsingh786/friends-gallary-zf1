@@ -27,4 +27,5 @@ class UserController extends Zend_Controller_Action
         $usersObj->create($data);
         $this->_helper->redirector('index', 'authenticate', 'default');
     }
+    
 }

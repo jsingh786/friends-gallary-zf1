@@ -23,7 +23,19 @@ class album extends \Entities\album
         $id=$album->getId();
         return $id;
     }
-
+    /**
+     * Returns users data
+     * on the basis of arguments passed.
+     *
+     * @param array $whereConditions (key value pair, where 'key' is column)
+     * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
+     * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
+     *
+     * @return Array Collection
+     * @throws \Zend_Exception
+     * @version 1.0
+     *
+     */
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])
