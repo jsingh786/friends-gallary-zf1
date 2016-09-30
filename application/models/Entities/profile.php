@@ -88,7 +88,7 @@ class profile
      */
     public function setHobbies($hobbies)
     {
-        $this->hobbies->$hobbies;
+        $this->hobbies=$hobbies;
     }
 
     /**
