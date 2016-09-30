@@ -52,6 +52,15 @@ class AuthenticateController extends Zend_Controller_Action
         }
     }
 
+     public function addAction()
+    {
+        $data=$this->getRequest()->getPost();
+        // print_r($data); die;
+        $usersObj = new \Extended\users();
+        $usersObj->create($data);
+        $this->_helper->redirector('index', 'authenticate', 'default');
+    }
+
         /**
      * This action use to Logout the users from main pages and redirect to login page .
      * @version 1.0
