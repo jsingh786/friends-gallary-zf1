@@ -1,5 +1,4 @@
 <?php
-
 class UserController extends Zend_Controller_Action
 {
     public function preDispatch()
@@ -9,9 +8,7 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
-        //to prevent the user acsess if session is not set
-
-        if(!Service\Authentication::hasIdentity()) 
+        if(!Service\Authentication::hasIdentity())
        {
            $this->_helper->redirector ('index', 'authenticate');
        }
@@ -21,11 +18,7 @@ class UserController extends Zend_Controller_Action
     {
 
     }
-        /**
-     * This action use to be add the data into database .
-     * @version 1.0
-     * @author SinghSandeep
-     */
+
     public function addAction()
     {
         $data=$this->getRequest()->getPost();
@@ -34,8 +27,5 @@ class UserController extends Zend_Controller_Action
         $usersObj->create($data);
         $this->_helper->redirector('index', 'authenticate', 'default');
     }
-    public function friendsAction()
-    {
-        
-    }
+    
 }

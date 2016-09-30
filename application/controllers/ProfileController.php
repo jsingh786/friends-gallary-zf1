@@ -17,25 +17,24 @@ class ProfileController extends Zend_Controller_Action
            $this->_helper->redirector ('index', 'authenticate');
        }
     }
-    
+
     public function indexAction()
     {
         $sess= new \Zend_Auth_Storage_Session('frontend_user');
         $id= $sess->read();
         $userObj = \Extended\profile::get(['users'=>$id], []);
+        $resultObj = \Extended\users::get(['id'=>$id], []);
         // echo "<pre>";
-        // $data=\Doctrine\Common\Util\Debug::dump($userObj);
+         //$data=\Doctrine\Common\Util\Debug::dump($resultObj);
         if(!empty($userObj))
         {
             // echo "Empty"; die;
             $this->view->data=$userObj[0];
+            
+            $this->view->result=$resultObj[0];
         }
     }
-    /**
-     * For update the  the users here we set the microtime function to get the exect the time .
-     * @version 1.0
-     * @author singhSandeep
-     */
+    
     public function updateAction() 
     {
         // echo "Hrrererere"; die;
@@ -55,11 +54,7 @@ class ProfileController extends Zend_Controller_Action
     } 
     /**
     */
-    /**
-     * Add the users data into database and upload the files.
-     * @version 1.0
-     * @author singhSandeep
-     */
+    
     public function addAction()
     {
         $this->_helper->layout()->disableLayout();
