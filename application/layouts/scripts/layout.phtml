@@ -126,9 +126,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <i class="fa fa-search"></i>
-                                    </a>
+                                    <form action="request/index" method="post">
+                                    <input type="text" name="search">
+                                    <button  type="submit">Search</button>
+                                    </form>
                                 </li>
                             </ul>
 
@@ -154,7 +155,8 @@
                                     </ul>
                                 </li>
                                 <li>
-                                   <a href="<?php echo $this->baseUrl('/authenticate/logout'); ?>">Logout</a>
+                                     <a href="<?php echo $this->baseUrl('/authenticate/logout'); ?>">Logout</a>
+
                                    <!--  This is the way to atteched the all pages with Logout link -->
                                     </a>
                                 </li>

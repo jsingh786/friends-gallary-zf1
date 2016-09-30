@@ -12,7 +12,8 @@
 
 * Time: 4:01 PM
 
-*/
+**/
+ 
 
 class AuthenticateController extends Zend_Controller_Action
 
@@ -66,7 +67,11 @@ class AuthenticateController extends Zend_Controller_Action
 
             $adapter = new Service\Authentication($this->getRequest()->getParam("email"), $this->getRequest()->getParam("pass"));
 
+
            $result = $auth->authenticate($adapter);
+
+
+            $result = $auth->authenticate($adapter);
 
             if ( $result->getCode () == Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID
 
@@ -88,6 +93,10 @@ class AuthenticateController extends Zend_Controller_Action
 
                 // print_r($msg); die;
 
+
+                $this->_helper->redirector ('index', 'authenticate');
+
+
                 $this->_helper->redirector ('index', 'authenticate');
 
             }
@@ -104,30 +113,14 @@ class AuthenticateController extends Zend_Controller_Action
 
     }
 
- 
 
-    //todo Doc missing!
+    
 
-    public function addAction()
-
-    {
-
-        $data=$this->getRequest()->getPost();
-
-        // print_r($data); die;
-
-        $usersObj = new \Extended\users();
-
-        $usersObj->create($data);
-
-        $this->_helper->redirector('index', 'authenticate', 'default');
-
-    }
-
- 
-
-
-
+        /**
+     * This action use to Logout the users from main pages and redirect to login page .
+     * @version 1.0
+     * @author SinghSandeep
+     */
     public function logoutAction()
 
     {
@@ -141,11 +134,9 @@ class AuthenticateController extends Zend_Controller_Action
      public function registerAction()
 
     {
-
  
 
     }
 
 }
 
- 

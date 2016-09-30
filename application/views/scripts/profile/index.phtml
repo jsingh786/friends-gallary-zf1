@@ -1,4 +1,49 @@
+<?php
+$this->headTitle()->prepend('Profile');
+$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/user.css");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/profile.js");
+?>
 
+<?php
+$data=$this->data;
+if(empty($data)) 
+{
+    $action= "add";
+}
+else 
+{
+    $action= "update";
+}
+$value=array();
+if(is_object($this->data) && ($this->result))
+{
+    $value['hobbies']= $this->data->getHobbies(); 
+    $value['contact']= $this->data->getContactNo();    
+    $value['edu']= $this->data->getEducation();  
+    $value['exp']= $this->data->getExperience(); 
+    $value['loc']= $this->data->getLocation();   
+    $value['desc']= $this->data->getDescription();
+    $value['photo']= $this->data->getPhoto();
+    $value['fname']= $this->result->getFname();
+    $value['lname']= $this->result->getLname();
+    $value['email_id']= $this->result->getEmailId();
+    $value['status']= $this->result->getStatus();
+}
+else
+{
+    $value['hobbies']="";  
+    $value['contact']="";   
+    $value['edu']="";  
+    $value['exp']=""; 
+    $value['loc']="";   
+    $value['desc']=""; 
+    $value['photo']="";
+    $value['fname']="";
+    $value['lname']=""; 
+    $value['email_id']=""; 
+    $value['status']=""; 
+}
+?>
 <!-- Content Starts -->
 <div class="container-fluid">
     <div class="row">
@@ -93,22 +138,23 @@
         <div class="col-md-4">
             <div class="card card-user">
                 <div class="image">
-                    <img src="https://ununsplash.imgix.net/ photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                    <img src="" alt="..."/>
                 </div>
                 <div class="content">
                     <div class="author">
-                        <a href="#">
+                        
                             <?php if(!empty($value['photo'])) { ?>
-                            <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/uploads/<?php echo $value['photo'] ?>" alt="..."/>
+                            <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/<?php echo $value['photo'] ?>"  />
                             <?php } ?>
-                            <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" alt="..."/>
-                            <h4 class="title">Mike Andrew<br/>
-                                <small>michael24</small>
+                           
+                             <!-- <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" alt="..."/>  -->
+                             
+                            <h4 class="title"><?php  echo $value['fname'] ?><?php  echo $value['lname'] ?><br/>
+                                <small><?php  echo $value['email_id'] ?></small>
                             </h4>
-                        </a>
+                       
                     </div>
-                    <p class="description text-center"> "Lamborghini    Mercy <br>Your chick she so thirsty <br>
-                    I'm in that two seat Lambo"
+                    <p class="description text-center"><?php echo $value['status']  ?>
                     </p>
                 </div>
                 <hr>

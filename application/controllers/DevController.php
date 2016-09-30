@@ -8,10 +8,10 @@ class DevController extends Zend_Controller_Action
 
 	public function init()
 	{
-		// if(!Service\Authentication::hasIdentity())
-  //      {
-  //          $this->_helper->redirector ('index', 'authenticate');
-  //      }
+		if(!Service\Authentication::hasIdentity())
+       {
+           $this->_helper->redirector ('index', 'authenticate');
+       }
 		/* Initialize action controller here */
 	}
 
