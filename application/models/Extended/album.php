@@ -3,6 +3,14 @@ namespace Extended;
 
 class album extends \Entities\album
 {
+    /**
+     * Insert album data into database.
+     *
+     * @param array $data (key value pair, where 'key' is column)
+     * @return integer ID
+     * @version 1.1
+     * @author KaurHarjinder
+     */
     public function create($data)
     {
         //$userObj = \Extended\users::get(['id'=>1], ['limit'=>9, 'offset'=>1]);
@@ -25,11 +33,10 @@ class album extends \Entities\album
      * @param array $whereConditions (key value pair, where 'key' is column)
      * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
      * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
-     *
      * @return Array Collection
      * @throws \Zend_Exception
      * @version 1.1
-     *
+     * @author KaurHarjinder
      */
 
     public static function get(array $whereConditions = [],

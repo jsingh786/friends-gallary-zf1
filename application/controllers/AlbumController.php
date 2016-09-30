@@ -18,7 +18,7 @@ class AlbumController extends Zend_Controller_Action
     {
 
     }
-
+        /* Encode album data into JSON form */
     public function getAllAlbumsOfLoggedinUser()
     {
         $result=\Extended\album::get(['users'=>\Service\Authentication::getIdentity()]);

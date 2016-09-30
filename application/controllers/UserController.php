@@ -21,7 +21,7 @@ class UserController extends Zend_Controller_Action
     {
 
     }
-        /**
+    /**
      * This action use to be add the data into database .
      * @version 1.0
      * @author SinghSandeep
