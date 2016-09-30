@@ -28,7 +28,7 @@ class album extends \Entities\album
      *
      * @return Array Collection
      * @throws \Zend_Exception
-     * @version 1.0
+     * @version 1.1
      *
      */
 
