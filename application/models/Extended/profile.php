@@ -60,6 +60,7 @@ class profile extends \Entities\profile
         // echo "<pre>";
         // \Doctrine\Common\Util\Debug::dump($query); die;
          $query->execute();
+        
 
 	}
 
