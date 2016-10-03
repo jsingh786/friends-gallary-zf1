@@ -125,15 +125,15 @@
                                         <li><a href="#">Another notification</a></li>
                                     </ul>
                                 </li>
+                                <?php if($params['controller'] != 'photo') { ?>
                                 <li>
                                     <form action="request/index" method="post">
-                                    <input type="text" name="search style=margin-top: 17px;
-                                    margin-left: 68px;">
-                                    <button  type="submit">Search</button>
+                                    <input type="text" name="search" style="margin-top: 15px">
+                                     <button   class="fa fa-search" type="submit" id="searchicon" style="width: 37px;"></button>
                                     </form>
                                 </li>
+                                <?php } ?>
                             </ul>
-
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="">

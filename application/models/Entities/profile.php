@@ -88,20 +88,16 @@ class profile
      */
     public function setHobbies($hobbies)
     {
-        $this->hobbies=$hobbies;
-    }
 
+        $this->hobbies= $hobbies;
+    }
     /**
      * @param mixed $photo
      */
-    
     public function getDescription()
-
     {
         return $this->description;
     }
-
-
     public function setDescription($description)
     {
         $this->description = $description;
