@@ -19,14 +19,26 @@ function loadAlbums(limit, offset, user_id)
         dataType : "json",
         async: true,
         success : function(result,status,xhr) {
+
+            //HTML
+            HTML = '';
+            HTML += '<div class = "Row">';
+
             for(i in result)
             {
+                //Add check that when (i+1) is divisible by 3 and has no remainder, then close the row div tag and start new row div.
+                if((i+1)%3 == 0)
+                {
+                    HTML += '</div>';
+                    HTML += '<div class = "Row">';
+                }
+
+                HTML = '';
+
                 //console.log(result[i].id+result[i].name);
-                $("div#main").append(result[i].id+result[i].name+result[i].location+result[i].description+result[i].created_at)
+
             }
-            return;
-            //Do your stuff aftee success.
-            console.log(data)
+            $("div#main").append(HTML);
         }
     });
 }
