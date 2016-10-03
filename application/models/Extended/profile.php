@@ -4,7 +4,7 @@ namespace Extended;
 class profile extends \Entities\profile
 {   
     /**
-    *@param Insert users data into database.
+    * @param Insert users data into database.
     * @param array $data (key value pair, where 'key' is column) 
     * @param Created by Sublime text 2.
     * @param Date: 9/9/2016
@@ -29,15 +29,14 @@ class profile extends \Entities\profile
 		$profileObj->setContactNo($data['contact_no']);
 		$profileObj->setLocation($data['location']);
         $profileObj->setUsers($result[0]);
-
 		$em->persist($profileObj);
 		$em->flush(); //here
-            if(){
-                $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
-            }   else
-            {
-                $this->get('session')->setFlash('my_flash_key',"Record notInserted!");
-                }       
+            // if($query = 'data') {
+            //     $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
+            // }   else
+            // {
+            //     $this->get('session')->setFlash('my_flash_key',"Record not Inserted!");
+            //     }       
        // echo "profile inserted"
 		
 	}
@@ -70,7 +69,12 @@ class profile extends \Entities\profile
         ->setParameter(8, $data['description'])
         ->getQuery();
         $query->execute();
-      
+        // if($query = 'data') {
+        //         $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
+        //     }   else
+        //     {
+        //         $this->get('session')->setFlash('my_flash_key',"Record not Inserted!");
+        //         }
         // echo "<pre>";
         // \Doctrine\Common\Util\Debug::dump($query); die;
 	}

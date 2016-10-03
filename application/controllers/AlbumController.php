@@ -16,6 +16,7 @@ class AlbumController extends Zend_Controller_Action
 
     public function indexAction()
     {
+
         $result=\Extended\album::get(['users'=>1],[]);
         // $this->_helper->json($result);
         $data=json_encode($result);
@@ -25,6 +26,32 @@ class AlbumController extends Zend_Controller_Action
         //Doctrine\Common\Util\Debug::dump($result[0]);
          // exit();
         // $this->view->data=$result[0];
+
+    }
+        /* Encode album data into JSON form */
+    public function getAllAlbumsOfLoggedinUserAction()
+    {
+        print_r($this->getRequest()->getParams());
+        die;
+        $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()]);
+
+        //Create array for JSON
+        $albumArray = array();
+        if($albums)
+        {
+            foreach ($albums as $key=>$album)
+            {
+                $albumArray[$key]['id'] = $album->getId();
+                $albumArray[$key]['name'] = $album->getName();
+                $albumArray[$key]['location'] = $album->getLocation();
+                $albumArray[$key]['description'] = $album->getDescription();
+                $datee = $album->getCreatedAt();
+                $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
+            }
+        }
+        echo json_encode($albumArray);
+        die;
+
     }
     public function addAction()
     {

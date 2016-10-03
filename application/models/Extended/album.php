@@ -72,7 +72,7 @@ class album extends \Entities\album
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
-        return $q_1->getQuery()->getArrayResult();
+        return $q_1->getQuery()->getResult();
     }
 
 }

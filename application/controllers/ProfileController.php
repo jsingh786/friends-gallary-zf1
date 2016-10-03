@@ -60,7 +60,6 @@ class ProfileController extends Zend_Controller_Action
         $status = move_uploaded_file($tmp_name, $target_dir.$image);
         // echo $image; die;
         $result = \Extended\profile::edit($data,$image);
-        $this->_helper->flashMessenger->addMessage('profileinserted');
         $this->_helper->redirector('index','profile');  
 
     } 
@@ -86,7 +85,7 @@ class ProfileController extends Zend_Controller_Action
         $image= $newName.'.'.$ext;  
         $status = move_uploaded_file($tmp_name, $target_dir.$image); 
         $result= \Extended\profile::insert($data,$image,$id);
-        $this->_helper->flashMessenger->addMessage('profileinserted');
+        
         $this->_helper->redirector('index', 'profile');  
     }
 }
