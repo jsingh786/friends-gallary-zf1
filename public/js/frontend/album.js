@@ -1,18 +1,35 @@
-$(function(){
-    $("#but").on("click", function(){
-        
-        var offset= 0;
-        var limit=9;
+$(document).ready(function(){
 
-$.ajax({
-        url : "/" + user-management-zf1 + "album/index",
+    var offset = 0;
+    var limit = 9;
+    loadAlbums(limit, offset, $('input#user_id').val());
+
+    $("#but").on("click", function(){
+
+    });
+});
+
+function loadAlbums(limit, offset, user_id)
+{
+    $.ajax({
+        url : "/"+PROJECT_NAME+"album/get-all-albums-of-loggedin-user",
         method : "POST",
         data : {"limit":limit, "offset": offset, 'user_id': user_id},
         type : "post",
         dataType : "json",
-        success : function(data) {
+        async: true,
+        success : function(result,status,xhr) {
+
+            for(i in result)
+            {
+                console.log(result[i].id);
+            }
+
+
+
+            return;
             //Do your stuff aftee success.
-                console.log(data)
+            console.log(data)
             //     var resultdata=data;
             //     var count = resultdata.length-1;
 
@@ -28,6 +45,4 @@ $.ajax({
             //     $("button#but").attr("offset", off);
         }
     });
-
-});
-});
+}

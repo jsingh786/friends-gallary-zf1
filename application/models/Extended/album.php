@@ -38,7 +38,7 @@ class album extends \Entities\album
      * @version 1.1
      * @author KaurHarjinder
      */
-
+    
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])
@@ -73,7 +73,7 @@ class album extends \Entities\album
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
-        return $q_1->getQuery()->getArrayResult();
+        return $q_1->getQuery()->getResult();
     }
 
 }
