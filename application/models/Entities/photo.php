@@ -17,7 +17,7 @@ class photo
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private $name;
+    private $photo;
 
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
@@ -28,34 +28,27 @@ class photo
      * @ORM\ManyToOne(targetEntity="Entities\album", inversedBy="photo")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id", nullable=false)
      */
-    
-
     private $album;
-
 
     public function getId()
     {
         return $this->id;
     }
 
-
     public function setId($id)
     {
         $this->id = $id;
     }
 
-
-
-    public function getName()
+    public function getPhoto()
     {
-        return $this->name;
+        return $this->photo;
     }
 
-    public function setName($name)
+    public function setPhoto($photo)
     {
-        $this->name = $name;
+        $this->photo = $photo;
     }
-
 
     public function getDescription()
     {
@@ -66,8 +59,6 @@ class photo
     {
         $this->description = $description;
     }
-
-
 
     public function getAlbum()
     {
