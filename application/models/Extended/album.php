@@ -1,6 +1,5 @@
 <?php
 namespace Extended;
-
 class album extends \Entities\album
 {
     /**
@@ -25,7 +24,6 @@ class album extends \Entities\album
         $id=$album->getId();
         return $id;
     }
-
     /**
      * Returns album data
      * on the basis of arguments passed.
@@ -38,7 +36,7 @@ class album extends \Entities\album
      * @version 1.1
      * @author KaurHarjinder
      */
-
+    
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])
@@ -48,7 +46,6 @@ class album extends \Entities\album
         $alias  = 'album';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\album', $alias);
-
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -60,20 +57,17 @@ class album extends \Entities\album
                 $counter++;
             }
         }
-
         //Sorting
         if($order)
         {
             $q_1->orderBy(  $alias.'.'.$order['column'], $order['order'] );
         }
-
         //List length
         if($limitAndOffset)
         {
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
-        return $q_1->getQuery()->getArrayResult();
+        return $q_1->getQuery()->getResult();
     }
-
 }
