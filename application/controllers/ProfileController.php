@@ -19,21 +19,24 @@ class ProfileController extends Zend_Controller_Action
         /* Initialize action controller here */
         if(!Service\Authentication::hasIdentity())
        {
-           $this->_helper->redirector ('index', 'authenticate');
+           $this->_helper->redirector('index', 'authenticate');
        }
     }
-
     public function indexAction()
     {
         $sess= new \Zend_Auth_Storage_Session('frontend_user');
         $id= $sess->read();
         $userObj = \Extended\profile::get(['users'=>$id], []);
         $resultObj = \Extended\users::get(['id'=>$id], []);
+        if(!empty($resultObj))
+        {
+         $this->view->result=$resultObj[0];
+        }
         if(!empty($userObj))
         {
             // echo "Empty"; die;
             $this->view->data=$userObj[0];
-            $this->view->result=$resultObj[0];
+           
         }
     }
     /** 
@@ -45,8 +48,8 @@ class ProfileController extends Zend_Controller_Action
     {
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        $target_dir = "images/";
         $data=$this->getRequest()->getPost();
+        $target_dir = "images/";
         $file= $_FILES['photo'];
         $filename= $file['name'];
         $tmp_name=$file['tmp_name'];
@@ -56,8 +59,10 @@ class ProfileController extends Zend_Controller_Action
         $image=$newName.'.'.$ext;
         $status = move_uploaded_file($tmp_name, $target_dir.$image);
         // echo $image; die;
-        $result = \Extended\profile::edit($data,$image); 
-        $this->_helper->redirector('index', 'index'); 
+        $result = \Extended\profile::edit($data,$image);
+        $this->_helper->flashMessenger->addMessage('profileinserted');
+        $this->_helper->redirector('index','profile');  
+
     } 
     /** 
     *@param To create a new user profile.
@@ -81,6 +86,7 @@ class ProfileController extends Zend_Controller_Action
         $image= $newName.'.'.$ext;  
         $status = move_uploaded_file($tmp_name, $target_dir.$image); 
         $result= \Extended\profile::insert($data,$image,$id);
+        $this->_helper->flashMessenger->addMessage('profileinserted');
         $this->_helper->redirector('index', 'profile');  
     }
 }

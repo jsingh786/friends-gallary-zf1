@@ -29,8 +29,16 @@ class profile extends \Entities\profile
 		$profileObj->setContactNo($data['contact_no']);
 		$profileObj->setLocation($data['location']);
         $profileObj->setUsers($result[0]);
+
 		$em->persist($profileObj);
 		$em->flush(); //here
+            if(){
+                $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
+            }   else
+            {
+                $this->get('session')->setFlash('my_flash_key',"Record notInserted!");
+                }       
+       // echo "profile inserted"
 		
 	}
     /**
@@ -62,6 +70,7 @@ class profile extends \Entities\profile
         ->setParameter(8, $data['description'])
         ->getQuery();
         $query->execute();
+      
         // echo "<pre>";
         // \Doctrine\Common\Util\Debug::dump($query); die;
 	}
