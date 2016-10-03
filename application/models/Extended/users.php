@@ -79,12 +79,6 @@ class users extends \Entities\users
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
-
-        //Debugging by getting SQL
-        //echo '<pre>';
-        //echo $q_1->getQuery()->getSQL(); 
-        //die;
-
         return $q_1->getQuery()->getResult();
     }
     public static function select($name)

@@ -31,6 +31,7 @@ class profile extends \Entities\profile
         $profileObj->setUsers($result[0]);
 		$em->persist($profileObj);
 		$em->flush(); //here
+		
 	}
     /**
     *@param Edit users data into database.
@@ -60,9 +61,9 @@ class profile extends \Entities\profile
         ->setParameter(7, $data['location'])
         ->setParameter(8, $data['description'])
         ->getQuery();
+        $query->execute();
         // echo "<pre>";
         // \Doctrine\Common\Util\Debug::dump($query); die;
-        $query->execute();
 	}
     /**
     * Returns users data
@@ -85,8 +86,9 @@ class profile extends \Entities\profile
         $alias  = 'usrs';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\profile', $alias);
+
         //Creating where conditions of query.
-        if ($whereConditions)
+                if ($whereConditions)
         {
             $counter = 1;
             foreach ($whereConditions as $key=>$whereCondition)
@@ -107,6 +109,10 @@ class profile extends \Entities\profile
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
+        //Debugging by getting SQL
+        //echo '<pre>';
+        //echo $q_1->getQuery()->getSQL(); 
+        //die;
         return $q_1->getQuery()->getResult();
     }
 }

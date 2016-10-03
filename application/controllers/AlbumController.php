@@ -3,7 +3,10 @@ class AlbumController extends Zend_Controller_Action
 {
     public function preDispatch()
     {
-
+        if(!\Service\Authentication::hasIdentity())
+        {
+            $this->_helper->redirector('index', 'authenticate', 'default');
+        }
     }
 
     public function init()
@@ -13,8 +16,6 @@ class AlbumController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        //echo '<pre>';
-
         $result=\Extended\album::get(['users'=>1],[]);
         // $this->_helper->json($result);
         $data=json_encode($result);
@@ -25,7 +26,6 @@ class AlbumController extends Zend_Controller_Action
          // exit();
         // $this->view->data=$result[0];
     }
-
     public function addAction()
     {
         $data=$this->getRequest()->getPost();
@@ -33,5 +33,4 @@ class AlbumController extends Zend_Controller_Action
         $result = $profileObj->create($data);
         $this->_helper->redirector('index', 'photo', 'default',['id'=>$result]);
     }
-
 }

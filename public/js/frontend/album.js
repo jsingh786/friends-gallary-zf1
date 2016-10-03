@@ -3,11 +3,10 @@ $(function(){
         
         var offset= 0;
         var limit=9;
-
 $.ajax({
         url : "/" + user-management-zf1 + "album/index",
         method : "POST",
-        data : {"limit":limit,"offset": offset},
+        data : {"limit":limit, "offset": offset, 'user_id': user_id},
         type : "post",
         dataType : "json",
         success : function(data) {
@@ -28,6 +27,5 @@ $.ajax({
             //     $("button#but").attr("offset", off);
         }
     });
-
 });
 });

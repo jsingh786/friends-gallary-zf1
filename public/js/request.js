@@ -1,11 +1,11 @@
 $(function(){
-    $("#srch").keyup(function() {
+    $("#search").keyup(function() {
     var data= $(this).val();
 
 $.ajax({
     type: "POST",
     dataType: "json",
-    url: "user-management-zf1/request/search",
+    url: "user-management-zf1/user/search",
     data: {"path" data},
     success: function(jsondata) {
     	console.log(jsondata)

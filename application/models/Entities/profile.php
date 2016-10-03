@@ -67,13 +67,11 @@ class profile
     {
         $this->id = $id;
     }
-
     public function getPhoto()
 
     {
         return $this->photo;
     }
-
     public function setPhoto($photo)
     {
         $this->photo = $photo;
@@ -90,7 +88,7 @@ class profile
      */
     public function setHobbies($hobbies)
     {
-        $this->hobbies = $hobbies;
+        $this->hobbies= $hobbies;
     }
 
     /**
@@ -108,7 +106,6 @@ class profile
     {
         $this->description = $description;
     }
-
     public function getEducation()
 
     {
@@ -149,7 +146,6 @@ class profile
     {
         $this->location = $location;
     }
-
     public function getUsers()
     {
         return $this->users;

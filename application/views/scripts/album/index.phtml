@@ -1,14 +1,20 @@
 <?php
+/**
+* Created by sublime.
+* User: KaurHarjinder
+* Date: 9/22/2016
+* Time: 10:11 AM
+*/
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/album.css");
 $this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/album.js");
 ?>
 
-
-
+<!-- Content Starts -->
 <div id = "container">
         <div id = "main">
-            <div class = "Row">
-              <div class="Colomn">
+            <div class = "Row" id ='json-data'>
+              <!-- <div class="Colomn">
+
                 <a href="#">
                   <img src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" class="Img" > 
                 <div class="Info-album">
@@ -113,7 +119,11 @@ $this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/album.js");
                 </div>
                 </a>
               </div>
+
             </div>
+
+            </div> -->
+
         </div>
         <button id="but" offset='9'>Show More</button>
     </div>

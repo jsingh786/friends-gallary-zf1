@@ -28,6 +28,7 @@ class album
     /**
      * @ORM\Column(type="string", length=2000, nullable=false)
      */
+
     private $description;
 
     // private $photo;
@@ -50,63 +51,75 @@ class album
      * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
      */
     private $users;
-
-
-    
+        
 
     /**
      * @return mixed
      */
     public function getId()
-
     {
         return $this->id;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
+    /**
+     * @return mixed
+     */
     public function getName()
     {
         return $this->name;
     }
 
-
-
+    /**
+     * @param mixed $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function getLocation()
     {
         return $this->location;
     }
 
-
+    /**
+     * @param mixed $location
+     */
     public function setLocation($location)
     {
         $this->location = $location;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
+    /**
+     * @param mixed $id
+     */
     public function setDescription($description)
     {
         $this->description = $description;
-    }
+    }    
 
-    
-
-     
+    /**
+     * @return mixed
+     */ 
     public function getCreatedAt()
     {
         return $this->created_at;
@@ -123,18 +136,22 @@ class album
     /**
      * @return mixed
      */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
 
-    // public function getPhoto()
-    // {
-    //     return $this->photo;
-    // }
-     
-    // public function setPhoto($photo)
-    // {
-    //     $this->photo = $photo;
-    // }
+    /**
+     * @param mixed $photo
+     */
+     public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    }
 
-
+    /**
+     * @return mixed
+     */
     public function getUsers()
     {
         return $this->users;

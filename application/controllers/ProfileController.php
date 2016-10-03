@@ -29,8 +29,6 @@ class ProfileController extends Zend_Controller_Action
         $id= $sess->read();
         $userObj = \Extended\profile::get(['users'=>$id], []);
         $resultObj = \Extended\users::get(['id'=>$id], []);
-        // echo "<pre>";
-        //$data=\Doctrine\Common\Util\Debug::dump($resultObj);
         if(!empty($userObj))
         {
             // echo "Empty"; die;
@@ -83,7 +81,7 @@ class ProfileController extends Zend_Controller_Action
         $image= $newName.'.'.$ext;  
         $status = move_uploaded_file($tmp_name, $target_dir.$image); 
         $result= \Extended\profile::insert($data,$image,$id);
-        $this->_helper->redirector('index', 'index');  
+        $this->_helper->redirector('index', 'profile');  
     }
 }
 

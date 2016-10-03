@@ -1,6 +1,7 @@
 <?php
 namespace Extended;
-class friendRequest extends \Entities\friendRequest 
+
+class friendRequest extends Entities/friendRequest 
 {     
 	public static function insert($id,$recId)
     {

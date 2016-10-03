@@ -41,6 +41,7 @@ class friendRequest
      */
     private $friendRequestReceiver;
 
+
     public function getId()
     {
         return $this->id;
@@ -105,5 +106,4 @@ class friendRequest
     {
         $this->updated_at = $updated_at;
     }
-
 }

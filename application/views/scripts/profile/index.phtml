@@ -63,7 +63,7 @@ else
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Hobbies</label>
-                                    <input type="text" class="form-control" placeholder="Hobbies" name="hobbies" value="<?php echo $value['hobbies'] ?>" >
+                                    <input type="text" class="form-control" placeholder="Hobbies" name="hobbies" value="<?php echo $value['hobbies'] ?>">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -132,6 +132,7 @@ else
                 </div>
             </div>
         </div>
+        <?php if(!empty($data)) { ?>
         <div class="col-md-4">
             <div class="card card-user">
                 <div class="image">
@@ -156,5 +157,6 @@ else
                 </div>
             </div>
         </div>
+        <?php } ?>
     </div>
 </div>
