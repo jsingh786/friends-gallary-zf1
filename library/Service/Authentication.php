@@ -99,7 +99,7 @@ class Authentication implements \Zend_Auth_Adapter_Interface
      */
     public static function getIdentity()
     {
-        $sess= new Zend_Auth_Storage_Session('frontend_user');
+        $sess= new \Zend_Auth_Storage_Session('frontend_user');
         if ($sess->read())
         {
             $U = \Extended\users::get(['id'=>$sess->read()], ['limit'=>1, 'offset'=>0], ['order'=>'DESC', 'column'=>'id']);
