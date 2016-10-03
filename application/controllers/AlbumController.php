@@ -8,12 +8,10 @@ class AlbumController extends Zend_Controller_Action
             $this->_helper->redirector('index', 'authenticate', 'default');
         }
     }
-
     public function init()
     {
         /* Initialize action controller here */
     }
-
     public function indexAction()
     {
 
@@ -31,10 +29,9 @@ class AlbumController extends Zend_Controller_Action
         /* Encode album data into JSON form */
     public function getAllAlbumsOfLoggedinUserAction()
     {
-        print_r($this->getRequest()->getParams());
-        die;
+        // print_r($this->getRequest()->getParams());
+        // die;
         $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()]);
-
         //Create array for JSON
         $albumArray = array();
         if($albums)
@@ -51,7 +48,6 @@ class AlbumController extends Zend_Controller_Action
         }
         echo json_encode($albumArray);
         die;
-
     }
     public function addAction()
     {

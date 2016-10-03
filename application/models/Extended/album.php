@@ -1,6 +1,5 @@
 <?php
 namespace Extended;
-
 class album extends \Entities\album
 {
     /**
@@ -47,7 +46,6 @@ class album extends \Entities\album
         $alias  = 'album';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\album', $alias);
-
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -59,13 +57,11 @@ class album extends \Entities\album
                 $counter++;
             }
         }
-
         //Sorting
         if($order)
         {
             $q_1->orderBy(  $alias.'.'.$order['column'], $order['order'] );
         }
-
         //List length
         if($limitAndOffset)
         {
@@ -74,5 +70,4 @@ class album extends \Entities\album
         }
         return $q_1->getQuery()->getResult();
     }
-
 }
