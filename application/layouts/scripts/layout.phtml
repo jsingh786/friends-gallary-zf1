@@ -44,10 +44,10 @@
     </head>
     <body>
         <div class="wrapper">
-             <?php if($params['controller'] != 'authenticate' && $params['controller'] != 'request' ) { ?>
+             <?php if($params['controller'] != 'authenticate') { ?>
         <div class="sidebar" data-color="purple" data-image="<?php echo IMAGE_PATH ?>/static/sidebar-5.jpg">
 
-                <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+        <!--           you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
                 <div class="sidebar-wrapper">
                     <div class="logo">
@@ -81,17 +81,14 @@
                             <a href="/<?php echo PROJECT_NAME; ?>photo/index">
                                 <i class="pe-7s-photo"></i>
                                 <p>Photo Page</p>
-
                             </a>
-                        </li>
-                        
+                        </li>                                          
                     </ul>
                 </div>
             </div>
           <?php } ?>
-
             <div class="main-panel" style="background-color: white;">
-                <?php if($params['controller'] != 'authenticate' && $params['controller'] != 'request') { ?>
+                <?php if($params['controller'] != 'authenticate') { ?>
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -125,15 +122,14 @@
                                         <li><a href="#">Another notification</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li> <?php if($params['controller'] != 'photo') { ?>
                                     <form action="request/index" method="post">
                                     <input type="text" name="search style=margin-top: 17px;
                                     margin-left: 68px;">
                                     <button  type="submit">Search</button>
                                     </form>
-                                </li>
+                                </li>  <?php } ?>
                             </ul>
-
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="">
@@ -173,7 +169,7 @@
                 </div>
                 <?php
                 //print_r($params); die;
-                if($params['controller'] != 'authenticate' && $params['controller'] != 'request')
+                if($params['controller'] != 'authenticate')
                     {
                 ?>
                 <footer class="footer">

@@ -1,31 +1,21 @@
-.inersrc img{
-	 border-radius: 78px;
-	 margin-left: 36px;
-	 width:100px;
-}
-
-
-.inersrc {
-	width: 178px;
+.spl {
+	width: 179px;
 	float:left;
 	margin-right: 15px;
 	border-color: #9B9590
-	
+    }
+	.spl img {
+		border-radius: 90px;
+		width: 136px;
+	}
+	.username{
+		margin-left: 50px;
+    }
+    .email{
+	margin-left: 37px;
 
 }
-
-.san{
-	margin-left: 36px;
-}
-/*.btn {
-  width:150px;
-  background: lightblue;
-}*/
-.username{
-	text-align: center;
-}
-
-.email{
-	text-align: center;
-
-}
+ .butn{
+ 	font-size: inherit;
+ 	margin-left: 15px;
+ }

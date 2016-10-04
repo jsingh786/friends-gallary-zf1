@@ -44,6 +44,7 @@ class ProfileController extends Zend_Controller_Action
         $data=$this->getRequest()->getPost();
         $file= $_FILES['photo'];
         $filename= $file['name'];
+        $tmp_name=$file['tmp_name'];
         $ext=pathinfo($filename,PATHINFO_EXTENSION);
         // echo $ext; die;
         $newName=md5(date('Y-m-d H:i:s').":".microtime());

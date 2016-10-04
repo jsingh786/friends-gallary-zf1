@@ -24,15 +24,12 @@ class UserController extends Zend_Controller_Action
     {
 
     }
-<<<<<<< HEAD
+
     /**
      * This action use to be add the data into database .
      * @version 1.0
      * @author SinghSandeep
      */
-=======
-
->>>>>>> a75d7d424ec74c1d7b4ee2ee01a5284ddaeded1f
     public function addAction()
     {
         $data=$this->getRequest()->getPost();
