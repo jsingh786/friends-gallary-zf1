@@ -1,42 +1,129 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Create Album</h4>
-                </div>
-                <div class="content">
-                    <form action="/<?php echo PROJECT_NAME; ?>album/add" method="post">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Album Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="name" >
-                                </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Location</label>
-                                    <input type="text" name="location" class="form-control" placeholder="Location">
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea rows="5" class="form-control" placeholder="Here can be your description" name="desc"></textarea>
-                                </div>
-                            </div>
-                        </div><br>
-                        <button type="submit" class="btn btn-info btn-fill pull-left">Submit</button>
-                        <div class="clearfix"></div>
-                    </form>
-                </div>
+<?php
+/**
+* Created by sublime.
+* User: KaurHarjinder
+* Date: 9/22/2016
+* Time: 10:11 AM
+*/
+$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/album.css");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/album.js");
+?>
+
+<input type='hidden' id='user_id' value="<?php echo $this->user_id ?>">
+<!-- Content Starts -->
+<div id = "container">
+   <div id = "main">
+     <!-- <div class = "Row">
+          <div class="Colomn">
+            <a href="#">
+              <img src="" class="Img" >
+            <div class="Info-album">
+        
             </div>
+            </a>
+          </div>
+          <div class="Colomn">
+            <a href="#">
+            <img src="" class="Img" >            
+            <div class="Info-album">
+              <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+              <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+              <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+              <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+            </div>
+            </a>
+          </div>          
+          <div class= "Colomn">
+            <a href="#">
+            <img src="" class="Img" >
+            <div class="Info-album">
+              <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+              <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+              <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+              <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+            </div>
+            </a>
+          </div>
         </div>
-    </div>
+
+      <div class = "Row">
+        <div class="Colomn">
+          <a href="#">
+            <img src="" class="Img" > 
+          <div class="Info-album">
+            <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+            <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+            <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+            <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+          </div>
+          </a>
+        </div>
+        <div class="Colomn">
+          <a href="#">
+          <img src="" class="Img" >            
+          <div class="Info-album">
+            <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+            <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+            <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+            <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+          </div>
+          </a>
+        </div>          
+        <div class= "Colomn">
+          <a href="#">
+          <img src="" class="Img" >
+          <div class="Info-album">
+            <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+            <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+            <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+            <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+          </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class = "Row">
+        <div class="Colomn">
+          <a href="#">
+            <img src="" class="Img" > 
+            <div class="Info-album">
+              <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+              <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+              <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+              <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+            </div>
+          </a>
+        </div>            
+        <div class="Colomn">
+          <a href="#">
+            <img src="" class="Img" >            
+            <div class="Info-album">
+              <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+              <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+              <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+              <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+            </div>
+          </a>
+      </div> 
+      <div class="Colomn">
+          <a href="#">
+            <img src="" class="Img" >            
+            <div class="Info-album">
+              <b>Name:</b><?php /*echo $this->data->getName()*/?><br>
+              <b>Location:</b><?php /*echo $this->data->getLocation()*/?><br>
+              <b>Description:</b><?php /*echo $this->data->getDescription()*/?><br>
+              <b>Created At:</b><?php /*echo $this->data->getCreatedAt()->format("d/m/Y")*/?><br>
+            </div>
+          </a>
+      </div> 
+      </div>   
+  </div>
+   <button id="but" offset='9'>Show More</button>
+
+</div>-->
 </div>
-  
+</div>
+
+
+
+
