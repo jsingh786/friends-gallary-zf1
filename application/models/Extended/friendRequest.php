@@ -2,7 +2,7 @@
 namespace Extended;
 class friendRequest extends Entities\friendRequest 
 {     
-	public static function insert($id,$recId)
+    public static function insert($id,$recId)
     {
         $em = \Zend_Registry::get('em');
         $suser = \Extended\users::get(['id'=>$id], []);
@@ -16,7 +16,7 @@ class friendRequest extends Entities\friendRequest
         $em->persist($request);
         $em->flush();
     }
-	public static function get(array $whereConditions = [],
+    public static function get(array $whereConditions = [],
     array $limitAndOffset = [] ,
     array $order = [])
     {
