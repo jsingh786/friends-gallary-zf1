@@ -8,17 +8,10 @@ class album extends \Entities\album
         $sess= new \Zend_Auth_Storage_Session('Frontend users');
         $id = $sess->read();
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
-        // echo '<pre>';
-        // \Doctrine\Common\Util\Debug::dump($userObj);
-        // die;
         $em = \Zend_Registry::get('em');
-        $album= new \Entities\album();
-        
+        $album= new \Entities\album();        
         $album->setName($data['name']);
-        $album->setLocation($data['location']);
-
-        
-
+        $album->setLocation($data['location']);     
         $album->setDescription($data['desc']);
         $album->setUsers($userObj[0]);
         $em->persist($album);
@@ -28,7 +21,18 @@ class album extends \Entities\album
         return $id;
     }
 
-
+/**
+    * Returns album data
+    * on the basis of arguments passed.
+    * @param array $whereConditions (key value pair, where 'key' is column)
+    * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
+    * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
+    *
+    * @return Array Collection
+    * @throws \Zend_Exception
+    * @version 1.1
+    * @author kaurharjinder
+    */
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])
@@ -64,25 +68,7 @@ class album extends \Entities\album
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
 
-
-        //Debugging by getting SQL
-        //echo '<pre>';
-        //echo $q_1->getQuery()->getSQL(); 
-        //die;
-
-
         return $q_1->getQuery()->getResult();
-    }
-
-    public static function select()
-    {
-        $em = \Zend_Registry::get('em');
-        $qb = $em->createQueryBuilder();
-        $alias = 'album';
-        $query = $qb->select($alias)
-        ->from('\Entities\album', $alias);
-        
-        return $query->getQuery()->getResult();
     }
 
 }

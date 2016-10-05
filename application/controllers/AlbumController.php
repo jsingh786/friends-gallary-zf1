@@ -8,22 +8,29 @@ class AlbumController extends Zend_Controller_Action
             $this->_helper->redirector('index', 'authenticate', 'default');
         }
     }
+
     public function init()
     {
         /* Initialize action controller here */
     }
+
     public function indexAction()
     {
-
+        /* Get value of user_id */ 
        $this->view->user_id = \Service\Authentication::getIdentity()->getId();
 
     }
-        /* Encode album data into JSON form */
+
+    /**
+     * Encode album data into JSON form 
+     * @version 1.0
+     * @author kaurharjinder
+     */        
     public function getAllAlbumsOfLoggedinUserAction()
     {
-         // print_r($this->getRequest()->getParams());
-         // die;
+        //Get User Id 
         $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()]);
+
         //Create array for JSON
         $albumArray = array();
         if($albums)
@@ -38,8 +45,8 @@ class AlbumController extends Zend_Controller_Action
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
             }
         }
-        echo json_encode($albumArray);
-        die;
+        echo json_encode($albumArray);//Encode Array data into JSON Form
+        exit();
     }
     public function addAction()
     {
