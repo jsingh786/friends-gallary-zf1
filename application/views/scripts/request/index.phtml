@@ -1,86 +1,51 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            #page {
-                position: relative;
-                margin-left: 50px;*/
-                height: 100%;
-                width: 100%;
-                padding: 10px 10px 0px 10px;
-                border-radius: 2px 2px 2px 2px;
-            }
-            #profile-picture {
-                height: 100px;
-                width: 96px;
-                padding: 2px 2px 2px 2px;
-                float: left;
-                border-radius: 126px;
-                background-color: yellow;
-            }
-            #user {
-                float: left;
-                height: 61px;
-                width: 194px;
-                margin: 0px 0px 0px 10px;
-            }
-            .profile {
-                float: right;
-                height: 80px;
-                margin-right: 487px;
-                margin-top: 3px;
-            }
-            #fact-wrap {
-                margin-left: 124px;
-                margin-top: -69px;
-                width: 150px;
-            }
-            .abc {
-                width: 100%;
-                margin-left: -9px;
-                margin-top: 104px;
-            }
-            #desc {
-                height: auto;
-                width: 450px;
-                margin-top: 92px;
-                margin-left: 69px;
-            }
-            .button {
-                float: right;
-                margin-right: 296px;
-                margin-top: -50px;
-            }
-        </style>
-    </head>
-    <body>
-        <form action="/<?php echo PROJECT_NAME ?>./request" method="post" >
-            <div id="page">
-                <!-- <div id="profile-picture">
-                    <img src= "<?php// echo IMAGE_PATH ?>/images<?php// echo $this->data->getPhoto() ?>">
-                </div> -->
-                <div class="abc">
-                    <div id="fact-wrap">
-                        <p><?php echo $this->data["username"]; ?></p>
-                        <p><?php echo $this->data["email_id"]; ?></p>
-                    </div>
-                    <!-- <div class="button">
-                        <button name="but"  value="" >Add friend</button> 
-                       
-                    </div>  -->
-                </div>
-                <!-- <div id="user">
-                    <p>Name::<?php //echo $this->result->getFname(); ?> <?php //echo $this->result->getLname(); ?></p>
-                    <p>City::<?php //echo $this->data->getLocation(); ?></p>
-                </div>   -->        
-               <!--  <div class="profile">
-                    <p>Education::<?php //echo $this->data->getEducation(); ?></p>
-                    <p>Experience::<?php //echo $this->data->getExperience(); ?></p>
-                </div> -->
-            </div>
-            <!-- <div id="desc">
-                <p>Description::<?php //echo $this->data->getDescription(); ?></p>
-            </div> -->
-        </form>
-    </body>
+	<head>
+		<title></title>
+		<style>
+			
+			.spl {
+			    width: 282px;
+			    height: 178px;
+			    float:left;
+			    margin-right: 15px;
+			    border-color: #9B9590
+			    
+			}
+			.spl img {
+			    border-radius: 35px;
+			    width: 136px;
+			    margin-left: 13px;
+			    height: 90px;
+			}
+			.username{
+			    margin-left: 41px;
+			}
+			.email{
+			    margin-left: 43px;
+			}
+			.butn{
+			    font-size: inherit;
+			    margin-left: 24px;
+			}
+		</style>
+	</head>
+	<body>
+		
+			<?php for($i=0;$i<count($this->data);$i++) { ?>
+				<div class ="spl">
+					<img src ="<?php echo IMAGE_PATH ?>/<?php echo $this->data[$i]["photo"] ?>" >
+					<div class = "username"><?php echo $this->result[$i]["username"] ?>
+					</div>
+					<div class = "email"><?php echo $this->result[$i]["email_id"] ?>
+					</div>
+					<a href= "add/id/<?php echo $this->result[$i]["id"] ?>">
+						<button class="butn" id="btnsubmit">+1Add Friends</button>
+					</a>
+				</div>
+			<?php } ?>
+		
+	</body>
 </html>
+

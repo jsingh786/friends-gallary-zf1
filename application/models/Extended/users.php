@@ -8,7 +8,6 @@ namespace Extended;
 */
 class users extends \Entities\users
 {
-
     /**
      * Insert users data into database.
      *
@@ -54,7 +53,6 @@ class users extends \Entities\users
         $alias  = 'usrs';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\users', $alias);
-
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -66,13 +64,11 @@ class users extends \Entities\users
                 $counter++;
             }
         }
-
         //Sorting
         if($order)
         {
             $q_1->orderBy( 	$alias.'.'.$order['column'], $order['order'] );
         }
-
         //List length
         if($limitAndOffset)
         {
@@ -81,19 +77,26 @@ class users extends \Entities\users
         }
         return $q_1->getQuery()->getResult();
     }
-    public static function select($name)
-    {
-        $em = \Zend_Registry::get('em');
-        $qb = $em->createQueryBuilder();
+    /**
+    * In this function they have select the unique name and fetch all the data from user table.
+    * Also they did not match the id himself.
+    * @param  $name (key value pair, where 'key' is column)
+    * @return integer ID
+    * @version 1.1
+    * @author goyalraghav
+    */
+    public static function search($name)
+    {           
+        $em    = \Zend_Registry::get('em');
+        $id    = \Service\Authentication::getIdentity()->getId();
+        $qb    = $em->createQueryBuilder();
         $query = $qb->select('u')
-        ->from('\Entities\users','u');
-        $query    ->where('u.username LIKE :username');
-        //->orWhere('u.EmailId LIKE :email_id')
-        $query     ->setParameter('username', '%'.$name.'%');
-        //->setParameter('email_id', 'email_i%')
-        $data= $query->getQuery()->getArrayResult();
-        return $data;
+              ->from('\Entities\users','u');
+        $query->where('u.fname LIKE :fname');
+        $query->andwhere('u.id != :identifier');
+        $query->setParameter('identifier', $id);
+        $query->setParameter('fname', $name.'%');
+        $data  = $query->getQuery()->getArrayResult();
+        return $data; 
     }
-
-
 }
