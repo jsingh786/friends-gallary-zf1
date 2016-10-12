@@ -1,9 +1,8 @@
 <?php
 namespace Extended;
-
-class friendRequest extends Entities/friendRequest 
+class friendRequest extends Entities\friendRequest 
 {     
-	public static function insert($id,$recId)
+    public static function insert($id,$recId)
     {
         $em = \Zend_Registry::get('em');
         $suser = \Extended\users::get(['id'=>$id], []);
@@ -13,11 +12,11 @@ class friendRequest extends Entities/friendRequest
         $request->setFriendRequestSender($suser[0]);
         $request->setFriendRequestReceiver($ruser[0]);
         $sql=$em->getQuery()->getSQL();
-        //echo $sql; die;
+        echo $sql; die;
         $em->persist($request);
         $em->flush();
     }
-	public static function get(array $whereConditions = [],
+    public static function get(array $whereConditions = [],
     array $limitAndOffset = [] ,
     array $order = [])
     {

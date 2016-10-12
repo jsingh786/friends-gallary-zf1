@@ -60,7 +60,6 @@ class album extends \Entities\album
         {
             $q_1->orderBy(  $alias.'.'.$order['column'], $order['order'] );
         }
-
         //List length
         if($limitAndOffset)
         {

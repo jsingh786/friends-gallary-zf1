@@ -39,51 +39,71 @@ class album
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="Entities\photo", mappedBy="album", cascade={"remove"})
-     */
-    private $photo;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Entities\users", inversedBy="album")
-     * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Entities\users", inversedBy="profile")
+     * @ORM\JoinColumn(name="users_id", referencedColumnName="id", nullable=false, unique=true)
      */
     private $users;
 
+    /**
+     * @return mixed
+     */
      public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param mixed $id
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
+    /**
+     * @return mixed
+     */
     public function getName()
     {
         return $this->name;
     }
 
+
+    /**
+     * @param mixed $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * @return mixed
+     */
     public function getLocation()
     {
         return $this->location;
     }
 
+    /**
+     * @param mixed $location
+     */
     public function setLocation($location)
     {
         $this->location = $location;
     }
 
+    /**
+     * @return mixed
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
+    /**
+     * @param mixed $description
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -103,22 +123,6 @@ class album
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-    /**
-     * @param mixed $photo
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
     }
 
     /**

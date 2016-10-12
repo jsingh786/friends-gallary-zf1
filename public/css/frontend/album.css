@@ -1,17 +1,17 @@
             div#container {
                 width: 643px;
-                height: 794px;
+                height: 801px;
                 border: 1px solid black;
                 margin: 0px auto;
                 text-align: center;
-                margin-top: 50px;
+                margin-top: 2px;
                 background-color: white;
                 }
 
             div#main {
                 overflow: auto;
-                width: 620px;
-                height: 732px;
+                width: 630px;
+                height: 736px;
                 margin-right: 10px;
                 margin-top: 10px;
                 margin-left: 10px;
@@ -19,12 +19,12 @@
             }
 
             .Row {
-                height: 243px;
+                height: 720px;
                 width: 618px;
             }
 
             .Colomn {
-                width: 196px;
+                width: 197px;
                 height: 237px;
                 display: inline-block;
                 /*border: 1px solid black;*/
@@ -38,11 +38,14 @@
             }
 
             .Info-album{
-                width: 194px;
+                width: 197px;
                 height: 79px;
                 text-align: -moz-left;
                 margin-left: 2px;
                 margin-right: 0px;
                 margin-top: 0px;
                 margin-bottom: 0px;
+            }
+            div#but{
+
             }
