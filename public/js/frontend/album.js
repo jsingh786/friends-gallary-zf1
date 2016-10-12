@@ -22,7 +22,7 @@ function loadAlbums(limit, offset, user_id, order, column)
         dataType : "json",
         async: true,
         success : function(result,status,xhr) {
-
+            
             var HTML = "";
             //Start division Row here after main division
             HTML += '<div class = "Row">';

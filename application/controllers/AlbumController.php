@@ -18,7 +18,7 @@ class AlbumController extends Zend_Controller_Action
     {
         /* Get value of user_id */ 
        $this->view->user_id = \Service\Authentication::getIdentity()->getId();
-
+       
     }
 
     /**
@@ -49,7 +49,7 @@ class AlbumController extends Zend_Controller_Action
                 $albumArray[$key]['location'] = $album->getLocation();
                 $albumArray[$key]['description'] = $album->getDescription();
                 $datee = $album->getCreatedAt();
-                $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
+                $albumArray[$key]['created_at'] = $datee->format('d/m/y');
                 //$gjfgf = /
             }
         }
