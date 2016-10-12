@@ -43,7 +43,7 @@ class RequestController extends Zend_Controller_Action
         }
         else 
         {
-             echo "<h4><b>Users not found</b></h4>";
+             echo "<h4><b>No Record found</b></h4>";
         }
     }
     /**
@@ -53,27 +53,29 @@ class RequestController extends Zend_Controller_Action
     */
     public function addAction()
     {
-        $this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender(true);
-        $sess = new \Zend_Auth_Storage_Session('frontend_user');
-        $id   = $sess->read();
-        $recId= $this->getRequest()->getParam('id');
-       
+        // $recId=$this->getRequest()->getParam('id');
+        // echo $id; die;
+        $sess= new \Zend_Auth_Storage_Session('frontend_user');
+        $id= $sess->read();
+        //echo $id; die;
+        $recId=$this->getRequest()->getParam('id');
         \Extended\friendRequest::insert($id,$recId);
-        $this->_helper->redirector('index', 'index');
+        $this->_helper->redirector('index', 'request');
     }
     public function acceptAction()
     {   
         $sess        = new \Zend_Auth_Storage_Session('frontend_user');
         $id          = $sess->read();
         $result      = \Extended\users::get(['FriendRequestReciever'=>$id]);
-        echo "<pre>";
-        print_r($result);
-        die;
+        // echo "<pre>";
+        // print_r($result);
+        // die;
 
     }
     public function declineAction()
     {
 
     }
+
 }
+

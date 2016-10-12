@@ -15,7 +15,6 @@ jQuery(function($)
       rows: "2",
       columns: "6",
       name: "description" + no,
-
     });
       $("form").append(r);
       $("form").append(a); 

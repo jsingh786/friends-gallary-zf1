@@ -28,10 +28,7 @@ class album
     /**
      * @ORM\Column(type="string", length=2000, nullable=false)
      */
-
     private $description;
-
-    // private $photo;
 
     /**
      * @var datetime $created_at
@@ -44,82 +41,57 @@ class album
     /**
      * @ORM\OneToMany(targetEntity="Entities\photo", mappedBy="album", cascade={"remove"})
      */
-    
+    private $photo;
 
     /**
      * @ORM\ManyToOne(targetEntity="Entities\users", inversedBy="album")
      * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
      */
     private $users;
-        
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLocation()
     {
         return $this->location;
     }
 
-    /**
-     * @param mixed $location
-     */
     public function setLocation($location)
     {
         $this->location = $location;
     }
 
-    /**
-     * @return mixed
-     */
     public function getDescription()
     {
         return $this->description;
     }
 
-    /**
-     * @param mixed $id
-     */
     public function setDescription($description)
     {
         $this->description = $description;
-    }    
+    }
 
     /**
      * @return mixed
-     */ 
+     */
     public function getCreatedAt()
     {
         return $this->created_at;
@@ -144,7 +116,7 @@ class album
     /**
      * @param mixed $photo
      */
-     public function setPhoto($photo)
+    public function setPhoto($photo)
     {
         $this->photo = $photo;
     }
@@ -164,5 +136,6 @@ class album
     {
         $this->users = $users;
     }
+
 
 }

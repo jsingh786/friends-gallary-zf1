@@ -15,7 +15,7 @@ if(is_numeric($url))
     <html>
         <head>
             <style>
-                div#con
+                div.con
                 {
                     width: 300px;
                     margin-top: 30px;
@@ -34,12 +34,12 @@ if(is_numeric($url))
                             <form enctype="multipart/form-data" action="/<?php echo PROJECT_NAME ?>./photo/add" method="post">
                                 <label>Select Image</label></br>
                                 <input type="file" name="file1" >
-                                <input type="hidden" value="<?php echo $id ;?>" name="id">
+                                <!-- <input type="hidden" value="<?php echo $id ;?>" name="id"> -->
                                 <label>Description</label></br>
                                 <textarea rows="2" columns="6" name="description1"></textarea></br>
                                 <button  type="submit" >Save Album</button>
                             </form></br>
-                            <button id="mybutton" count="1" type="submit">Add More</button> 
+                            <button id="mybutton" count="1">Add More</button> 
                         </div>
                     </div>
                 </div>

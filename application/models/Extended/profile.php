@@ -101,12 +101,17 @@ class profile extends \Entities\profile
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
-        //Debugging by getting SQL
-        //echo '<pre>';
-        //echo $q_1->getQuery()->getSQL(); 
-        //die;
         return $q_1->getQuery()->getResult();
     }
+    /**
+    * In this function, they have select the id and fetch all the data from the profile table.
+    * @param $id (key value pair, where 'key' is column) 
+    * Created by Sublime text 2.
+    * Date: 7/10/2016
+    * Time: 4:46 PM    
+    * @version 1.1
+    * @author goyalraghav
+    */
     public static function select($id)
     {
         $em    = \Zend_Registry::get('em');

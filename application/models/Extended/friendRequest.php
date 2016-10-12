@@ -1,25 +1,24 @@
 <?php
 namespace Extended;
 
-class friendRequest extends Entities/friendRequest 
+class friendRequest extends \Entities\friendRequest 
 {     
 	public static function insert($id,$recId)
     {
-        $em = \Zend_Registry::get('em');
-        $suser = \Extended\users::get(['id'=>$id], []);
-        $ruser= \Extended\users::get(['id'=>$recId],[]);
-        $request= new \Entities\friendRequest();
-        $request->setStatus(0);
+        $em      = \Zend_Registry::get('em');
+        $request = new \Entities\friendRequest();
+        $suser   = \Extended\users::get(['id'=>$id]);
+        $ruser   = \Extended\users::get(['id'=>$recId]);        
+        $request->setStatus('0');
         $request->setFriendRequestSender($suser[0]);
         $request->setFriendRequestReceiver($ruser[0]);
-        $sql=$em->getQuery()->getSQL();
-        //echo $sql; die;
         $em->persist($request);
         $em->flush();
     }
+
 	public static function get(array $whereConditions = [],
-    array $limitAndOffset = [] ,
-    array $order = [])
+                                array $limitAndOffset = [] ,
+                                array $order = [])
     {
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
@@ -49,6 +48,10 @@ class friendRequest extends Entities/friendRequest
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
         return $q_1->getQuery()->getResult();
+    }
+    public function update($id)
+    {
+        
     }
     
 }

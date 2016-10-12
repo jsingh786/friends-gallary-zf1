@@ -15,22 +15,19 @@ class AlbumController extends Zend_Controller_Action
     public function indexAction()
     {
 
-        $result=\Extended\album::get(['users'=>1],[]);
-        // $this->_helper->json($result);
-        $data=json_encode($result);
-        return $data;        
-        //echo $jsonData = Zend_Json::encode($result);
-        //$this->response->appendBody($jsonData);
-        //Doctrine\Common\Util\Debug::dump($result[0]);
-         // exit();
-        // $this->view->data=$result[0];
+       $this->view->user_id = \Service\Authentication::getIdentity()->getId();
+       $name                = $this->getRequest()->getPost('srch');
+       $album               = \Extended\album::search($name);
+       echo "<pre>";
+       print_r($album);
+       die;
 
     }
         /* Encode album data into JSON form */
     public function getAllAlbumsOfLoggedinUserAction()
     {
-        // print_r($this->getRequest()->getParams());
-        // die;
+         // print_r($this->getRequest()->getParams());
+         // die;
         $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()]);
         //Create array for JSON
         $albumArray = array();

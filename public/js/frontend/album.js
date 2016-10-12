@@ -6,7 +6,7 @@ $(document).ready(function(){
     $("#but").on("click", function(){
            var offset= 0;
         var limit=9;
-    $.ajax({
+});    
 
 });
 function loadAlbums(limit, offset, user_id)
@@ -19,18 +19,26 @@ function loadAlbums(limit, offset, user_id)
         dataType : "json",
         async: true,
         success : function(result,status,xhr) {
+
+            //HTML
+            HTML = '<div id = "main">';
+            HTML += '<div class = "Row">';
+
             for(i in result)
             {
+                //Add check that when (i+1) is divisible by 3 and has no remainder, then close the row div tag and start new row div.
+                if((i+1)%3 == 0)
+                {
+                    $("div#main").append(HTML);
+                    HTML += '</div>';
+                    HTML += '<div class = "Row">';
+                }
+
+                HTML = '<div class="Colomn"><a href="#"><img src="" class="Img" ><div class="Info-album"><b>Name:'+result[i].id+result[i].name+'</b><br><b>Location:'+result[i].location+'</b><br><b>Description:'+result[i].description+'</b><br><b>Created At:'+result[i].created_at+'</b><br>'
                 //console.log(result[i].id+result[i].name);
-                $("#main").append('<div class="Colomn"><a href="#"><img src="" class="Img" ><div class="Info-album"><b>Name:</b>'
-                    +result[i].name'<br><b>Location:</b>'
-                    +result[i].location'<br><b>Description:</b>'
-                    +result[i].description'<br><b>Created At:</b>'
-                    +result[i].created_at'<br></div></a></div>')
             }
-            return;
-            //Do your stuff aftee success.
-            console.log(data)
+            //alert("Name: " + result[i].id);
+           // $("div#main").append(HTML);
         }
     });
 }

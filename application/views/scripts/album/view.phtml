@@ -29,36 +29,20 @@
 			    margin-left: 24px;
 			}
 		</style>
-		 <script>
-		 	$(function(){
-    $("#button").on(click.function() {
-    		var data= $(this).val();
-				$.ajax({
-        			type: "POST",
-			        url: "<?php echo PROJECT_NAME ?>/request/index",
-			        data:{"id":txt},       
-			        success:function(data)
-			        {
-
-			        }
-       }); 	
-			});
-});
-	 </script> 
 	</head>
 	<body>
 		
 			<?php for($i=0;$i<count($this->data);$i++) { ?>
 				<div class ="spl">
 					<img src ="<?php echo IMAGE_PATH ?>/<?php echo $this->data[$i]["photo"] ?>" >
-					<div class = "username"><?php echo $this->result[$i]["username"] ?>
+					<div class = "username">fdghdhg
 					</div>
-					<div class = "email"><?php echo $this->result[$i]["email_id"] ?>
-					</div>
-					<a href= "add/id/<?php echo $this->result[$i]["id"] ?>">
-					<button type="submit" class="butn" id="button" >+1 Add Friend</button>	
+					<!-- <div class = "email"><?php echo $this->result[$i]["email_id"] ?>
+					</div> -->
+					<!-- <a href= "add/id/<?php echo $this->result[$i]["id"] ?>">
+					<button type="submit" class="butn">+1 Add Friend</button>	
 					
-					</a>
+					</a> -->
 				</div>
 			<?php } ?>
 	</body>

@@ -37,11 +37,11 @@ else
     $value['photo']="";
     
 }
-if(is_object($this->result))
+if(is_object($this->user))
 {
-    $value['fname']= $this->result->getFname();
-    $value['lname']= $this->result->getLname();
-    $value['email_id']= $this->result->getEmailId();
+    $value['fname']= $this->user->getFname();
+    $value['lname']= $this->user->getLname();
+    $value['email_id']= $this->user->getEmailId();
 }
 ?>
 <!-- Content Starts -->

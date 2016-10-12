@@ -1,7 +1,7 @@
 <?php
 namespace Entities;
 use Doctrine\ORM\Mapping AS ORM;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity
  */
@@ -17,15 +17,20 @@ class friendRequest
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
-    private $status;
+    private $status; 
 
-    /**
-     * @ORM\Column(type="datetime", nullable=false)
+   /**
+     * @var datetime $created_at
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
-
     /**
-     * @ORM\Column(type="datetime", nullable=false)
+     * @var datetime $updated_at
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
      */
     private $updated_at;
 
