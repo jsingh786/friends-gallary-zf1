@@ -59,7 +59,8 @@ class PhotoController extends Zend_Controller_Action
          $newName=$file[$key]['name'];
          $file_ext=explode('.',$file[$key]['name']);
          $ext=end($file_ext);
-         $fname = basename($newName, ".".$ext);          
+         $fname = basename($newName, ".".$ext);  
+         /*$datetime = date('d-m-Y-H:i:s');*/       
          $image= $fname.'_'.rand(001,020).'.'.$ext;
          $status=move_uploaded_file($tmp_name,$dest.$image);
          }

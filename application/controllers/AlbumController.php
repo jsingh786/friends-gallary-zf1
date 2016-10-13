@@ -57,4 +57,5 @@ class AlbumController extends Zend_Controller_Action
         $this->_helper->redirector('index', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
          }
       }
+      
   }

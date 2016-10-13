@@ -8,15 +8,22 @@ $this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/fancybox/jBox-min.js
 <html>
 <head>
 <style>
-    div.img {
+  div.img {
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
     margin: 32px;
     border: 1px solid #ccc;
     float: left;
     width: 203px;
+    border: 1px solid #E5E5E5;
     height:138px;
-    background: #eeeeee;
+    background: #fefefe;
     position: relative;
     margin-bottom: 100px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05); 
+    height: 166px;
 }
 div.img img {
     display: inline-block;
@@ -24,25 +31,42 @@ div.img img {
     width: 181px;
     height: 116px;
 }
-div.desc {
+div .imgname{
     padding: 17px;
     text-align: center;
+    padding-top: 4px;
+    text-align: center;
+    color: #666;
+}
+
+p.desc {
+    padding: 17px;
+    text-align: center;
+}
+div.desc{
+    padding: 17px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(159, 243, 160, 0.1);
+    background: #F9F9F9;
 }
 </style>
 </head>
 <body>
- <div class="container">
+ <div class="container">           
 <?php
 $fdir=$this->name;
 for($i=0;$i<count($this->data);$i++)
 {
  ?>  
 <div class="img">
- <img class="jbox-img" src="<?php echo IMAGE_PATH ?>/album/<?php echo $this->name ?>/<?php echo $this->data[$i]->getPhoto();?>"/>     
+ <img class="jbox-img" src="<?php echo IMAGE_PATH ?>/album/<?php echo $this->name ?>/<?php echo $this->data[$i]->getPhoto();?>"/>  
   <div class="desc"><?php echo $this->data[$i]->getDescription(); ?></div>
+  <p class="desc"><?php echo $this->data[$i]->getPhoto();?></p>
 </div>
  <?php } ?>
     </div>
+  </div>
+</div>
 
        <div class="jbox-container">
         <div class="img-alt-text"></div>

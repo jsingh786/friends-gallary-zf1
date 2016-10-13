@@ -5,7 +5,8 @@ jQuery(function($)
     var count=parseInt($('#mybutton').attr("count"));
     var no=count+1;
     // alert(no);
-    $('#mybutton').attr("count",no);
+    $('#mybutton').attr("count",no);{
+
     var r = $('</br>'+'<label>Select Image::</label>'+'</br>'+'<input/>').attr({
       type: "File",
       id: "field",
@@ -20,6 +21,7 @@ jQuery(function($)
       $("form").append(a); 
   })
 })
+}
 
-
+   
 
