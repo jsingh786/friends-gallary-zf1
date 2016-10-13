@@ -1,9 +1,9 @@
 <?php
 namespace Extended;
-
 class friendRequest extends \Entities\friendRequest 
+
 {     
-	public static function insert($id,$recId)
+    public static function insert($id,$recId)
     {
         $em      = \Zend_Registry::get('em');
         $request = new \Entities\friendRequest();
@@ -15,16 +15,28 @@ class friendRequest extends \Entities\friendRequest
         $em->persist($request);
         $em->flush();
     }
-
-	public static function get(array $whereConditions = [],
+    /**
+     * Returns users data
+     * on the basis of arguments passed.
+     *
+     * @param array $whereConditions (key value pair, where 'key' is column)
+     * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
+     * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
+     *
+     * @return Array Collection
+     * @throws \Zend_Exception
+     * @version 1.0
+     *
+     */
+    public static function get(array $whereConditions = [],
                                 array $limitAndOffset = [] ,
                                 array $order = [])
     {
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
-        $alias  = 'usrs';
+        $alias  = 'friendRequest';
         $q_1    = $qb_1->select($alias)
-                ->from('\Entities\profile', $alias);
+                ->from('\Entities\friendRequest', $alias);
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -49,10 +61,33 @@ class friendRequest extends \Entities\friendRequest
         }
         return $q_1->getQuery()->getResult();
     }
-    public function update($id)
+    public static function update($sid,$rid)
     {
-        
+ 
+        $em = \Zend_Registry::get('em');
+        $qb = $em->createQueryBuilder();
+        $query = $qb->update('\Entities\friendRequest','u');
+        $query->where('u.sender_id :fname');
+        $query->andWhere('u.receiver_id2 :identifier');
+        $query->setParameter('fname', $sid);
+        $query->setParameter('identifier', $rid);
+        $query->set('u.status',1);
+        //  echo $query->getQuery()->getSQL();
+        // die;
+        $QRY= $query->getQuery();
+        $QRY->execute();
+       
     }
-    
+    public static function select($id)
+    {
+        $em    = \Zend_Registry::get('em');
+        $qb    = $em->createQueryBuilder();
+        $query = $qb->select('p')
+              ->from('\Entities\users','p');
+        $query->where('p.users IN (:identifier)');
+        $query->setParameter('identifier', $id);
+        $data  = $query->getQuery()->getResult();
+        return $data; 
+    }
 }
 

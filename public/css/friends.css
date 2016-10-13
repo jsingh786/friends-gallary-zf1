@@ -1,0 +1,21 @@
+.spl {
+	width: 179px;
+	float:left;
+	margin-right: 15px;
+	border-color: #9B9590
+    }
+	.spl img {
+		border-radius: 90px;
+		width: 136px;
+	}
+	.username{
+		margin-left: 50px;
+    }
+    .email{
+	margin-left: 37px;
+
+}
+ .butn{
+ 	font-size: inherit;
+ 	margin-left: 15px;
+ }

@@ -49,11 +49,13 @@ class album
      */
     private $users;
 
+    /**
+     * @return mixed
+     */
      public function getId()
     {
         return $this->id;
     }
-
     public function setId($id)
     {
         $this->id = $id;
@@ -63,7 +65,6 @@ class album
     {
         return $this->name;
     }
-
     public function setName($name)
     {
         $this->name = $name;
@@ -83,7 +84,6 @@ class album
     {
         return $this->description;
     }
-
     public function setDescription($description)
     {
         $this->description = $description;
@@ -136,6 +136,4 @@ class album
     {
         $this->users = $users;
     }
-
-
 }

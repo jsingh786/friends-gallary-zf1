@@ -55,27 +55,50 @@ class RequestController extends Zend_Controller_Action
     {
         // $recId=$this->getRequest()->getParam('id');
         // echo $id; die;
-        $sess= new \Zend_Auth_Storage_Session('frontend_user');
-        $id= $sess->read();
-        //echo $id; die;
+        $sess = new \Zend_Auth_Storage_Session('frontend_user');
+        $id   = $sess->read();
         $recId=$this->getRequest()->getParam('id');
         \Extended\friendRequest::insert($id,$recId);
         $this->_helper->redirector('index', 'request');
     }
     public function acceptAction()
+    {
+        $id = \Service\Authentication::getIdentity()->getId();
+        $result = \Extended\friendRequest::get(['friendRequestReceiver'=>$id],[]);
+       //  echo "<pre>";
+       // Doctrine\Common\Util\Debug::Dump($result); die;
+        // echo count($result); die;
+        $id=array();
+        // echo $result[0]->getfriendRequestSender()->getId(); die;
+        for($i=0;$i<count($result);$i++)
+        {
+           $id[]=$result[$i]->getfriendRequestSender()->getId();
+        }
+        $data = \Extended\friendRequest::select($id);
+        $this->view->data=$data;
+    }
+    public function confirmAction()
     {   
-        $sess        = new \Zend_Auth_Storage_Session('frontend_user');
-        $id          = $sess->read();
-        $result      = \Extended\users::get(['FriendRequestReciever'=>$id]);
+       
+        $sid   =$this->getRequest()->getParam('id');
+        $rid   = \Service\Authentication::getIdentity()->getId();
+        $result= \Extended\friendRequest::update($sid,$rid);
+        //$this->_helper->redirector('index','profile'); 
         // echo "<pre>";
         // print_r($result);
         // die;
-
     }
-    public function declineAction()
+    // public function declineAction()
+    // {
+    //     $this->_helper->layout()->disableLayout();
+    //     $this->_helper->viewRenderer->setNoRender(true);
+    //     $sess = new \Zend_Auth_Storage_Session('frontend_user');
+    //     $id   = $sess->read();
+    //     \Extended\friendRequest::delete($id);
+    //     //$this->_helper->redirector('index','profile'); 
+    // }
+    public function requestAction()
     {
 
     }
-
 }
-

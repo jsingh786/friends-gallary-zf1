@@ -1,6 +1,7 @@
 <?php
 $this->headTitle()->prepend('Profile');
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/user.css");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/profile.js");
 ?>
 
 <?php
@@ -12,35 +13,32 @@ if(empty($data))
 else 
 {
     $action= "update";
-    
 }
 $value=array();
 if(is_object($this->data))
 {
     $value['hobbies']= $this->data->getHobbies(); 
     $value['contact']= $this->data->getContactNo();    
-    $value['edu']= $this->data->getEducation();  
-    $value['exp']= $this->data->getExperience(); 
-    $value['loc']= $this->data->getLocation();   
-    $value['desc']= $this->data->getDescription();
-    $value['photo']= $this->data->getPhoto();
-    
+    $value['edu']    = $this->data->getEducation();  
+    $value['exp']    = $this->data->getExperience(); 
+    $value['loc']    = $this->data->getLocation();   
+    $value['desc']   = $this->data->getDescription();
+    $value['photo']  = $this->data->getPhoto();
 }
 else
 {
-    $value['hobbies']="";  
-    $value['contact']="";   
-    $value['edu']="";  
-    $value['exp']=""; 
-    $value['loc']="";   
-    $value['desc']=""; 
-    $value['photo']="";
-    
+    $value['hobbies']= "";  
+    $value['contact']= "";   
+    $value['edu']    = "";  
+    $value['exp']    = ""; 
+    $value['loc']    = "";   
+    $value['desc']   = ""; 
+    $value['photo']  = "";
 }
 if(is_object($this->user))
 {
-    $value['fname']= $this->user->getFname();
-    $value['lname']= $this->user->getLname();
+    $value['fname']   = $this->user->getFname();
+    $value['lname']   = $this->user->getLname();
     $value['email_id']= $this->user->getEmailId();
 }
 ?>
@@ -58,7 +56,7 @@ if(is_object($this->user))
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Select Photo</label>
-                                    <input type="file" name="photo">
+                                    <input type="file" name="photo" >                                        
                                 </div>
                             </div>
                         </div>
@@ -66,13 +64,13 @@ if(is_object($this->user))
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Hobbies</label>
-                                    <input type="text" class="form-control" placeholder="Hobbies" name="hobbies" value="<?php echo $value['hobbies'] ?>" style="height: 30px">
+                                    <input type="text" class="form-control" placeholder="Hobbies" name="hobbies" value="<?php echo $value['hobbies'] ?>" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Contact No.</label>
-                                    <input type="text" class="form-control" placeholder="Contact No" name="contact_no" value="<?php echo $value['contact'] ?>" style="height: 30px">
+                                    <input type="text" class="form-control" placeholder="Contact No" name="contact_no" value="<?php echo $value['contact'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -80,7 +78,7 @@ if(is_object($this->user))
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Education</label></br>
-                                    <select name="education" style="width: 269px" id="edu" >
+                                    <select name="education" style="width: 269px " id="edu">
                                         <?php if(!empty($value['edu'])) { ?>
                                         <option value="<?php echo $value['edu'] ?>" selected><?php echo $value['edu'] ?></option>
                                             <?php } else { ?>
@@ -98,7 +96,7 @@ if(is_object($this->user))
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Experience</label>
-                                    <input type="text" class="form-control" placeholder="Experience" name="experience" value="<?php echo $value['exp'] ?>" style="height: 30px">
+                                    <input type="text" class="form-control" placeholder="Experience" name="experience" value="<?php echo $value['exp'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -106,7 +104,7 @@ if(is_object($this->user))
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Location</label>
-                                    <select name="location" style="width: 269px" id="loc" height="10px">
+                                    <select name="location" style="width: 269px" id="loc">
                                         <?php if(!empty($value['loc'])) { ?>
                                         <option value="<?php echo $value['loc'] ?>" selected><?php echo $value['loc'] ?></option>
                                         <?php } else { ?>
@@ -135,7 +133,6 @@ if(is_object($this->user))
                 </div>
             </div>
         </div>
-       
         <div class="col-md-4">
             <div class="card card-user">
                 <div class="image">
@@ -144,16 +141,13 @@ if(is_object($this->user))
                 <div class="content">
                     <div class="author">
                         <?php if(!empty($value['photo'])) { ?>
-                            <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/<?php echo $value['photo'] ?>"  />
-                        <?php } else { ?>
-                         <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" alt=""/>  
+                        <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/<?php echo $value['photo'] ?>"  />
+                        <?php } else { ?>                       
+                         <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" alt=""/> 
                          <?php } ?>
-                         <h4 class="title"><?php  echo $value['fname'] ?>&nbsp;<?php  echo $value['lname'] ?><br/> 
-                            
+                        <h4 class="title"><?php  echo $value['fname'] ?><?php  echo $value['lname'] ?><br/>
                             <small><?php  echo $value['email_id'] ?></small>
-                            
-                        </h4>
-                        
+                        </h4>                       
                     </div>
                 </div>
                 <hr>
