@@ -93,26 +93,3 @@ class photo extends \Entities\photo
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-    
-
-
-
-       

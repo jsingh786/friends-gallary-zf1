@@ -19,6 +19,7 @@ class album extends \Entities\album
         $id = $sess->read();
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
         $em = \Zend_Registry::get('em');
+
         $album= new \Entities\album();
         $album->setName($data['name']);
         $album->setLocation($data['location']);
@@ -43,7 +44,7 @@ class album extends \Entities\album
      * @version 1.0
      *
      */ 
-    
+
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])
@@ -75,21 +76,35 @@ class album extends \Entities\album
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
+
         //Debugging by getting SQL
         //echo '<pre>';
         //echo $q_1->getQuery()->getSQL(); 
         //die;
+
         return $q_1->getQuery()->getResult();
     }
 
     public static function select()
     {
-        $em = \Zend_Registry::get('em');
-        $qb = $em->createQueryBuilder();
+        $em    = \Zend_Registry::get('em');
+        $qb    = $em->createQueryBuilder();
         $alias = 'album';
         $query = $qb->select($alias)
+
         ->from('\Entities\album', $alias); 
+
         return $query->getQuery()->getResult();
     }
-
+    public static function search($name)
+    {
+        $em   = \Zend_Registry::get('em');
+        $qb   = $em->createQueryBuilder();
+        $query= $qb->select('a')
+              ->from('\Entities\album','a');
+        $query->where('a.name LIKE :name');
+        $query->setParameter('name', $name.'%');
+        $data = $query->getQuery()->getArrayResult();
+        return $data; 
+    }
 }

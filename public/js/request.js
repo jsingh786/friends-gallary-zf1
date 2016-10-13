@@ -5,8 +5,8 @@ $(function(){
 $.ajax({
     type: "POST",
     dataType: "json",
-    url: "user-management-zf1/user/search",
-    data: {"path" data},
+    url: "friends-gallary-zf1/user/ajax",
+    data: {"pattren" data},
     success: function(jsondata) {
     	console.log(jsondata)
     // var resultdata= jsondata;

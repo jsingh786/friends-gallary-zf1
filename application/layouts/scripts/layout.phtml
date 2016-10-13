@@ -44,9 +44,13 @@
     </head>
     <body>
         <div class="wrapper">
-             <?php if($params['controller'] != 'authenticate' && $params['controller'] != 'request' ) { ?>
+             <?php if($params['controller'] != 'authenticate' ) { ?>
         <div class="sidebar" data-color="purple" data-image="<?php echo IMAGE_PATH ?>/static/sidebar-5.jpg">
+
         <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+        <!--           you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
                 <div class="sidebar-wrapper">
                     <div class="logo">
                         <a href="http://www.creative-tim.com" class="simple-text">
@@ -79,13 +83,14 @@
                                 <p>Photo Page</p>
                             </a>
                         </li>                        
+
+                        </li>                                          
                     </ul>
                 </div>
             </div>
           <?php } ?>
-
             <div class="main-panel" style="background-color: white;">
-                <?php if($params['controller'] != 'authenticate' && $params['controller'] != 'request') { ?>
+                <?php if($params['controller'] != 'authenticate') { ?>
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -129,8 +134,7 @@
                                     </form>
                                 </li>
                                 <?php } ?>
-                            </ul>
-
+                                </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="">
@@ -170,7 +174,7 @@
                 </div>
                 <?php
                 //print_r($params); die;
-                if($params['controller'] != 'authenticate' && $params['controller'] != 'request')
+                if($params['controller'] != 'authenticate')
                     {
                 ?>
                 <footer class="footer">

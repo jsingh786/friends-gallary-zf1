@@ -5,7 +5,7 @@
 * User: jsingh7
 * Date: 9/8/2016
 * Time: 4:01 PM
-<<<<<<< HEAD
+
 **/
 class AuthenticateController extends Zend_Controller_Action
 {

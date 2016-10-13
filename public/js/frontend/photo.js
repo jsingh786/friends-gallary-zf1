@@ -7,7 +7,6 @@ $(document).ready(function(){
         // var offset= 0;
         //var limit=2;
 });    
-
 function loadPhotos(limit, offset, album_id)
 {
    $.ajax({
