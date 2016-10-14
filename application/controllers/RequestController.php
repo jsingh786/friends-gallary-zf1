@@ -29,7 +29,6 @@ class RequestController extends Zend_Controller_Action
   */
   public function addAction()
   {
-    //added some code by jas.
     $this->_helper->layout()->disableLayout();
     $this->_helper->viewRenderer->setNoRender(true);
     $id      = \Service\Authentication::getIdentity()->getId();
@@ -54,7 +53,6 @@ class RequestController extends Zend_Controller_Action
   */
   public function acceptAction()
   {
-    // heloo sandeep
     $id     = \Service\Authentication::getIdentity()->getId(); 
     $result = \Extended\friendRequest::get(['friendRequestReceiver'=>$id]);
     $id     =array();
