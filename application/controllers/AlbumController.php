@@ -74,6 +74,7 @@ class AlbumController extends Zend_Controller_Action
                 //$albumArray[$key]['photo'] = $album->getPhoto();
                 foreach ($album->getPhoto() as $photo) {
                     echo $albumArray[$key]['photo']=$photo->getName() . ' <br/>';
+                    
                 }
 
             //     echo "<pre>";
