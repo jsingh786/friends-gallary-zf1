@@ -53,7 +53,8 @@ class RequestController extends Zend_Controller_Action
   */
   public function acceptAction()
   {
-    //Sandeep    $id     = \Service\Authentication::getIdentity()->getId(); 
+    // heloo sandeep
+    $id     = \Service\Authentication::getIdentity()->getId(); 
     $result = \Extended\friendRequest::get(['friendRequestReceiver'=>$id]);
     $id     =array();
     for($i=0;$i<count($result);$i++)
