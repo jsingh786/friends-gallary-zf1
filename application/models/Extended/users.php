@@ -8,7 +8,6 @@ namespace Extended;
 */
 class users extends \Entities\users
 {
-
     /**
      * Insert users data into database.
      *
@@ -54,8 +53,8 @@ class users extends \Entities\users
         $alias  = 'usrs';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\users', $alias);
-
         //Creating where conditions of query.
+
         if ($whereConditions)
         {
             $counter = 1;
@@ -66,13 +65,11 @@ class users extends \Entities\users
                 $counter++;
             }
         }
-
         //Sorting
         if($order)
         {
-            $q_1->orderBy( 	$alias.'.'.$order['column'], $order['order'] );
+            $q_1->orderBy(     $alias.'.'.$order['column'], $order['order'] );
         }
-
         //List length
         if($limitAndOffset)
         {
@@ -83,18 +80,18 @@ class users extends \Entities\users
     }
     public static function search($name)
     {
+        
         $em = \Zend_Registry::get('em');
+        $id =  \Service\Authentication::getIdentity()->getId();
         $qb = $em->createQueryBuilder();
         $query = $qb->select('u')
         ->from('\Entities\users','u');
-        $query->where('u.username LIKE :username');
-        // //->orWhere('u.EmailId LIKE :email_id')
-        $query->setParameter('username', '%'.$name.'%');
-        // //->setParameter('email_id', 'email_i%')
+        $query->where('u.fname LIKE :fname');
+        $query->andWhere('u.id != :identifier');
+        $query->setParameter('fname', $name.'%');
+        $query->setParameter('identifier', $id);
         $data= $query->getQuery()->getArrayResult();
         return $data; 
     }
-
-
-
+    
 }

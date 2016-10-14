@@ -5,7 +5,6 @@
 * User: jsingh7
 * Date: 9/8/2016
 * Time: 4:01 PM
-<<<<<<< HEAD
 **/
 class AuthenticateController extends Zend_Controller_Action
 {
@@ -71,7 +70,7 @@ class AuthenticateController extends Zend_Controller_Action
     */
     public function logoutAction()
     {
-        session_destroy(); // todo Why you have used this method to destroy session when we have Service\Authentication class for this?
+        session_destroy(); 
         $this->_helper->redirector ('index', 'index', 'default');
     } 
     public function registerAction()

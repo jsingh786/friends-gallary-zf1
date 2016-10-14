@@ -14,7 +14,10 @@ class AlbumController extends Zend_Controller_Action
     }
     public function indexAction()
     {
-
+        // $sess= new \Zend_Auth_Storage_Session('frontend_user');
+        // $id= $sess->read();
+        // $data= \Extended\users::get(['id'=>$id],[]);
+        // $this->view->dataa=$data;
        $this->view->user_id = \Service\Authentication::getIdentity()->getId();
 
     }

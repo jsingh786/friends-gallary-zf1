@@ -128,5 +128,22 @@ class profile extends \Entities\profile
         //die;
         return $q_1->getQuery()->getResult();
     }
+    public static function select($id)
+    {
+        $em    = \Zend_Registry::get('em');
+        $qb    = $em->createQueryBuilder();
+        $query = $qb->select('p')
+              ->from('\Entities\profile','p');
+        $query->where('p.users IN (:id)');
+        $query->setParameter('id', $id);
+        $data  = $query->getQuery()->getArrayResult();
+       // echo  $query->getQuery()->getSQL();
+        // echo "<pre>";
+        // print_r($data);
+        // die;
+       //  die;
+        return $data; 
+    }
+
 }
 

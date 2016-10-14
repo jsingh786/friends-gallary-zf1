@@ -24,8 +24,9 @@ class ProfileController extends Zend_Controller_Action
     }
     public function indexAction()
     {
-        $sess= new \Zend_Auth_Storage_Session('frontend_user');
-        $id= $sess->read();
+        // $sess= new \Zend_Auth_Storage_Session('frontend_user');
+        // $id= $sess->read();
+         $id =\Service\Authentication::getIdentity()->getId();
         $userObj = \Extended\profile::get(['users'=>$id], []);
         $resultObj = \Extended\users::get(['id'=>$id], []);
         if(!empty($resultObj))
@@ -36,8 +37,11 @@ class ProfileController extends Zend_Controller_Action
         {
             // echo "Empty"; die;
             $this->view->data=$userObj[0];
-           
+              
         }
+         // $data= \Extended\users::get(['id'=>$id],[]);
+         // $this->view->dataa=$data;
+
     }
     /** 
     *@param After login you will be update your own profile.

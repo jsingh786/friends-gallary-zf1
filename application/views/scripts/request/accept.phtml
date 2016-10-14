@@ -1,0 +1,13 @@
+<?php
+$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/friends.css");
+?>
+
+<?php for($i=0;$i<count($this->data);$i++) { ?>
+   <div class ="spl">
+       <img src ="http://localhost/friends-gallary-zf1/public/images/static/faces/face-2.jpg">
+       <div class ="username"><?php echo $this->data[$i]->getUsername() ?></div>
+       <div class ="email"><?php echo $this->data[$i]->getEmailId() ?></div>
+       <a href="confirm/id/<?php echo $this->data[$i]->getId() ?>"><button class="butn">Confirm</button></a>
+       <a href="decline/id/<?php echo $this->data[$i]->getId() ?>"><button class="butn">Not Now</button></a>
+   </div>
+<?php } ?>

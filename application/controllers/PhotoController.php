@@ -16,10 +16,15 @@ class PhotoController extends Zend_Controller_Action
 
   public function indexAction()
   {  
-      $id = $this->getRequest()->getParam('id');
-      // echo $id; die;
-      $this->view->data=$id;
+      // $id = $this->getRequest()->getParam('id');
+      // // echo $id; die;
+      // $this->view->data=$id;
+        // $sess= new \Zend_Auth_Storage_Session('frontend_user');
+        // $id= $sess->read();
+        // $data= \Extended\users::get(['id'=>$id],[]);
+        // $this->view->dataa=$data;
       }
+
       public function addAction()
       {
          $this->_helper->layout()->disableLayout();

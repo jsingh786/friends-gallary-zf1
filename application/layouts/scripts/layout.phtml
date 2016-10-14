@@ -44,7 +44,7 @@
     </head>
     <body>
         <div class="wrapper">
-             <?php if($params['controller'] != 'authenticate') { ?>
+             <?php if($params['controller'] != 'authenticate')  { ?>
         <div class="sidebar" data-color="purple" data-image="<?php echo IMAGE_PATH ?>/static/sidebar-5.jpg">
 
         <!--           you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
@@ -52,7 +52,10 @@
                 <div class="sidebar-wrapper">
                     <div class="logo">
                         <a href="http://www.creative-tim.com" class="simple-text">
-                            Creative Tim
+                            <!-- <?php //echo $this->username ?>  -->
+                            <?php
+                           echo \Service\Authentication::getIdentity()->getUsername();   
+                            ?>
                         </a>
                     </div>
 
@@ -82,7 +85,19 @@
                                 <i class="pe-7s-photo"></i>
                                 <p>Photo Page</p>
                             </a>
-                        </li>                                          
+                        </li>   
+                        <li <?php if($params['controller'] == 'request'): echo 'class="active"'; endif; ?> >
+                            <a href="/<?php echo PROJECT_NAME; ?>request/accept">
+                                <i class="pe-7s-add-user"></i>
+                                <p>Show Friend Requests</p>
+                            </a>
+                        </li>  
+                         <li <?php if($params['controller'] == 'request'): echo 'class="active"'; endif; ?> >
+                            <a href="/<?php echo PROJECT_NAME; ?>request/displayingfriends">
+                                <i class="pe-7s-users"></i>
+                                <p>Displaying Friends</p>
+                            </a>
+                        </li>                                           
                     </ul>
                 </div>
             </div>
@@ -123,8 +138,9 @@
                                     </ul>
                                 </li>
                                 <li> <?php if($params['controller'] != 'photo') { ?>
-                                    <form action="request/index" method="post">
-                                    <input type="text" name="search style=margin-top: 17px;
+                                   <!-- <form action="request/index" method="post"> -->
+                                  <form action="/<?php echo PROJECT_NAME ?>request/index" method="POST">  
+                                    <input type="search" name="search" style="margin-top: 17px;
                                     margin-left: 68px;">
                                     <button  type="submit">Search</button>
                                     </form>
