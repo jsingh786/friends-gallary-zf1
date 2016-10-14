@@ -80,7 +80,7 @@ class RequestController extends Zend_Controller_Action
     $result= \Extended\friendRequest::update($sid,$rid);
     $this->_helper->redirector('displayingfriends','request');
   }
-   /** 
+  /** 
   * To create for Decline  friends request.
   * When we click on decline button it will chanje the status 0 to 2.
   *@version 1.1

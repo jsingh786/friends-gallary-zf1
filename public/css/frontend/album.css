@@ -1,55 +1,51 @@
             div#container {
                 width: 643px;
-                height: 794px;
+                height: 801px;
                 border: 1px solid black;
                 margin: 0px auto;
-                /*padding: auto;*/
                 text-align: center;
-                margin-top: 50px;
+                margin-top: 2px;
                 background-color: white;
                 }
 
             div#main {
                 overflow: auto;
-                width: 620px;
-                height: 732px;
+                width: 630px;
+                height: 736px;
                 margin-right: 10px;
                 margin-top: 10px;
-                /*border: 1px solid black;*/
                 margin-left: 10px;
                 margin-bottom: 10px;
             }
 
             .Row {
-                height: 243px;
+                height: 720px;
                 width: 618px;
-                /*border: 1px solid black;               */
             }
 
             .Colomn {
-                width: 196px;
-                height: 241px;
+                width: 197px;
+                height: 237px;
                 display: inline-block;
-                /*background-color: lightblue;*/
+                /*border: 1px solid black;*/
                 margin-left: 7px;
-                /*box-shadow: 6px 10px 5px gray;*/
+                margin-top: 3px;
             }
 
             .Img {
                 width: 194px;
                 height: 152px;
-                /*border: 1px solid black;*/
-                /*box-shadow: 6px 10px 5px gray;*/
             }
 
             .Info-album{
-                width: 194px;
-                /*border: 1px solid black;*/
+                width: 197px;
                 height: 79px;
                 text-align: -moz-left;
                 margin-left: 2px;
                 margin-right: 0px;
                 margin-top: 0px;
                 margin-bottom: 0px;
-                /*display: inline;*/
+            }
+            div#but{
+
             }

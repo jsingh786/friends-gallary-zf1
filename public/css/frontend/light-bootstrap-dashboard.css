@@ -461,8 +461,8 @@ body > .navbar-collapse[data-color="purple"]:after {
   min-height: 100%;
 }
 .main-panel > .content {
-  padding: 30px 15px;
-  min-height: calc(100% - 123px);
+padding: 12px 9px;
+min-height: calc(157% - 86px);
 }
 .main-panel > .footer {
   border-top: 1px solid #e7e7e7;

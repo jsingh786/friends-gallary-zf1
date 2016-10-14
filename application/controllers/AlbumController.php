@@ -8,26 +8,58 @@ class AlbumController extends Zend_Controller_Action
             $this->_helper->redirector('index', 'authenticate', 'default');
         }
     }
+
     public function init()
     {
         /* Initialize action controller here */
     }
+
     public function indexAction()
     {
+
         // $sess= new \Zend_Auth_Storage_Session('frontend_user');
         // $id= $sess->read();
         // $data= \Extended\users::get(['id'=>$id],[]);
         // $this->view->dataa=$data;
+
+
        $this->view->user_id = \Service\Authentication::getIdentity()->getId();
 
     }
-        /* Encode album data into JSON form */
+
+    /**
+     * Encode album data into JSON form 
+     * @author kaurharjinder
+     * @version 1.0
+     */        
     public function getAllAlbumsOfLoggedinUserAction()
     {
-         // print_r($this->getRequest()->getParams());
-         // die;
-        $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()]);
+
+
+    
+        $params = $this->_request->getParams();
+
+               //Get User Id, Limit & offset
+        $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()],['offset'=>$params['offset'],'limit'=>$params['limit']]);
+        // echo"<pre>";
+        // print_r($albums);
+        // die;
+        echo "<pre>";
+
+        foreach ($albums as $album)
+        {
+            Doctrine\Common\Util\Debug::dump($album);
+            foreach ($album->getPhoto() as $photo)
+            {
+                Doctrine\Common\Util\Debug::dump($photo->getName());
+            }
+            break;
+        }
+
+        die;
         //Create array for JSON
+
+       // echo count($albums);
         $albumArray = array();
         if($albums)
         {
@@ -39,10 +71,14 @@ class AlbumController extends Zend_Controller_Action
                 $albumArray[$key]['description'] = $album->getDescription();
                 $datee = $album->getCreatedAt();
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
+
+                $albumArray[$key]['photo'] = $album->getPhoto()->getName();
             }
         }
+
+        //Encode Array data into JSON Form
         echo json_encode($albumArray);
-        die;
+        exit();
     }
     public function addAction()
     {
@@ -52,3 +88,4 @@ class AlbumController extends Zend_Controller_Action
         $this->_helper->redirector('index', 'photo', 'default',['id'=>$result]);
     }
 }
+

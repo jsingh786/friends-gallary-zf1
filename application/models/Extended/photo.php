@@ -9,19 +9,23 @@ namespace Extended;
 class photo extends \Entities\photo
 
 {
+ /**
+    * @param Insert photo data into database.
+    * @param Using loop set value in array.
+    * @param Created by Sublime text 2.
+    * @param Date: 6/10/2016
+    * @param Time: 4:46 PM    
+    * @version 1.1
+    * @author PathakAshish
+    */
       public static function insert($img,$description,$id)
     {
-        // echo $id; die;
-
+       
         $em = \Zend_Registry::get('em');
-        // echo "<pre>";
-        // print_r($description); die;
         $num=count($img);
         $no=1;
-         $result=\Extended\album::get(['id'=> $id],[]);
-        // echo "<pre>";
-        // \Doctrine\Common\Util\Debug::dump($result);
-        // die;        
+        $result=\Extended\album::get(['id'=> $id],[]);
+             
             for($i=0;$i<$num;$i++)
             {
                 $photoObj= new \Entities\photo();
@@ -34,7 +38,20 @@ class photo extends \Entities\photo
             $em->clear();
 
         }
-
+       
+ /**
+     * Returns users data
+     * on the basis of arguments passed.
+     *
+     * @param array $whereConditions (key value pair, where 'key' is column)
+     * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
+     * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
+     *
+     * @return Array Collection
+     * @throws \Zend_Exception
+     * @version 1.0
+     *
+     */
 
    public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
@@ -43,7 +60,7 @@ class photo extends \Entities\photo
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
         $alias  = 'photo';
-        $q_1    = $qb_1->select($alias)
+        $q_1    = $qb_1->select($alias.'. name')
                 ->from('\Entities\photo', $alias);
 
         //Creating where conditions of query.
@@ -76,26 +93,3 @@ class photo extends \Entities\photo
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-    
-
-
-
-       

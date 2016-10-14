@@ -20,16 +20,22 @@ class UserController extends Zend_Controller_Action
        // }
     }
 
-    public function indexAction()
-    {
-
-    }
-    /**
+/**
      * This action use to be add the data into database .
      * @version 1.0
      * @author SinghSandeep
      */
-         public function addAction()
+    public function indexAction()
+    {
+
+    }
+
+    /**
+    * This action use to be add the data into database .
+    * @version 1.0
+    * @author SinghSandeep
+    */
+    public function addAction()
 
     {
         $data=$this->getRequest()->getPost();
