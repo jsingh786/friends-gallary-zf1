@@ -5,3 +5,5 @@ library/Gedmo/
 application/models/Proxies/
 .idea/
 public/uploads/
+public/albums/
+public/album/
