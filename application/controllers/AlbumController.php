@@ -38,19 +38,19 @@ class AlbumController extends Zend_Controller_Action
         // echo"<pre>";
         // print_r($albums);
         // die;
-        echo "<pre>";
+        // echo "<pre>";
 
-        foreach ($albums as $album)
-        {
-            Doctrine\Common\Util\Debug::dump($album);
-            foreach ($album->getPhoto() as $photo)
-            {
-                Doctrine\Common\Util\Debug::dump($photo->getName());
-            }
-            break;
-        }
+        // foreach ($albums as $album)
+        // {
+        //     Doctrine\Common\Util\Debug::dump($album);
+        //     foreach ($album->getPhoto() as $photo)
+        //     {
+        //         Doctrine\Common\Util\Debug::dump($photo->getName());
+        //     }
+        //     break;
+        // }
 
-        die;
+        // die;
         //Create array for JSON
 
        // echo count($albums);
@@ -65,9 +65,16 @@ class AlbumController extends Zend_Controller_Action
                 $albumArray[$key]['description'] = $album->getDescription();
                 $datee = $album->getCreatedAt();
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
+                //$albumArray[$key]['photo'] = $album->getPhoto();
+                foreach ($album->getPhoto() as $photo) {
+                    echo $albumArray[$key]['photo']=$photo->getName() . ' <br/>';
+                }
 
-                $albumArray[$key]['photo'] = $album->getPhoto()->getName();
+            //     echo "<pre>";
+            // Doctrine\Common\Util\Debug::dump($album);
+            // die;
             }
+
         }
 
         //Encode Array data into JSON Form
