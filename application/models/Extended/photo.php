@@ -43,7 +43,7 @@ class photo extends \Entities\photo
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
         $alias  = 'photo';
-        $q_1    = $qb_1->select($alias)
+        $q_1    = $qb_1->select($alias.'. name')
                 ->from('\Entities\photo', $alias);
 
         //Creating where conditions of query.

@@ -17,7 +17,6 @@ class album extends \Entities\album
         $em->persist($album);
         $em->flush();
         $id=$album->getId(); 
-
         return $id;
     }
 
@@ -60,7 +59,6 @@ class album extends \Entities\album
         {
             $q_1->orderBy(  $alias.'.'.$order['column'], $order['order'] );
         }
-
         //List length
         if($limitAndOffset)
         {
