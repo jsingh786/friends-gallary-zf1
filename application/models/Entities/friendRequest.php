@@ -17,16 +17,17 @@ class friendRequest
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
-    private $status; 
+    private $status;
 
-   /**
+   
+    /**
      * @var datetime $created_at
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
-    /**
+ /**
      * @var datetime $updated_at
      *
      * @Gedmo\Timestampable(on="update")

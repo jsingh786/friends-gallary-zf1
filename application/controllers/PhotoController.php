@@ -20,6 +20,41 @@ class PhotoController extends Zend_Controller_Action
      */
   public function indexAction()
   {  
+
+      // $id = $this->getRequest()->getParam('id');
+      // // echo $id; die;
+      // $this->view->data=$id;
+        // $sess= new \Zend_Auth_Storage_Session('frontend_user');
+        // $id= $sess->read();
+        // $data= \Extended\users::get(['id'=>$id],[]);
+        // $this->view->dataa=$data;
+      }
+
+      public function addAction()
+      {
+         $this->_helper->layout()->disableLayout();
+         $this->_helper->viewRenderer->setNoRender(true);
+         $img=array();
+         $description=array();
+         $post=$this->getRequest()->getPost();
+         // echo "<pre>"; 
+         //  print_r($post); die;
+         $id= $this->getRequest()->getParam('id');
+         // echo $id; die;
+         unset($post['id']);
+          // echo "<pre>"; 
+          // print_r($post); die;
+         
+         foreach ($post as $key => $value)
+         {
+             $description[]=$value;
+             
+         }
+       
+           $file=$_FILES;
+
+          foreach ($file as $key => $value)
+
      $name = $this->getRequest()->getParam('name');
      $id=$this->getRequest()->getParam('id');
          $this->view->data=$id;   
