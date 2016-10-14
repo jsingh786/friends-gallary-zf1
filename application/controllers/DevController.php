@@ -30,7 +30,7 @@ class DevController extends Zend_Controller_Action
 	 */
 	public function generatedbAction()
 	{
-		$entities_path = $_SERVER["DOCUMENT_ROOT"].'/'.PROJECT_NAME.'application/models/Entities/';
+	$entities_path = $_SERVER["DOCUMENT_ROOT"].'/'.PROJECT_NAME.'application/models/Entities/';
 		$d = dir($entities_path) or die("Wrong path: $entities_path");
 		while (false !== ($entry = $d->read()))
 		{

@@ -22,6 +22,7 @@ class photo
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
+     
     private $description;
 
     /**

@@ -5,7 +5,7 @@
 * User: jsingh7
 * Date: 9/8/2016
 * Time: 4:01 PM
-<<<<<<< HEAD
+
 **/
 class AuthenticateController extends Zend_Controller_Action
 {
@@ -17,6 +17,7 @@ class AuthenticateController extends Zend_Controller_Action
     public function init()
     {
     /* Initialize action controller here */
+   
     }
  
     public function indexAction()
@@ -33,10 +34,7 @@ class AuthenticateController extends Zend_Controller_Action
             $auth->setStorage(new Zend_Auth_Storage_Session('frontend_user'));
             $adapter = new Service\Authentication($this->getRequest()->getParam("email"), $this->getRequest()->getParam("pass"));
             $result = $auth->authenticate($adapter);
-
-            $result = $auth->authenticate($adapter);
-      
-
+            
             if ( $result->getCode () == Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID
             || $result->getCode () == Zend_Auth_Result::FAILURE
             || $result->getCode () == Zend_Auth_Result::FAILURE_IDENTITY_AMBIGUOUS

@@ -44,8 +44,10 @@
     </head>
     <body>
         <div class="wrapper">
-             <?php if($params['controller'] != 'authenticate') { ?>
+             <?php if($params['controller'] != 'authenticate' ) { ?>
         <div class="sidebar" data-color="purple" data-image="<?php echo IMAGE_PATH ?>/static/sidebar-5.jpg">
+
+        <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
         <!--           you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
@@ -73,15 +75,15 @@
                             <a href="/<?php echo PROJECT_NAME; ?>album/index">
                                 <i class="pe-7s-album"></i>
                                 <p>Create Album</p>
-
-                            </a>
-                        </li>
-                        
+                           </a>
+                        </li>                        
                         <li <?php if($params['controller'] == 'photo'): echo 'class="active"'; endif; ?> >
                             <a href="/<?php echo PROJECT_NAME; ?>photo/index">
                                 <i class="pe-7s-photo"></i>
                                 <p>Photo Page</p>
                             </a>
+                        </li>                        
+
                         </li>                                          
                     </ul>
                 </div>
@@ -122,14 +124,17 @@
                                         <li><a href="#">Another notification</a></li>
                                     </ul>
                                 </li>
-                                <li> <?php if($params['controller'] != 'photo') { ?>
+                                <?php if($params['controller'] != 'photo') { ?>
+                                <li>
                                     <form action="request/index" method="post">
-                                    <input type="text" name="search style=margin-top: 17px;
-                                    margin-left: 68px;">
-                                    <button  type="submit">Search</button>
+                                    <input type="text" name="search style="margin-top: 17px">
+                                
+                                    <button class="fa fa-search" type="submit" id="searchicon" style="width:
+                                    37px"></button>
                                     </form>
-                                </li>  <?php } ?>
-                            </ul>
+                                </li>
+                                <?php } ?>
+                                </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="">

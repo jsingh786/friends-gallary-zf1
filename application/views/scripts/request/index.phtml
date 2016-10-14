@@ -1,5 +1,4 @@
- 
-<?php
+ <?php
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/friends.css");
 ?>
 
@@ -11,3 +10,55 @@ $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/friends.css");
         <a href="add/id/<?php echo $this->data[$i]["id"] ?>"><button class="butn">+1Add Friends</button></a>
    </div>
    <?php } ?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<style>
+			.spl 
+			{
+				width: 282px;
+				height: 178px;
+				float:left;
+				margin-right: 15px;
+				border-color: #9B9590
+			}
+			.spl img {
+				border-radius: 35px;
+				width: 136px;
+				margin-left: 13px;
+				height: 90px;
+			}
+			.username{
+				margin-left: 41px;
+			}
+			.email{
+				margin-left: 43px;
+			}
+			.butn{
+				font-size: inherit;
+				margin-left: 24px;
+			}
+		</style>
+		<script>
+		
+		</script>
+	</head>
+	<body>
+		<?php for($i=0;$i<count($this->data);$i++) { ?>
+			<div class ="spl">
+				<img src ="<?php echo IMAGE_PATH ?>/<?php echo $this->data[$i]["photo"] ?>" >
+				<div class = "username"><?php echo $this->result[$i]["username"] ?>
+				</div>
+				<div class = "email"><?php echo $this->result[$i]["email_id"] ?>
+				</div>
+				<a href= "add/id/<?php echo $this->result[$i]["id"] ?>">
+					<button type="submit" class="butn" id="button" >+1 Add Friend</button>	
+				</a>
+			</div>
+		<?php } ?>
+	</body>
+</html>
+
+
