@@ -79,17 +79,20 @@ class users extends \Entities\users
     }
 
     /**
+     * //todo Very poor English, who is "they"?
+     * //todo They have selected or select?
+     * //todo "The unique name OR unique name"?
     * In this function they have select the unique name and fetch all the data from user table.
     * Also they did not match the id himself.
-    * @param  $name (key value pair, where 'key' is column)
-    * @return integer ID
-    * @version 1.1
+    * @param  $name (key value pair, where 'key' is column) //todo Who will define the datatype of $name? It is not key value pair.
+    * @return integer ID //todo Wrong, your function is returns Array not integer.
+    * @version 1.1 //todo Why the version is 1.1 if only one author?
     * @author goyalraghav
     */
     public static function search($name)
     {           
         $em    = \Zend_Registry::get('em');
-        $id    = \Service\Authentication::getIdentity()->getId();
+        $id    = \Service\Authentication::getIdentity()->getId(); //todo Never use \Service\Authentication::getIdentity() inside your model class but pass the value.
         $qb    = $em->createQueryBuilder();
         $query = $qb->select('u')
               ->from('\Entities\users','u');

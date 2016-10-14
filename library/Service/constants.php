@@ -8,5 +8,5 @@ namespace Service;
  */
 class Constants
 {
-
+    public $no_Record_found = "No Records found.";
 }
