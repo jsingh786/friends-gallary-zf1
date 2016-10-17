@@ -57,9 +57,9 @@ class AlbumController extends Zend_Controller_Action
         // }
 
         // die;
-        //Create array for JSON
+        // Create array for JSON
 
-       // echo count($albums);
+        // echo count($albums);
         $albumArray = array();
         if($albums)
         {
@@ -73,7 +73,7 @@ class AlbumController extends Zend_Controller_Action
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
                 //$albumArray[$key]['photo'] = $album->getPhoto();
                 foreach ($album->getPhoto() as $photo) {
-                    echo $albumArray[$key]['photo']=$photo->getName() . ' <br/>';
+                     $albumArray[$key]['photo']=$photo->getName();
                     
                 }
 
