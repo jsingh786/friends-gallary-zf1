@@ -45,7 +45,13 @@ function loadAlbums(limit, offset, user_id)
 
                // console.log(result[i].photos[0].name);
 
-                    HTML += '<div class="Colomn">'+'<a href="#"><img src="http://localhost/friends-gallary-zf1/public/images/albums/' + result[i].name + '/' + result[i].photo + '" class="Img" />'+'<div class="Info-album">'+'<b>Name:'+result[i].id+result[i].name+'</b><br><b>Location:'+result[i].location+'</b><br><b>Description:'+result[i].description+'</b><br><b>Created At:'+result[i].created_at+'</b><br></div></div>';
+                    HTML += '<div class="Colomn">';
+                    HTML +=     '<a href="#">';
+                    HTML +=         '<img src='+result[i].image_path+' class="Img" />';
+                    HTML +=         '<div class="Info-album">';
+                    HTML +=             '<b>Name:'+result[i].id+result[i].name+'</b><br><b>Location:'+result[i].location+'</b><br><b>Description:'+result[i].description+'</b><br><b>Created At:'+result[i].created_at+'</b><br>';
+                    HTML +=         '</div>';
+                    HTML +=     '</a>';
 
                    // $("div#main").append(HTML);      
                    // return false;

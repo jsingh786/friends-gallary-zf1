@@ -63,20 +63,19 @@ class AlbumController extends Zend_Controller_Action
         {
             foreach ($albums as $key=>$album)
             {
+                $photos = $album->getPhoto();
                 $albumArray[$key]['id'] = $album->getId();
                 $albumArray[$key]['name'] = $album->getName();
+                $albumArray[$key]['image_path'] = IMAGE_PATH.'/albums/'.$album->getName().'/'.$photos[0]->getName();
+                $albumArray[$key]['display_name'] = \Service\Common::showCroppedText($album->getName(), 12);
                 $albumArray[$key]['location'] = $album->getLocation();
                 $albumArray[$key]['description'] = $album->getDescription();
                 $datee = $album->getCreatedAt();
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
-                //$albumArray[$key]['photo'] = $album->getPhoto();
-                foreach ($album->getPhoto() as $photo)
-                {
-                     $albumArray[$key]['photo']=$photo->getName();
-                } 
+
                 //  echo "<pre>";
                 // Doctrine\Common\Util\Debug::dump($album);
-                // die;                             
+                // die;
             }
         }
 
