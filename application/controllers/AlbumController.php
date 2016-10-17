@@ -8,25 +8,20 @@ class AlbumController extends Zend_Controller_Action
             $this->_helper->redirector('index', 'authenticate', 'default');
         }
     }
-
     public function init()
     {
         /* Initialize action controller here */
+        // echo \Service\Common::test();
+        // die;
     }
-
     public function indexAction()
     {
-
         // $sess= new \Zend_Auth_Storage_Session('frontend_user');
         // $id= $sess->read();
         // $data= \Extended\users::get(['id'=>$id],[]);
         // $this->view->dataa=$data;
-
-
        $this->view->user_id = \Service\Authentication::getIdentity()->getId();
-
     }
-
     /**
      * Encode album data into JSON form 
      * @author kaurharjinder
@@ -34,18 +29,14 @@ class AlbumController extends Zend_Controller_Action
      */        
     public function getAllAlbumsOfLoggedinUserAction()
     {
-
-
     
         $params = $this->_request->getParams();
-
                //Get User Id, Limit & offset
         $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()],['offset'=>$params['offset'],'limit'=>$params['limit']]);
         // echo"<pre>";
         // print_r($albums);
         // die;
         //echo "<pre>";
-
         // foreach ($albums as $album)
         // {
         //     Doctrine\Common\Util\Debug::dump($album);
@@ -56,7 +47,6 @@ class AlbumController extends Zend_Controller_Action
         //     break;
         // }
         // die;
-
         // Create array for JSON
         $albumArray = array();
         if($albums)
@@ -67,21 +57,23 @@ class AlbumController extends Zend_Controller_Action
                 $albumArray[$key]['id'] = $album->getId();
                 $albumArray[$key]['name'] = $album->getName();
                 $albumArray[$key]['image_path'] = IMAGE_PATH.'/albums/'.$album->getName().'/'.$photos[0]->getName();
+                if (empty($album)) {
+                    echo 'avatar.png';
+                }
+
                 $albumArray[$key]['display_name'] = \Service\Common::showCroppedText($album->getName(), 12);
                 $albumArray[$key]['location'] = $album->getLocation();
                 $albumArray[$key]['description'] = $album->getDescription();
                 $datee = $album->getCreatedAt();
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
-
                 //  echo "<pre>";
                 // Doctrine\Common\Util\Debug::dump($album);
                 // die;
             }
         }
-
         //Encode Array data into JSON Form
         echo json_encode($albumArray);
-       exit();
+        exit();
     }
     public function addAction()
     {
@@ -91,4 +83,3 @@ class AlbumController extends Zend_Controller_Action
         $this->_helper->redirector('index', 'photo', 'default',['id'=>$result]);
     }
 }
-

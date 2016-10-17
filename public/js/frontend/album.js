@@ -47,12 +47,15 @@ function loadAlbums(limit, offset, user_id)
 
                     HTML += '<div class="Colomn">';
                     HTML +=     '<a href="#">';
-                    HTML +=         '<img src='+result[i].image_path+' class="Img" />';
+                    HTML +=         '<img src='+result[i].image_path+' class="Img"></img>';
                     HTML +=         '<div class="Info-album">';
-                    HTML +=             '<b>Name:'+result[i].id+result[i].name+'</b><br><b>Location:'+result[i].location+'</b><br><b>Description:'+result[i].description+'</b><br><b>Created At:'+result[i].created_at+'</b><br>';
+                    HTML +=             'Name:&nbsp;'+result[i].display_name+'<br>';
+                    HTML +=             'Location:&nbsp;'+result[i].location+'<br>';
+                    HTML +=             'Description:&nbsp;'+result[i].description+'<br>';
+                    HTML +=             'Created At:&nbsp;'+result[i].created_at+'<br>';
                     HTML +=         '</div>';
                     HTML +=     '</a>';
-
+                    HTML += '</div>';
                    // $("div#main").append(HTML);      
                    // return false;
 
