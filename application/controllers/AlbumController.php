@@ -44,7 +44,7 @@ class AlbumController extends Zend_Controller_Action
         // echo"<pre>";
         // print_r($albums);
         // die;
-        // echo "<pre>";
+        //echo "<pre>";
 
         // foreach ($albums as $album)
         // {
@@ -55,11 +55,9 @@ class AlbumController extends Zend_Controller_Action
         //     }
         //     break;
         // }
-
         // die;
-        // Create array for JSON
 
-        // echo count($albums);
+        // Create array for JSON
         $albumArray = array();
         if($albums)
         {
@@ -72,21 +70,19 @@ class AlbumController extends Zend_Controller_Action
                 $datee = $album->getCreatedAt();
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
                 //$albumArray[$key]['photo'] = $album->getPhoto();
-                foreach ($album->getPhoto() as $photo) {
+                foreach ($album->getPhoto() as $photo)
+                {
                      $albumArray[$key]['photo']=$photo->getName();
-                    
-                }
-
-            //     echo "<pre>";
-            // Doctrine\Common\Util\Debug::dump($album);
-            // die;
+                } 
+                //  echo "<pre>";
+                // Doctrine\Common\Util\Debug::dump($album);
+                // die;                             
             }
-
         }
 
         //Encode Array data into JSON Form
         echo json_encode($albumArray);
-        exit();
+       exit();
     }
     public function addAction()
     {
