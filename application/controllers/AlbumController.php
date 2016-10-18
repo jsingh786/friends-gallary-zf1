@@ -62,7 +62,7 @@ class AlbumController extends Zend_Controller_Action
                 }
 
                 $albumArray[$key]['display_name'] = \Service\Common::showCroppedText($album->getName(), 10);
-                $albumArray[$key]['location'] = \Service\Common::showCroppedText($album->getLocation(), 8);
+                $albumArray[$key]['location'] = \Service\Common::showCroppedText($album->getLocation(), 10);
                 $albumArray[$key]['description'] = \Service\Common::showCroppedText($album->getDescription(), 8);
                 $datee = $album->getCreatedAt();
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
