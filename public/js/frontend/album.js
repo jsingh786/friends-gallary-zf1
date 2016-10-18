@@ -49,10 +49,10 @@ function loadAlbums(limit, offset, user_id)
                     HTML +=     '<a href="#">';
                     HTML +=         '<img src='+result[i].image_path+' class="Img"></img>';
                     HTML +=         '<div class="Info-album">';
-                    HTML +=             'Name:&nbsp;'+result[i].display_name+'<br>';
-                    HTML +=             'Location:&nbsp;'+result[i].location+'<br>';
-                    HTML +=             'Description:&nbsp;'+result[i].description+'<br>';
-                    HTML +=             'Created At:&nbsp;'+result[i].created_at+'<br>';
+                    HTML +=             'Name&nbsp;:&nbsp;'+result[i].display_name+'<br>';
+                    HTML +=             'Location&nbsp;:&nbsp;'+result[i].location+'<br>';
+                    HTML +=             'Description&nbsp;:&nbsp;'+result[i].description+'<br>';
+                    HTML +=             'Created At&nbsp;:&nbsp;'+result[i].created_at+'<br>';
                     HTML +=         '</div>';
                     HTML +=     '</a>';
                     HTML += '</div>';
