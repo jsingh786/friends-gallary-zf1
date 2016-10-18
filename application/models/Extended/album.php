@@ -13,9 +13,10 @@ class album extends \Entities\album
     * @author PathakAshish
     */
 
-        public function create($data,$id)
+       public function create($data)
     {
-        
+        $sess= new \Zend_Auth_Storage_Session('Frontend users');
+        $id = $sess->read();
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
         $em = \Zend_Registry::get('em');
         $album= new \Entities\album();
@@ -23,12 +24,12 @@ class album extends \Entities\album
         $album->setLocation($data['location']);
         $album->setDescription($data['desc']);
         $album->setUsers($userObj[0]);
-        $em->persist($album);
-        $em->flush();
-        $id=$album->getId();
-        return $id;
+           $em->persist($album);
+            $em->flush();
+            $id=$album->getId();
+            return $id;
+        }
 
-    }
 
 /**
     * Returns album data
@@ -42,6 +43,7 @@ class album extends \Entities\album
     * @version 1.1
     * @author kaurharjinder
     */
+
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])

@@ -33,7 +33,7 @@ class album
     /**
      * @var datetime $created_at
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
 

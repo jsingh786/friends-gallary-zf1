@@ -53,7 +53,7 @@ class PhotoController extends Zend_Controller_Action
          $tmp_name=$file[$key]['tmp_name'];
          $fileError=$file[$key]['error'];
          $fileSize=$file[$key]['size'];
-         $dest="images/album/".$name."/";
+         $dest="images/albums/".$name."/";
          if($fileError<=0)
          {
          $newName=$file[$key]['name'];
