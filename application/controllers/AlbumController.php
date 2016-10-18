@@ -56,9 +56,10 @@ class AlbumController extends Zend_Controller_Action
                 $photos = $album->getPhoto();
                 $albumArray[$key]['id'] = $album->getId();
                 $albumArray[$key]['name'] = $album->getName();
+                if (!empty($photos[0]->getName())) {
                 $albumArray[$key]['image_path'] = IMAGE_PATH.'/albums/'.$album->getName().'/'.$photos[0]->getName();
-                if (empty($album)) {
-                    echo 'avatar.png';
+                }else{
+                    $albumArray[$key]['image_path'] = IMAGE_PATH.'/static/default-avatar.png';
                 }
 
                 $albumArray[$key]['display_name'] = \Service\Common::showCroppedText($album->getName(), 12);
