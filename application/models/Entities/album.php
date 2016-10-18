@@ -41,7 +41,15 @@ class album
     /**
      * @ORM\OneToOne(targetEntity="Entities\users", inversedBy="album")
      * @ORM\JoinColumn(name="users_id", referencedColumnName="id", nullable=false, unique=true)
+     * @ORM\OneToMany(targetEntity="Entities\photo", mappedBy="album", cascade={"remove"})
      */
+    private $photo;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Entities\users", inversedBy="profile")
+     * @ORM\JoinColumn(name="users_id", referencedColumnName="id", nullable=false, unique=true)
+     */
+
     private $users;
 
     /**
@@ -145,5 +153,18 @@ class album
     public function setUsers($users)
     {
         $this->users = $users;
+    }
+
+    /**
+     * @return mixed $photo
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto($photo)
+    {
+        $this->users = $photo;
     }
 }

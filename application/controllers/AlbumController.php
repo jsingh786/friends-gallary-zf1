@@ -8,54 +8,67 @@ class AlbumController extends Zend_Controller_Action
             $this->_helper->redirector('index', 'authenticate', 'default');
         }
     }
-
     public function init()
     {
         /* Initialize action controller here */
+        // echo \Service\Common::test();
+        // die;
     }
-
-/**
-     * @param This action use to be add the data into database .
-     * @version 1.0
-     * @author PathakAshish
-     */
-
     public function indexAction()
     {
+
         $this->view->userid =\Service\Authentication::getIdentity()->getId();
         $this->view->data=$id;   
     }
-
-       /* Encode album data into JSON form */
-        
+      
     /**
      * Encode album data into JSON form 
      * @author kaurharjinder
      * @version 1.0
      */        
     public function getAllAlbumsOfLoggedinUserAction()
-{
-         // print_r($this->getRequest()->getParams());
-         // die;
-        $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()]);
+    {
+    
         $params = $this->_request->getParams();
                //Get User Id, Limit & offset
-        $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()],['offset'=>$params['offset'],'limit'=>$params['limit']],['column'=>$params['column'],'order'=>$params['order']]);
+        $albums = \Extended\album::get(['users'=>\Service\Authentication::getIdentity()->getId()],['offset'=>$params['offset'],'limit'=>$params['limit']]);
         // echo"<pre>";
         // print_r($albums);
-        // die; 
-        //Create array for JSON
+        // die;
+        //echo "<pre>";
+        // foreach ($albums as $album)
+        // {
+        //     Doctrine\Common\Util\Debug::dump($album);
+        //     foreach ($album->getPhoto() as $photo)
+        //     {
+        //         Doctrine\Common\Util\Debug::dump($photo->getName());
+        //     }
+        //     break;
+        // }
+        // die;
+        // Create array for JSON
         $albumArray = array();
         if($albums)
         {
             foreach ($albums as $key=>$album)
             {
+                $photos = $album->getPhoto();
                 $albumArray[$key]['id'] = $album->getId();
                 $albumArray[$key]['name'] = $album->getName();
-                $albumArray[$key]['location'] = $album->getLocation();
-                $albumArray[$key]['description'] = $album->getDescription();
+                if (!empty($photos[0]->getName())) {
+                $albumArray[$key]['image_path'] = IMAGE_PATH.'/albums/'.$album->getName().'/'.$photos[0]->getName();
+                }else{
+                    $albumArray[$key]['image_path'] = IMAGE_PATH.'/static/default-avatar.png';
+                }
+
+                $albumArray[$key]['display_name'] = \Service\Common::showCroppedText($album->getName(), 10);
+                $albumArray[$key]['location'] = \Service\Common::showCroppedText($album->getLocation(), 8);
+                $albumArray[$key]['description'] = \Service\Common::showCroppedText($album->getDescription(), 8);
                 $datee = $album->getCreatedAt();
-                $albumArray[$key]['created_at'] = $datee->format('d/m/y');
+                $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
+                //  echo "<pre>";
+                // Doctrine\Common\Util\Debug::dump($album);
+                // die;
             }
         }
         //Encode Array data into JSON Form
@@ -63,33 +76,22 @@ class AlbumController extends Zend_Controller_Action
         exit();
     }
 
-
  /**
     * @param This action used to create album data into the database and redirect photo page. 
     * @version 1.0
     * @author PathakAshish
     */
 
+   
+               
+
     public function addAction()
     {
-       /* $id=$this->getRequest->getParam('id');
-        echo "<pre>";
-        print_r($id);
-        die;*/
-               
+
         $data=$this->getRequest()->getPost();
-        /*echo "<pre>";
-        print_r($data);
-        die;*/
         $profileObj = new \Extended\album();
-        /*echo "<pre>";
-        print_r($profileObj);
-        die;*/
         $result = $profileObj->create($data);
         $data=\Extended\album::get(['id'=>$result],[]);
-        /*echo "<pre>";
-        print_r($data);
-        die; */
         $fdir="./images/album/";
         $albumName=$data[0]->getName();
         if (file_exists($fdir. $albumName)) 
@@ -104,12 +106,10 @@ class AlbumController extends Zend_Controller_Action
       }
        public function createAction()
        {
-
-
        }
-
-
      }
         
+
+
 
 

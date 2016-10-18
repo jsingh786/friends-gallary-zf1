@@ -33,8 +33,8 @@
             }
 
             .Img {
-                width: 194px;
-                height: 152px;
+                max-width: 200px;
+                max-height: 120px;
             }
 
             .Info-album{
@@ -43,9 +43,9 @@
                 text-align: -moz-left;
                 margin-left: 2px;
                 margin-right: 0px;
-                margin-top: 0px;
+                margin-top: 17px;
                 margin-bottom: 0px;
+                color: #777;
+                text-align: center;
             }
-            div#but{
-
-            }
+            

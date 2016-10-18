@@ -18,8 +18,8 @@ class album extends \Entities\album
         $sess= new \Zend_Auth_Storage_Session('Frontend users');
         $id = $sess->read();
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
-        //Doctrine\Common\Util\Debug::Dump($userObj); die;
         $em = \Zend_Registry::get('em');
+
         $album= new \Entities\album();
         $album->setName($data['name']);
         $album->setLocation($data['location']);
@@ -31,20 +31,19 @@ class album extends \Entities\album
             return $id;
         }
 
- /**
-     * Returns Album data
-     * on the basis of arguments passed.
-     *
-     * @param array $whereConditions (key value pair, where 'key' is column)
-     * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
-     * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
-     *
-     * @return Array Collection
-     * @throws \Zend_Exception
-     * @version 1.0
-     *
-     */ 
 
+/**
+    * Returns album data
+    * on the basis of arguments passed.
+    * @param array $whereConditions (key value pair, where 'key' is column)
+    * @param array $limitAndOffset [optional] ['limit'=>100, 'offset'=>200]
+    * @param array $order [optional] (two possible values 'DESC' or 'ASC') ['order'=>'DESC', 'column'=>'id']
+    *
+    * @return Array Collection
+    * @throws \Zend_Exception
+    * @version 1.1
+    * @author kaurharjinder
+    */
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])
@@ -54,6 +53,7 @@ class album extends \Entities\album
         $alias  = 'album';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\album', $alias);
+
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -65,6 +65,7 @@ class album extends \Entities\album
                 $counter++;
             }
         }
+
         //Sorting
         if($order)
         {
@@ -77,11 +78,7 @@ class album extends \Entities\album
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
 
-        //Debugging by getting SQL
-        //echo '<pre>';
-        //echo $q_1->getQuery()->getSQL(); 
-        //die;
-
         return $q_1->getQuery()->getResult();
+
     }   
 }

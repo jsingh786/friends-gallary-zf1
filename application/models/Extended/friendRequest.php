@@ -32,7 +32,11 @@ class friendRequest extends \Entities\friendRequest
     {
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
+
         $alias  = 'usrs';
+
+        $alias  = 'friendrequest';
+
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\profile', $alias);
         //Creating where conditions of query.
@@ -55,7 +59,7 @@ class friendRequest extends \Entities\friendRequest
         if($limitAndOffset)
         {
             $q_1->setFirstResult( $limitAndOffset['offset'] )
-                ->setMaxResults( $limitAndOffset['limit'] );
+            ->setMaxResults( $limitAndOffset['limit'] );
         }
         return $q_1->getQuery()->getResult();
     }
