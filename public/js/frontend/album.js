@@ -62,7 +62,7 @@ function loadAlbums(limit, offset, user_id)
                // }
             }
                 $("div#main").append(HTML);  
-         }else{ alert('no record found'); $('#but').hide();}       
+         }else{ alert('No record found'); $('#but').hide();}       
         }
                    
     });
