@@ -62,9 +62,9 @@ class AlbumController extends Zend_Controller_Action
                     $albumArray[$key]['image_path'] = IMAGE_PATH.'/static/default-avatar.png';
                 }
 
-                $albumArray[$key]['display_name'] = \Service\Common::showCroppedText($album->getName(), 12);
-                $albumArray[$key]['location'] = $album->getLocation();
-                $albumArray[$key]['description'] = $album->getDescription();
+                $albumArray[$key]['display_name'] = \Service\Common::showCroppedText($album->getName(), 10);
+                $albumArray[$key]['location'] = \Service\Common::showCroppedText($album->getLocation(), 8);
+                $albumArray[$key]['description'] = \Service\Common::showCroppedText($album->getDescription(), 8);
                 $datee = $album->getCreatedAt();
                 $albumArray[$key]['created_at'] = $datee->format('Y-m-d');
                 //  echo "<pre>";
