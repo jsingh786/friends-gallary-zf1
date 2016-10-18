@@ -18,7 +18,7 @@ class AlbumController extends Zend_Controller_Action
     {
 
         $this->view->userid =\Service\Authentication::getIdentity()->getId();
-        //$this->view->data=$id;   
+        $this->view->data=$id;   
     }
       
     /**
