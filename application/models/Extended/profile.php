@@ -4,39 +4,52 @@ namespace Extended;
 class profile extends \Entities\profile
 {   
     /**
-    * Insert users data into database.
+    * @param Insert users data into database.
     * @param array $data (key value pair, where 'key' is column) 
-    * Created by Sublime text 2.
-    * Date: 9/9/2016
-    * Time: 4:46 PM    
+    * @param Created by Sublime text 2.
+    * @param Date: 9/9/2016
+    * @param Time: 4:46 PM    
     * @version 1.1
     * @author goyalraghav
     */
-	public static function insert($data,$image,$id)
-	{
-		$em         = \Zend_Registry::get('em'); 
-		$profileObj = new \Entities\profile();
-        $result     = \Extended\users::get(['id'=>$id]);
-		$profileObj->setPhoto($image);
+    public static function insert($data,$image,$id)
+    {
+        $em = \Zend_Registry::get('em'); 
+        // echo '<pre>';
+        // print_r($data); die;
+        $profileObj = new \Entities\profile();
+        $result=\Extended\users::get(['id'=>$id],[]);
+        // echo "<pre>";
+        // \Doctrine\Common\Util\Debug::dump($result); die;
+        $profileObj->setPhoto($image);
         $profileObj->setDescription($data['description']);
-		$profileObj->setHobbies($data['hobbies']);
-		$profileObj->setEducation($data['education']);
-		$profileObj->setExperience($data['experience']);
-		$profileObj->setContactNo($data['contact_no']);
-		$profileObj->setLocation($data['location']);
+        $profileObj->setHobbies($data['hobbies']);
+        $profileObj->setEducation($data['education']);
+        $profileObj->setExperience($data['experience']);
+        $profileObj->setContactNo($data['contact_no']);
+        $profileObj->setLocation($data['location']);
         $profileObj->setUsers($result[0]);
-		$em->persist($profileObj);
-		$em->flush(); //here		
-	}
+        $em->persist($profileObj);
+        $em->flush(); //here
+            // if($query = 'data') {
+            //     $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
+            // }   else
+            // {
+            //     $this->get('session')->setFlash('my_flash_key',"Record not Inserted!");
+            //     }       
+       // echo "profile inserted"
+        
+    }
     /**
     *@param Edit users data into database.
     */
-	public static function edit($data,$image)
-	{
-        $sess  = new \Zend_Auth_Storage_Session('frontend_user');
-        $id    = $sess->read();
-		$em    = \Zend_Registry::get('em');
-        $qb    = $em->createQueryBuilder();
+    public static function edit($data,$image)
+    {
+        $sess= new \Zend_Auth_Storage_Session('frontend_user');
+        $id= $sess->read();
+        // echo $id; die;
+        $em= \Zend_Registry::get('em');
+        $qb= $em->createQueryBuilder();
         $query = $qb->update('\Entities\profile', 'p')
         ->set('p.photo', '?2')
         ->set('p.hobbies', '?3')
@@ -56,8 +69,15 @@ class profile extends \Entities\profile
         ->setParameter(8, $data['description'])
         ->getQuery();
         $query->execute();
-        return "profile updated";
-	}
+        // if($query = 'data') {
+        //         $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
+        //     }   else
+        //     {
+        //         $this->get('session')->setFlash('my_flash_key',"Record not Inserted!");
+        //         }
+        // echo "<pre>";
+        // \Doctrine\Common\Util\Debug::dump($query); die;
+    }
     /**
     * Returns users data
     * on the basis of arguments passed.
@@ -71,16 +91,17 @@ class profile extends \Entities\profile
     *
     */
     public static function get(array $whereConditions = [],
-                               array $limitAndOffset = [],
-                               array $order = [])
+    array $limitAndOffset = [] ,
+    array $order = [])
     {
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
         $alias  = 'usrs';
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\profile', $alias);
+
         //Creating where conditions of query.
-        if ($whereConditions)
+                if ($whereConditions)
         {
             $counter = 1;
             foreach ($whereConditions as $key=>$whereCondition)
@@ -101,17 +122,12 @@ class profile extends \Entities\profile
             $q_1->setFirstResult( $limitAndOffset['offset'] )
                 ->setMaxResults( $limitAndOffset['limit'] );
         }
+        //Debugging by getting SQL
+        //echo '<pre>';
+        //echo $q_1->getQuery()->getSQL(); 
+        //die;
         return $q_1->getQuery()->getResult();
     }
-    /**
-    * In this function, they have select the id and fetch all the data from the profile table.
-    * @param $id (key value pair, where 'key' is column) 
-    * Created by Sublime text 2.
-    * Date: 7/10/2016
-    * Time: 4:46 PM    
-    * @version 1.1
-    * @author goyalraghav
-    */
     public static function select($id)
     {
         $em    = \Zend_Registry::get('em');
@@ -121,7 +137,13 @@ class profile extends \Entities\profile
         $query->where('p.users IN (:id)');
         $query->setParameter('id', $id);
         $data  = $query->getQuery()->getArrayResult();
+       // echo  $query->getQuery()->getSQL();
+        // echo "<pre>";
+        // print_r($data);
+        // die;
+       //  die;
         return $data; 
     }
+
 }
 

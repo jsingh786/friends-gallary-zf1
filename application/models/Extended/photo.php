@@ -18,7 +18,7 @@ class photo extends \Entities\photo
     * @version 1.1
     * @author PathakAshish
     */
-      public static function insert($img,$description,$id)
+      public static function insert($img,$description,$id,$datetime)
     {
        
         $em = \Zend_Registry::get('em');
@@ -91,5 +91,20 @@ class photo extends \Entities\photo
 
         return $q_1->getQuery()->getResult();
     }
-
+    public static function select($id)
+    {
+        $em    = \Zend_Registry::get('em');
+        $qb    = $em->createQueryBuilder();
+        $query = $qb->select('p')
+                ->from('\Entities\photo','p');
+        $query->where('p.album IN (:id)');
+        $query->setParameter('id',$id);
+        // echo $query->getQuery()->getSQL();
+        // die;
+        $data  = $query->getQuery()->getArrayResult();
+        //  echo "<pre>";
+        // print_r($data);
+        // die;
+        return $data; 
+    }
 }

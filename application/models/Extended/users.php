@@ -54,6 +54,7 @@ class users extends \Entities\users
         $q_1    = $qb_1->select($alias)
                 ->from('\Entities\users', $alias);
         //Creating where conditions of query.
+
         if ($whereConditions)
         {
             $counter = 1;
@@ -67,7 +68,7 @@ class users extends \Entities\users
         //Sorting
         if($order)
         {
-            $q_1->orderBy( 	$alias.'.'.$order['column'], $order['order'] );
+            $q_1->orderBy(     $alias.'.'.$order['column'], $order['order'] );
         }
         //List length
         if($limitAndOffset)
@@ -77,28 +78,21 @@ class users extends \Entities\users
         }
         return $q_1->getQuery()->getResult();
     }
-
-    /**
-    * In this function they have select the unique name and fetch all the data from user table.
-    * Also they did not match the id himself.
-    * @param  $name (key value pair, where 'key' is column)
-    * @return integer ID
-    * @version 1.1
-    * @author goyalraghav
-    */
+    
     public static function search($name)
-    {           
-        $em    = \Zend_Registry::get('em');
-        $id    = \Service\Authentication::getIdentity()->getId();
-        $qb    = $em->createQueryBuilder();
+    {
+        
+        $em = \Zend_Registry::get('em');
+        $id =  \Service\Authentication::getIdentity()->getId();
+        $qb = $em->createQueryBuilder();
         $query = $qb->select('u')
-              ->from('\Entities\users','u');
+        ->from('\Entities\users','u');
         $query->where('u.fname LIKE :fname');
-        $query->andwhere('u.id != :identifier');
-        $query->setParameter('identifier', $id);
+        $query->andWhere('u.id != :identifier');
         $query->setParameter('fname', $name.'%');
-        $data  = $query->getQuery()->getArrayResult();
+        $query->setParameter('identifier', $id);
+        $data= $query->getQuery()->getArrayResult();
         return $data; 
     }
-
+    
 }

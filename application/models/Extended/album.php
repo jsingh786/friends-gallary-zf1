@@ -18,8 +18,8 @@ class album extends \Entities\album
         $sess= new \Zend_Auth_Storage_Session('Frontend users');
         $id = $sess->read();
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
+        //Doctrine\Common\Util\Debug::Dump($userObj); die;
         $em = \Zend_Registry::get('em');
-
         $album= new \Entities\album();
         $album->setName($data['name']);
         $album->setLocation($data['location']);
@@ -32,7 +32,7 @@ class album extends \Entities\album
         }
 
  /**
-     * Returns users data
+     * Returns Album data
      * on the basis of arguments passed.
      *
      * @param array $whereConditions (key value pair, where 'key' is column)
@@ -83,28 +83,5 @@ class album extends \Entities\album
         //die;
 
         return $q_1->getQuery()->getResult();
-    }
-
-    public static function select()
-    {
-        $em    = \Zend_Registry::get('em');
-        $qb    = $em->createQueryBuilder();
-        $alias = 'album';
-        $query = $qb->select($alias)
-
-        ->from('\Entities\album', $alias); 
-
-        return $query->getQuery()->getResult();
-    }
-    public static function search($name)
-    {
-        $em   = \Zend_Registry::get('em');
-        $qb   = $em->createQueryBuilder();
-        $query= $qb->select('a')
-              ->from('\Entities\album','a');
-        $query->where('a.name LIKE :name');
-        $query->setParameter('name', $name.'%');
-        $data = $query->getQuery()->getArrayResult();
-        return $data; 
-    }
+    }   
 }

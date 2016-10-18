@@ -60,18 +60,17 @@ class PhotoController extends Zend_Controller_Action
          $file_ext=explode('.',$file[$key]['name']);
          $ext=end($file_ext);
          $fname = basename($newName, ".".$ext);  
-         /*$datetime = date('d-m-Y-H:i:s');*/       
-         $image= $fname.'_'.rand(001,020).'.'.$ext;
-
+        /* $datetime = date('d-m-Y-H:i:s');       */
+         $image= $fname.'_'.rand(01,99).'.'.$ext;
          $status=move_uploaded_file($tmp_name,$dest.$image);
          }
          $img[]= $image;
      }
          $imgObj = \Extended\photo::insert($img,$description,$id);
-
          $albumId=$this->getRequest()->getParam('id');       
          $this->_helper->redirector('view', 'photo', 'default',['id'=>$albumId,'name'=>$name]);
-         echo json_encode($file);     
+
+              
   }
 
   /**

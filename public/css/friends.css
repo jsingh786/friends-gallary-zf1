@@ -9,13 +9,13 @@
 		width: 136px;
 	}
 	.username{
-		margin-left: 50px;
+		margin-left: 20px;
     }
     .email{
 	margin-left: 37px;
 
 }
  .butn{
- 	font-size: inherit;
- 	margin-left: 15px;
+ 	margin-left: 5px;
+ 	color: #323232;
  }

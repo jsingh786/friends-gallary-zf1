@@ -39,7 +39,7 @@ class album
     private $created_at;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entities\users", inversedBy="profile")
+     * @ORM\OneToOne(targetEntity="Entities\users", inversedBy="album")
      * @ORM\JoinColumn(name="users_id", referencedColumnName="id", nullable=false, unique=true)
      */
     private $users;

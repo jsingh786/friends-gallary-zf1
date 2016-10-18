@@ -1,42 +1,22 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Create Album</h4>
-                </div>
-                <div class="content">
-                    <form action="/<?php echo PROJECT_NAME; ?>album/add" method="post">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Album Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="name" >
-                                </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Location</label>
-                                    <input type="text" name="location" class="form-control" placeholder="Location">
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea rows="5" class="form-control" placeholder="Here can be your description" name="desc"></textarea>
-                                </div>
-                            </div>
-                        </div><br>
-                        <button type="submit" class="btn btn-info btn-fill pull-left">Submit</button>
-                        <div class="clearfix"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<?php
+/**
+* Created by sublime.
+* User: KaurHarjinder
+* Date: 9/22/2016
+* Time: 10:11 AM
+*/
+$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/album.css");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/album.js");
+?>
+
+<!-- Hidden id of user and print its value-->
+<input type='hidden' id='user_id' value="<?php echo $this->user_id ?>">
+<!-- Content Starts -->
+  <div id = "container">
+    <div id = "main">
+
     </div>
-</div>
-  
+    <div id ="button">
+    <button id = "but">Show more...</button>
+    </div>
+  </div>

@@ -22,12 +22,11 @@ class AlbumController extends Zend_Controller_Action
 
     public function indexAction()
     {
-       $this->view->user_id = \Service\Authentication::getIdentity()->getId();
-       $name                = $this->getRequest()->getPost('srch');
-       $album               = \Extended\album::search($name);
+        $this->view->userid =\Service\Authentication::getIdentity()->getId();
+        $this->view->data=$id;   
     }
 
-        /* Encode album data into JSON form */
+       /* Encode album data into JSON form */
         
     /**
      * Encode album data into JSON form 
@@ -64,21 +63,33 @@ class AlbumController extends Zend_Controller_Action
         exit();
     }
 
+
  /**
     * @param This action used to create album data into the database and redirect photo page. 
     * @version 1.0
     * @author PathakAshish
     */
 
-
     public function addAction()
     {
-    	
+       /* $id=$this->getRequest->getParam('id');
+        echo "<pre>";
+        print_r($id);
+        die;*/
+               
         $data=$this->getRequest()->getPost();
+        /*echo "<pre>";
+        print_r($data);
+        die;*/
         $profileObj = new \Extended\album();
+        /*echo "<pre>";
+        print_r($profileObj);
+        die;*/
         $result = $profileObj->create($data);
-
-        $data=\Extended\album::get(['id'=>$result],[]); 
+        $data=\Extended\album::get(['id'=>$result],[]);
+        /*echo "<pre>";
+        print_r($data);
+        die; */
         $fdir="./images/album/";
         $albumName=$data[0]->getName();
         if (file_exists($fdir. $albumName)) 
@@ -91,9 +102,14 @@ class AlbumController extends Zend_Controller_Action
         $this->_helper->redirector('index', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
          }
       }
-      
-  }
+       public function createAction()
+       {
 
+
+       }
+
+
+     }
         
 
 

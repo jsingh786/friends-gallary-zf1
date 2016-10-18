@@ -15,12 +15,11 @@ class IndexController extends Zend_Controller_Action
        }
 		
 	}
-
+     //This action use for Showing the login user name..
 	public function indexAction()
 	{
-
-		// echo '<pre>';
-		// \Doctrine\Common\Util\Debug::dump(Service\Authentication::getIdentity()); die;
+         
+		
 	}
 
 	public function AuthenticateAction()
