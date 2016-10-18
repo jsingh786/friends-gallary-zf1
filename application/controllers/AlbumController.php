@@ -82,15 +82,13 @@ class AlbumController extends Zend_Controller_Action
     * @author PathakAshish
     */
 
-   
-               
-
     public function addAction()
     {
 
         $data=$this->getRequest()->getPost();
         $profileObj = new \Extended\album();
-        $result = $profileObj->create($data);
+        $id =\Service\Authentication::getIdentity()->getId();
+        $result = $profileObj->create($data,$id);
         $data=\Extended\album::get(['id'=>$result],[]);
         $fdir="./images/album/";
         $albumName=$data[0]->getName();
@@ -106,6 +104,7 @@ class AlbumController extends Zend_Controller_Action
       }
        public function createAction()
        {
+        
        }
      }
         

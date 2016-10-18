@@ -13,23 +13,22 @@ class album extends \Entities\album
     * @author PathakAshish
     */
 
-        public function create($data)
+        public function create($data,$id)
     {
-        $sess= new \Zend_Auth_Storage_Session('Frontend users');
-        $id = $sess->read();
+        
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
         $em = \Zend_Registry::get('em');
-
         $album= new \Entities\album();
         $album->setName($data['name']);
         $album->setLocation($data['location']);
         $album->setDescription($data['desc']);
         $album->setUsers($userObj[0]);
-           $em->persist($album);
-            $em->flush();
-            $id=$album->getId();
-            return $id;
-        }
+        $em->persist($album);
+        $em->flush();
+        $id=$album->getId();
+        return $id;
+
+    }
 
 
 /**
