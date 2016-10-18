@@ -20,41 +20,6 @@ class PhotoController extends Zend_Controller_Action
      */
   public function indexAction()
   {  
-
-      // $id = $this->getRequest()->getParam('id');
-      // // echo $id; die;
-      // $this->view->data=$id;
-        // $sess= new \Zend_Auth_Storage_Session('frontend_user');
-        // $id= $sess->read();
-        // $data= \Extended\users::get(['id'=>$id],[]);
-        // $this->view->dataa=$data;
-      }
-
-      public function addAction()
-      {
-         $this->_helper->layout()->disableLayout();
-         $this->_helper->viewRenderer->setNoRender(true);
-         $img=array();
-         $description=array();
-         $post=$this->getRequest()->getPost();
-         // echo "<pre>"; 
-         //  print_r($post); die;
-         $id= $this->getRequest()->getParam('id');
-         // echo $id; die;
-         unset($post['id']);
-          // echo "<pre>"; 
-          // print_r($post); die;
-         
-         foreach ($post as $key => $value)
-         {
-             $description[]=$value;
-             
-         }
-       
-           $file=$_FILES;
-
-          foreach ($file as $key => $value)
-
      $name = $this->getRequest()->getParam('name');
      $id=$this->getRequest()->getParam('id');
          $this->view->data=$id;   
@@ -95,18 +60,17 @@ class PhotoController extends Zend_Controller_Action
          $file_ext=explode('.',$file[$key]['name']);
          $ext=end($file_ext);
          $fname = basename($newName, ".".$ext);  
-         /*$datetime = date('d-m-Y-H:i:s');*/       
-         $image= $fname.'_'.rand(001,020).'.'.$ext;
-
+        /* $datetime = date('d-m-Y-H:i:s');       */
+         $image= $fname.'_'.rand(01,99).'.'.$ext;
          $status=move_uploaded_file($tmp_name,$dest.$image);
          }
          $img[]= $image;
      }
          $imgObj = \Extended\photo::insert($img,$description,$id);
-
          $albumId=$this->getRequest()->getParam('id');       
          $this->_helper->redirector('view', 'photo', 'default',['id'=>$albumId,'name'=>$name]);
-         echo json_encode($file);     
+
+              
   }
 
   /**

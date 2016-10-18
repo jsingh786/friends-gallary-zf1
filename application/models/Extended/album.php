@@ -3,22 +3,33 @@ namespace Extended;
 
 class album extends \Entities\album
 {
-        public function create($data)
+
+    /**
+    * @param Create data into database.
+    * @param Created by Sublime text 2.
+    * @param Date: 6/10/2016
+    * @param Time: 4:46 PM    
+    * @version 1.1
+    * @author PathakAshish
+    */
+
+        public function create($data,$id)
     {
-        $sess= new \Zend_Auth_Storage_Session('Frontend users');
-        $id = $sess->read();
+        
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
         $em = \Zend_Registry::get('em');
-        $album= new \Entities\album();        
+        $album= new \Entities\album();
         $album->setName($data['name']);
-        $album->setLocation($data['location']);     
+        $album->setLocation($data['location']);
         $album->setDescription($data['desc']);
         $album->setUsers($userObj[0]);
         $em->persist($album);
         $em->flush();
-        $id=$album->getId(); 
+        $id=$album->getId();
         return $id;
+
     }
+
 
 /**
     * Returns album data
@@ -67,6 +78,6 @@ class album extends \Entities\album
         }
 
         return $q_1->getQuery()->getResult();
-    }
 
+    }   
 }

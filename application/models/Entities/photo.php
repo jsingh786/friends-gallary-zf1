@@ -17,7 +17,7 @@ class photo
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private $name;
+    private $photo;
 
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
@@ -41,14 +41,14 @@ class photo
         $this->id = $id;
     }
 
-    public function getName()
+    public function getPhoto()
     {
-        return $this->name;
+        return $this->photo;
     }
 
-    public function setName($name)
+    public function setPhoto($photo)
     {
-        $this->photo = $name;
+        $this->photo = $photo;
     }
 
     public function getDescription()
@@ -65,8 +65,6 @@ class photo
     {
         return $this->album;
     }
-
-
     public function setAlbum($album)
     {
         $this->album = $album;

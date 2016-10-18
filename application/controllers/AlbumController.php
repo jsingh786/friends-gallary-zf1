@@ -16,12 +16,11 @@ class AlbumController extends Zend_Controller_Action
     }
     public function indexAction()
     {
-        // $sess= new \Zend_Auth_Storage_Session('frontend_user');
-        // $id= $sess->read();
-        // $data= \Extended\users::get(['id'=>$id],[]);
-        // $this->view->dataa=$data;
-       $this->view->user_id = \Service\Authentication::getIdentity()->getId();
+
+        $this->view->userid =\Service\Authentication::getIdentity()->getId();
+        $this->view->data=$id;   
     }
+      
     /**
      * Encode album data into JSON form 
      * @author kaurharjinder
@@ -76,11 +75,40 @@ class AlbumController extends Zend_Controller_Action
         echo json_encode($albumArray);
         exit();
     }
+
+ /**
+    * @param This action used to create album data into the database and redirect photo page. 
+    * @version 1.0
+    * @author PathakAshish
+    */
+
     public function addAction()
     {
+
         $data=$this->getRequest()->getPost();
         $profileObj = new \Extended\album();
-        $result = $profileObj->create($data);
-        $this->_helper->redirector('index', 'photo', 'default',['id'=>$result]);
-    }
-}
+        $id =\Service\Authentication::getIdentity()->getId();
+        $result = $profileObj->create($data,$id);
+        $data=\Extended\album::get(['id'=>$result],[]);
+        $fdir="./images/album/";
+        $albumName=$data[0]->getName();
+        if (file_exists($fdir. $albumName)) 
+        {          
+        $this->_helper->redirector('msg', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
+        }
+        else 
+        {
+        mkdir($fdir.$albumName, 0777, true);
+        $this->_helper->redirector('index', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
+         }
+      }
+       public function createAction()
+       {
+        
+       }
+     }
+        
+
+
+
+

@@ -32,9 +32,13 @@ class friendRequest extends \Entities\friendRequest
     {
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
+
+        $alias  = 'usrs';
+
         $alias  = 'friendrequest';
+
         $q_1    = $qb_1->select($alias)
-                ->from('\Entities\friendRequest', $alias);
+                ->from('\Entities\profile', $alias);
         //Creating where conditions of query.
         if ($whereConditions)
         {
@@ -59,6 +63,7 @@ class friendRequest extends \Entities\friendRequest
         }
         return $q_1->getQuery()->getResult();
     }
+    
     /**
      * To update friend request table status into 0 to 1 data into database.
      * @param array $data (key value pair, where 'key' is column)
