@@ -1,7 +1,6 @@
 <?php
 namespace Entities;
 use Doctrine\ORM\Mapping AS ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -21,41 +20,33 @@ class album
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=200, nullable=false)
+     * @ORM\Column(type="string", length=200, nullable=true)
      */
     private $location;
 
     /**
-     * @ORM\Column(type="string", length=2000, nullable=false)
+     * @ORM\Column(type="string", length=2000, nullable=true)
      */
     private $description;
 
     /**
-     * @var datetime $created_at
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entities\users", inversedBy="album")
-     * @ORM\JoinColumn(name="users_id", referencedColumnName="id", nullable=false, unique=true)
      * @ORM\OneToMany(targetEntity="Entities\photo", mappedBy="album", cascade={"remove"})
      */
     private $photo;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entities\users", inversedBy="profile")
-     * @ORM\JoinColumn(name="users_id", referencedColumnName="id", nullable=false, unique=true)
+     * @ORM\ManyToOne(targetEntity="Entities\users", inversedBy="album")
+     * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
      */
-
     private $users;
-
     /**
      * @return mixed
      */
-
      public function getId()
     {
         return $this->id;
@@ -64,7 +55,6 @@ class album
     /**
      * @param mixed $id
      */
-
     public function setId($id)
     {
         $this->id = $id;
@@ -79,11 +69,9 @@ class album
     }
 
 
-
     /**
      * @param mixed $name
      */
-
     public function setName($name)
     {
         $this->name = $name;
@@ -113,11 +101,9 @@ class album
         return $this->description;
     }
 
-
     /**
      * @param mixed $description
      */
-
     public function setDescription($description)
     {
         $this->description = $description;
@@ -156,7 +142,7 @@ class album
     }
 
     /**
-     * @return mixed $photo
+     * @return mixed
      */
     public function getPhoto()
     {
@@ -167,4 +153,5 @@ class album
     {
         $this->users = $photo;
     }
+
 }

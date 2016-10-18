@@ -30,7 +30,6 @@ class album extends \Entities\album
 
     }
 
-
 /**
     * Returns album data
     * on the basis of arguments passed.
@@ -78,6 +77,6 @@ class album extends \Entities\album
         }
 
         return $q_1->getQuery()->getResult();
+    }
 
-    }   
 }

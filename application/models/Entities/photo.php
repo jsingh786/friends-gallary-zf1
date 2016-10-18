@@ -65,6 +65,8 @@ class photo
     {
         return $this->album;
     }
+
+
     public function setAlbum($album)
     {
         $this->album = $album;
