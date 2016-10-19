@@ -1,7 +1,7 @@
 <?php
 $this->headTitle()->prepend('view');
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/thumnailPopup/jBox.css");
-$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/thumnailPopup/thumnailbox.css");
+$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/thumnailPopup/viewgrid.css");
 $this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/fancybox/jquery.min.js");
 $this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/fancybox/jBox-min.js");
 ?>
@@ -20,8 +20,7 @@ for($i=0;$i<count($this->data);$i++)
 </div>
  <?php } ?>
     </div>
-  </div>
-</div>
+
        <div class="jbox-container">
         <div class="img-alt-text"></div>
         <img src="" />

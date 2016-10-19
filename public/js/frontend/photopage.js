@@ -1,10 +1,10 @@
- jQuery(function($)
+jQuery(function($)
 {
   $('#mybutton').on('click', function(e){
     e.preventDefault();
     var count=parseInt($('#mybutton').attr("count"));
     var no=count+1;
-    var limit = 4;
+    var limit = 8;
     if(count < limit)
     { 
     $('#mybutton').attr("count",no);    
@@ -20,24 +20,12 @@
     });
           $("form").append(r);
           $("form").append(a);
-           }    
-    else
-    {
-      alert('Only 4 Images Upload!');
-      return false;
-    }
-  })
+    }    
+    else 
+      {
+      alert('Only 8 Images Upload!');
+       $('#mybutton').hide();
+       return false;
+      }     
+})  
 })
-          
-      
-    
-
-
-
-
-      
-        
-  
- 
-             
-       

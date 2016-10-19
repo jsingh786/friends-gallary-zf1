@@ -82,13 +82,14 @@ class AlbumController extends Zend_Controller_Action
     * @author PathakAshish
     */
 
-  public function addAction()
+ public function addAction()
     {
-        
+
         $data=$this->getRequest()->getPost();
         $profileObj = new \Extended\album();
-        $result = $profileObj->create($data);
-        $data=\Extended\album::get(['id'=>$result],[]); 
+        $id =\Service\Authentication::getIdentity()->getId();
+        $result = $profileObj->create($data,$id);
+        $data=\Extended\album::get(['id'=>$result],[]);
         $fdir="./images/albums/";
         $albumName=$data[0]->getName();
         if (file_exists($fdir. $albumName)) 
@@ -99,15 +100,12 @@ class AlbumController extends Zend_Controller_Action
         {
         mkdir($fdir.$albumName, 0777, true);
         $this->_helper->redirector('index', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
-         }
+        }
     }
+    
        public function createAction()
        {
         
        }
-     }
-        
 
-
-
-
+}
