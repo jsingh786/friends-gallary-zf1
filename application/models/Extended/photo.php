@@ -29,7 +29,7 @@ class photo extends \Entities\photo
             for($i=0;$i<$num;$i++)
             {
                 $photoObj= new \Entities\photo();
-                $photoObj->setPhoto($img[$i]);
+                $photoObj->setName($img[$i]);
                 $photoObj->setDescription($description[$i]);
                 $photoObj->setAlbum($result[0]);
                 $em->persist($photoObj);

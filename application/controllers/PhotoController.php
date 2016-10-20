@@ -13,11 +13,12 @@ class PhotoController extends Zend_Controller_Action
       $this->_helper->redirector ('index', 'authenticate');
     }
   }
-   /**
-     * @param This action use to be add the data into database .
-     * @version 1.0
-     * @author PathakAshish
-     */
+
+ /**
+   * @param This action work get name and id from album controller.
+   * @version 1.0
+   * @author PathakAshish
+   */
   public function indexAction()
   {  
      $name = $this->getRequest()->getParam('name');
@@ -25,6 +26,7 @@ class PhotoController extends Zend_Controller_Action
          $this->view->data=$id;   
          $this->view->name=$name; 
       }
+
   /**
     * @param This action used to insert images into the database and upload images in directory. 
     * @version 1.0
@@ -48,7 +50,7 @@ class PhotoController extends Zend_Controller_Action
        $file=$_FILES;
       foreach ($file as $key => $value)
      {
-         $filename=$file[$key]['photo'];
+         $filename=$file[$key]['name'];
          $filetype=$file[$key]['type'];
          $tmp_name=$file[$key]['tmp_name'];
          $fileError=$file[$key]['error'];
@@ -73,28 +75,28 @@ class PhotoController extends Zend_Controller_Action
               
   }
 
-  /**
-* @param In this action used show images in perticulate folder directory. 
-* @version 1.0
-* @author PathakAshish
-*/
-     public function viewAction()
-    {
+      /**
+    * @param In this action used show images in perticulate folder directory. 
+    * @version 1.0
+    * @author PathakAshish
+    */
+  public function viewAction()
+  {
       $id = $this->getRequest()->getParam('id');
       $name=$this->getRequest()->getParam('name');
       $userObj = \Extended\photo::get(['album'=>$id]);
       $this->view->data=$userObj;
       $this->view->name= $name;
-    }
+  }
 
     /**
 * @param In this action used only show warning. 
 * @version 1.0
 * @author PathakAshish
 */
-      public function msgAction()
-      {
+  public function msgAction()
+  {
 
-      }
+  }
 
 }   
