@@ -44,7 +44,7 @@ function loadAlbums(limit, offset, user_id)
                 //console.log(result);
 
                // console.log(result[i].photos[0].name);
-                   
+
                     HTML += '<div class="Colomn">';
                     HTML +=     '<a href="#">';
                     HTML +=         '<img src='+result[i].image_path+' class="Img"></img>';
@@ -56,14 +56,13 @@ function loadAlbums(limit, offset, user_id)
                     HTML +=         '</div>';
                     HTML +=     '</a>';
                     HTML += '</div>';
-
                    // $("div#main").append(HTML);      
                    // return false;
 
                // }
             }
                 $("div#main").append(HTML);  
-         }else{ alert('No record found'); $('#but').hide();}       
+         }else{ alert('No record found!'); $('#but').hide();}       
         }
                    
     });
