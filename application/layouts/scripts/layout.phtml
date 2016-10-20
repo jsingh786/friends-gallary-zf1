@@ -137,12 +137,11 @@
                                         <li><a href="#">Another notification</a></li>
                                     </ul>
                                 </li>
-                                <li> <?php if($params['controller'] != 'photo') { ?>
-                                   <!-- <form action="request/index" method="post"> -->
+                                <li> <?php if ($params['controller'] != 'photo') { ?>
                                   <form action="/<?php echo PROJECT_NAME ?>request/index" method="POST">  
-                                    <input type="search" name="search" style="margin-top: 17px;
-                                    margin-left: 68px;">
-                                    <button  type="submit">Search</button>
+                                    <input type="search" name="search" id="srch" style="margin-top: 17px;
+                                    margin-left: 68px;" required>
+                                    <button   class="fa fa-search" type="submit" name="searchicon" id="search" style="width: 37px; height: 33px;"></button>
                                     </form>
                                 </li>  <?php } ?>
                             </ul>
