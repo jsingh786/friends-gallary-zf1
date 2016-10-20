@@ -2,12 +2,12 @@
 class AlbumController extends Zend_Controller_Action
 {
     public function preDispatch()
-    {
-        if(!\Service\Authentication::hasIdentity())
         {
+            if(!\Service\Authentication::hasIdentity())
+            {
             $this->_helper->redirector('index', 'authenticate', 'default');
+            }
         }
-    }
 
     public function init()
         {
@@ -18,16 +18,14 @@ class AlbumController extends Zend_Controller_Action
 
     public function indexAction()
         {
-
             $this->view->userid =\Service\Authentication::getIdentity()->getId();
-
         }
 
-        /**
-        * Encode album data into JSON form 
-        * @author kaurharjinder
-        * @version 1.0
-        */       
+    /**
+    * Encode album data into JSON form 
+    * @author kaurharjinder
+    * @version 1.0
+    */       
     public function getAllAlbumsOfLoggedinUserAction()
         {
 
@@ -52,24 +50,15 @@ class AlbumController extends Zend_Controller_Action
             $albumArray = array();
             if($albums)
             {
-
                 foreach ($albums as $key=>$album)
                 {
                     $photos = $album->getPhoto();
                     $albumArray[$key]['id'] = $album->getId();
                     $albumArray[$key]['name'] = $album->getName();
-                    if (!empty($photos[0]->getName())) {
-                    $albumArray[$key]['image_path'] = IMAGE_PATH.'/albums/'.$album->getName().'/'.$photos[0]->getName();
-                    }else{
-                        $albumArray[$key]['image_path'] = IMAGE_PATH.'/static/default-avatar.png';
-                    }
-
-                $photos = $album->getPhoto();
-                $albumArray[$key]['id'] = $album->getId();
-                $albumArray[$key]['name'] = $album->getName();
                 if (!empty($photos[0]->getName())) {
-                $albumArray[$key]['image_path'] = IMAGE_PATH.'/albums/'.$album->getName().'/'.$photos[0]->getName();
-                }else{
+                    $albumArray[$key]['image_path'] = IMAGE_PATH.'/albums/'.$album->getName().'/'.$photos[0]->getName();
+                }
+                else{
                     $albumArray[$key]['image_path'] = IMAGE_PATH.'/static/default-avatar.png';
                 }
 
@@ -88,14 +77,13 @@ class AlbumController extends Zend_Controller_Action
             exit();
             }
 
-        /**
-        * @param This action used to create album data into the database and redirect photo page. 
-        * @version 1.0
-        * @author PathakAshish
-        */
+    /**
+    * @param This action used to create album data into the database and redirect photo page. 
+    * @version 1.0
+    * @author PathakAshish
+    */
     public function addAction()
         {
-
             $data=$this->getRequest()->getPost();
             $profileObj = new \Extended\album();
             $id =\Service\Authentication::getIdentity()->getId();
@@ -114,14 +102,13 @@ class AlbumController extends Zend_Controller_Action
             }
         }
 
-        /**
-        * @param This action used to show create Page. 
-        * @version 1.0
-        * @author PathakAshish
-        */      
+    /**
+    * @param This action used to show create Page. 
+    * @version 1.0
+    * @author PathakAshish
+    */      
     public function createAction()
         {
 
         }
-
 }

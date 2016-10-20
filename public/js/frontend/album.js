@@ -17,6 +17,7 @@ $(document).ready(function(){
         }*/
     });  
 });
+
 function loadAlbums(limit, offset, user_id)
 {
     $.ajax({
