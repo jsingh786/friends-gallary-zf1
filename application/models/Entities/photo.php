@@ -48,7 +48,9 @@ class photo
 
     public function setName($name)
     {
+
         $this->name = $name;
+
     }
 
     public function getDescription()
