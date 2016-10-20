@@ -29,7 +29,7 @@ class album
      * @ORM\Column(type="string", length=2000, nullable=true)
      */
     private $description;
-
+    
     /**
      * @var datetime $created_at
      * @Gedmo\Timestampable(on="create")
