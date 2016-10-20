@@ -72,18 +72,19 @@
                                 <p>User Profile</p>
                             </a>
                         </li>
-                        <li <?php if($params['controller'] == 'album' && $params['controller'] != 'request'): echo 'class="active"'; endif; ?> >
-                            <a href="/<?php echo PROJECT_NAME; ?>album/index">
-                                <i class="pe-7s-photo-gallery"></i>
-                                <p>Show Album</p>
-                            </a>
-                        </li>  
+                        
                         <li <?php if($params['controller'] == 'album'): echo 'class="active"'; endif; ?> >
                             <a href="/<?php echo PROJECT_NAME; ?>album/create">
                                 <i class="pe-7s-album"></i>
                                 <p>Create Album</p>
                             </a>
-                        </li>   
+                        </li> 
+                        <li <?php if($params['controller'] == 'album' && $params['controller'] != 'request'): echo 'class="active"'; endif; ?> >
+                            <a href="/<?php echo PROJECT_NAME; ?>album/index">
+                                <i class="pe-7s-photo-gallery"></i>
+                                <p>Show Album</p>
+                            </a>
+                        </li>    
                         <li <?php if($params['controller'] == 'request'): echo 'class="active"'; endif; ?> >
                             <a href="/<?php echo PROJECT_NAME; ?>request/accept">
                                 <i class="pe-7s-add-user"></i>
