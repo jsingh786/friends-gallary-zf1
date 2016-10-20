@@ -14,7 +14,7 @@ border-radius: 4px;
 box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
 height: auto;
 width: 22%;
-background-color: white;
+background-color: #c5d1d8;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 margin-bottom: 25px;
 }
@@ -31,18 +31,20 @@ p.desc {
 text-align: center;
 box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
 background: #FFF;
-white-space: nowrap;
+white-space: normal;
 overflow: hidden;
 text-overflow: ellipsis;
-max-width: 200px;
+width: auto;
+height: auto;
 }
 div.desc{
     padding: 2px 3px;
 text-align: center;
 box-shadow: 0 1px 3px rgba(246, 249, 246, 0.1);
-background: #E6E0E0;
-white-space: nowrap;
+
+white-space: normal;
 overflow: hidden;
 text-overflow: ellipsis;
-max-width: 200px;
+width: auto;
+height: auto;
 }

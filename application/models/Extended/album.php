@@ -13,10 +13,12 @@ class album extends \Entities\album
     * @author PathakAshish
     */
 
-        public function create($data,$id)
+       public function create($data,$id)
     {
         
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
+     /*   echo "<pre>";
+        print_r($userObj); die;*/
         $em = \Zend_Registry::get('em');
         $album= new \Entities\album();
         $album->setName($data['name']);
@@ -27,7 +29,8 @@ class album extends \Entities\album
         $em->flush();
         $id=$album->getId();
         return $id;
-
+        echo"<pre>";
+       // Doctrine\Common\Util\Debug::Dump($userObj); die;
     }
 
 /**
@@ -42,6 +45,7 @@ class album extends \Entities\album
     * @version 1.1
     * @author kaurharjinder
     */
+
     public static function get(array $whereConditions = [],
                                array $limitAndOffset = [] ,
                                array $order = [])
