@@ -1,21 +1,25 @@
-.spl {
-	width: 179px;
+.spl 
+{
+	width: 222px;
+	height: 225px;
 	float:left;
 	margin-right: 15px;
-	border-color: #9B9590
-    }
-	.spl img {
-		border-radius: 90px;
-		width: 136px;
-	}
-	.username{
-		margin-left: 20px;
-    }
-    .email{
-	margin-left: 37px;
-
+	margin-left: 42px;
+	border-color: #9B9590;
 }
- .butn{
- 	margin-left: 5px;
- 	color: #323232;
- }
+.spl img {
+	border-radius: 62px;
+	width: 136px;
+	margin-left: 13px;
+	height: 123px;
+}
+.username{
+	margin-left: 52px;
+}
+.email{
+	margin-left: 52px;
+}
+.butn{
+	font-size: inherit;
+	margin-left: 24px;
+}

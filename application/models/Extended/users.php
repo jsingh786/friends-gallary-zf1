@@ -78,5 +78,24 @@ class users extends \Entities\users
         }
         return $q_1->getQuery()->getResult();
     }
-    
+    /**
+    * Return users data on the basis of name.
+    * @param $name is the search input 
+    * @param $sid is the front end user id
+    * @version 1.0
+    * @author goyalraghav
+    */
+    public static function search($name, $sid)
+    {        
+        $em    = \Zend_Registry::get('em');        
+        $qb    = $em->createQueryBuilder();
+        $query = $qb->select('u')
+        ->from('\Entities\users','u');
+        $query->where('u.fname LIKE :fname');
+        $query->andWhere('u.id != :identifier');
+        $query->setParameter('fname', $name.'%');
+        $query->setParameter('identifier', $sid);
+        $data  = $query->getQuery()->getArrayResult();
+        return $data; 
+    }    
 }
