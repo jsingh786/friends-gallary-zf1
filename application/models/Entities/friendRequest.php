@@ -18,8 +18,7 @@ class friendRequest
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $status;
-
-   
+ 
     /**
      * @var datetime $created_at
      *

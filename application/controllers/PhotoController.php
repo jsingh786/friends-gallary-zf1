@@ -19,7 +19,7 @@ class PhotoController extends Zend_Controller_Action
    * @version 1.0
    * @author PathakAshish
    */
-  public function indexAction()
+  public function indexAction() 
   {  
      $name = $this->getRequest()->getParam('name');
      $id=$this->getRequest()->getParam('id');
@@ -67,6 +67,8 @@ class PhotoController extends Zend_Controller_Action
          $status=move_uploaded_file($tmp_name,$dest.$image);
          }
          $img[]= $image;
+        /* echo "<pre>";
+         print_r($description);die;*/
      }
          $imgObj = \Extended\photo::insert($img,$description,$id);
          $albumId=$this->getRequest()->getParam('id');       

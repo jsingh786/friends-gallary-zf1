@@ -45,7 +45,6 @@ class AuthenticateController extends Zend_Controller_Action
                 // echo "<pre>";
                 // print_r($msg); die;
                 $this->_helper->redirector ('index', 'authenticate');
-
             }
             else if ( Service\Authentication::hasIdentity() ) //Successful Login
             {
