@@ -8,34 +8,48 @@ class RequestController extends Zend_Controller_Action
 
   public function init()
   {
-     
+
   }
+
+  /**
+  * Search name from the user table and fetch details.
+  * After fetch details from the profile table on the basis of id.
+  * And match alphabet character.
+  * Check input is empty or not.
+  * @version 1.0
+  * @author goyalraghav
+  */
   public function indexAction()
   {
-    $name=$this->getRequest()->getPost('search');
+    $name = $this->getRequest()->getPost('search');
     // echo $name; die;
     if (preg_match("/^[a-zA-Z]*$/", $name)) {
-    $sid =  \Service\Authentication::getIdentity()->getId();
-    $user = \Extended\users::search($name,$sid);
-    if(!empty($user)){
-    for($i=0;$i<count($user);$i++)
+      $sid  =  \Service\Authentication::getIdentity()->getId();
+      $user = \Extended\users::search($name,$sid);
+      if (!empty($user)){
+        for ($i= 0; $i<count($user); $i++)
+        {
+          $id[] = $user[$i]['id'];
+        }
+          $profile = \Extended\profile::select($id);
+          $this->view->profile = $profile;
+          $this->view->user    = $user;
+      } 
+      else 
+      {
+        $valid  = new \Service\Constants();
+        $status ='1';
+        echo $valid->error($status);
+      }
+    } 
+    else 
     {
-      $id[]=$user[$i]['id'];
+      $valid  = new \Service\Constants();
+      $status ='0';
+      echo $valid->error($status);
     }
-    $profile = \Extended\profile::select($id);
-    // echo "<pre>";
-    // print_r($profile);
-    // die;
-    $this->view->profile= $profile;
-    $this->view->user= $user;
-  } else {
-    echo "No record found.";
   }
-}else{
-  echo "Enter a valid name.";
-}
-    // Doctrine\Common\Util\Debug::Dump($data); die;
-  }
+
   /** 
   * To create for  add new  friends .
   * When Friend request is sent. Button shoud be chanje into "friend requset sent".
@@ -61,6 +75,7 @@ class RequestController extends Zend_Controller_Action
       echo json_encode($array);
     }
   }
+
   /** 
   * To create for Displaying friends request.
   * Here showing all the details of upcoming requests along with photo,username & email.
@@ -78,22 +93,23 @@ class RequestController extends Zend_Controller_Action
     {
       $id[]= $result[$i]->getfriendRequestSender()->getId();
     }
-    if(!empty($id))
+    if (!empty($id))
     {
       $data    = \Extended\friendRequest::select($id);     
       $profile = \Extended\friendRequest::search($id);
       //echo "<pre>";
-     //\Doctrine\Common\Util\Debug::dump($id); die;
+      //\Doctrine\Common\Util\Debug::dump($id); die;
       $this->view->profile= $profile;
       $this->view->data   = $data;  
     }
     else
     {
-     $data = "No New Friend Request.";
-     // \Doctrine\Common\Util\Debug::dump($data); die;
-     $this->view->data= $data;
+      $data = "No New Friend Request.";
+      // \Doctrine\Common\Util\Debug::dump($data); die;
+      $this->view->data= $data;
     }
   }
+
   /** 
   * To create for Accept friends request.
   * When we click on confirm button it will chanje the status 0 to 1.
@@ -143,7 +159,6 @@ class RequestController extends Zend_Controller_Action
     // echo "<pre>";
     // \Doctrine\Common\Util\Debug::dump($data); die;
     $this->view->data = $data;
-
     // echo<"pre">;
     // print_r($data);
     // die;
