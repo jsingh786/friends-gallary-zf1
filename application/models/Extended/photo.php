@@ -18,7 +18,7 @@ class photo extends \Entities\photo
     * @version 1.1
     * @author PathakAshish
     */
-      public static function insert($img,$description,$id,$datetime)
+      public static function insert($img,$description,$id)
     {
        
         $em = \Zend_Registry::get('em');
@@ -37,7 +37,7 @@ class photo extends \Entities\photo
             $em->flush();
             $em->clear();
 
-        }
+     }
        
  /**
      * Returns users data

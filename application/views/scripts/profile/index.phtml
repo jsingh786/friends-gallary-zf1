@@ -1,7 +1,7 @@
 <?php
 $this->headTitle()->prepend('Profile');
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/user.css");
-$this->headScript()->appendFile(PUBLIC_PATH . "/js/profile.js");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/profile.js");
 ?>
 
 <?php
@@ -64,13 +64,13 @@ if(is_object($this->user))
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Hobbies</label>
-                                    <input type="text" class="form-control" placeholder="Hobbies" name="hobbies" value="<?php echo $value['hobbies'] ?>" >
+                                    <input type="text" class="form-control" placeholder="Hobbies" name="hobbies" value="<?php echo $value['hobbies'] ?>" style="height: 29px" required >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Contact No.</label>
-                                    <input type="text" class="form-control" placeholder="Contact No" name="contact_no" value="<?php echo $value['contact'] ?>">
+                                    <input type="text" class="form-control" placeholder="Contact No" name="contact_no" value="<?php echo $value['contact'] ?>" style="height: 29px" required >
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@ if(is_object($this->user))
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Experience</label>
-                                    <input type="text" class="form-control" placeholder="Experience" name="experience" value="<?php echo $value['exp'] ?>">
+                                    <input type="text" class="form-control" placeholder="Experience" name="experience" value="<?php echo $value['exp'] ?>" style="height: 29px" required >
                                 </div>
                             </div>
                         </div>

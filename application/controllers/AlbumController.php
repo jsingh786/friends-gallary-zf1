@@ -30,7 +30,7 @@ class AlbumController extends Zend_Controller_Action
         {
             
         }
-
+        
     /**
     * Encode album data into JSON form 
     * @author kaurharjinder
@@ -114,5 +114,3 @@ class AlbumController extends Zend_Controller_Action
             }
         }
 }
-
-
