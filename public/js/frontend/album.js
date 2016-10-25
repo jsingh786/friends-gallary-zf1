@@ -17,6 +17,7 @@ $(document).ready(function(){
         }*/
     });  
 });
+
 function loadAlbums(limit, offset, user_id)
 {
     $.ajax({
@@ -45,53 +46,25 @@ function loadAlbums(limit, offset, user_id)
 
                // console.log(result[i].photos[0].name);
 
-                    HTML += '<div class="Colomn">'+'<a href="#"><img src="http://localhost/friends-gallary-zf1/public/images/albums/' + result[i].name + '/' + result[i].photos[0].name + '" class="Img" />'+'<div class="Info-album">'+'<b>Name:'+result[i].id+result[i].name+'</b><br><b>Location:'+result[i].location+'</b><br><b>Description:'+result[i].description+'</b><br><b>Created At:'+result[i].created_at+'</b><br></div></div>';
-
+                    HTML += '<div class="Colomn">';
+                    HTML +=     '<a href="#">';
+                    HTML +=         '<img src='+result[i].image_path+' class="Img"></img>';
+                    HTML +=         '<div class="Info-album">';
+                    HTML +=             'Name&nbsp;:&nbsp;'+result[i].display_name+'<br>';
+                    HTML +=             'Location&nbsp;:&nbsp;'+result[i].location+'<br>';
+                    HTML +=             'Description&nbsp;:&nbsp;'+result[i].description+'<br>';
+                    HTML +=             'Created At&nbsp;:&nbsp;'+result[i].created_at+'<br>';
+                    HTML +=         '</div>';
+                    HTML +=     '</a>';
+                    HTML += '</div>';
                    // $("div#main").append(HTML);      
                    // return false;
 
                // }
             }
                 $("div#main").append(HTML);  
-         }else{ alert('no record found'); $('#but').hide();}       
+         }else{ alert('No record found!'); $('#but').hide();}       
         }
                    
     });
 }
-
-
-// function loadmoreAlbums(limit, offset, user_id)
-// {
-//     $.ajax({
-//         url : "/"+PROJECT_NAME+"album/get-all-albums-of-loggedin-user",
-//         method : "POST",
-//         data : {"limit":limit, "offset": offset, 'user_id': user_id},//Set paramerters
-//         type : "post",
-//         dataType : "json",
-//         async: true,
-//         success : function(result,status,xhr) {
-
-//             var HTML = "";
-//             //Start division Row here after main division
-//             HTML += '<div class = "Row">';
-
-//             //i is index in album table and its value start from 0
-//             for(i in result){
-//                     //Showing 9 dynamic records in divsion colomn
-//                 if(i >= 8){
-
-//                     HTML += '<div class="Colomn">'+'<a href="#"><img src="" class="Img" >'+'<div class="Info-album">'+'<b>Name:'+result[i].id+result[i].name+'</b><br><b>Location:'+result[i].location+'</b><br><b>Description:'+result[i].description+'</b><br><b>Created At:'+result[i].created_at+'</b><br></div></div>';
-
-//                 }
-//             }
-
-//             $("button#but").append(HTML);      
-            
-//             }
-                   
-//         });
-//     }
-
-// }
-
-//$(this).attr('rel')

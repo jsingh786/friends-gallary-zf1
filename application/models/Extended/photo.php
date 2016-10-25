@@ -18,7 +18,7 @@ class photo extends \Entities\photo
     * @version 1.1
     * @author PathakAshish
     */
-      public static function insert($img,$description,$id)
+      public static function insert($img,$description,$id,$datetime)
     {
        
         $em = \Zend_Registry::get('em');
@@ -29,7 +29,7 @@ class photo extends \Entities\photo
             for($i=0;$i<$num;$i++)
             {
                 $photoObj= new \Entities\photo();
-                $photoObj->setPhoto($img[$i]);
+                $photoObj->setName($img[$i]);
                 $photoObj->setDescription($description[$i]);
                 $photoObj->setAlbum($result[0]);
                 $em->persist($photoObj);
@@ -60,7 +60,7 @@ class photo extends \Entities\photo
         $em     = \Zend_Registry::get('em');
         $qb_1   = $em->createQueryBuilder();
         $alias  = 'photo';
-        $q_1    = $qb_1->select($alias.'. name')
+        $q_1    = $qb_1->select($alias)
                 ->from('\Entities\photo', $alias);
 
         //Creating where conditions of query.
@@ -91,5 +91,20 @@ class photo extends \Entities\photo
 
         return $q_1->getQuery()->getResult();
     }
-
+    public static function select($id)
+    {
+        $em    = \Zend_Registry::get('em');
+        $qb    = $em->createQueryBuilder();
+        $query = $qb->select('p')
+                ->from('\Entities\photo','p');
+        $query->where('p.album IN (:id)');
+        $query->setParameter('id',$id);
+        // echo $query->getQuery()->getSQL();
+        // die;
+        $data  = $query->getQuery()->getArrayResult();
+        //  echo "<pre>";
+        // print_r($data);
+        // die;
+        return $data; 
+    }
 }

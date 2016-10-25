@@ -11,18 +11,18 @@ class AuthenticateController extends Zend_Controller_Action
     public function preDispatch()
     {
 
-
     }
+
     public function init()
     {
     /* Initialize action controller here */
-   
     }
  
     public function indexAction()
     {
  
     }
+
     public function loginAction()
     {
         $this->_helper->layout()->disableLayout();
@@ -52,6 +52,7 @@ class AuthenticateController extends Zend_Controller_Action
             }
         }
     }
+
     public function addAction()
     {
         $data=$this->getRequest()->getPost();
@@ -60,6 +61,7 @@ class AuthenticateController extends Zend_Controller_Action
         $usersObj->create($data);
         $this->_helper->redirector('index', 'authenticate', 'default');
     }
+
     /**
     * This action use to Logout the users from main pages and redirect to login page .
     * @version 1.0
@@ -70,6 +72,7 @@ class AuthenticateController extends Zend_Controller_Action
         session_destroy(); 
         $this->_helper->redirector ('index', 'index', 'default');
     } 
+    
     public function registerAction()
     {
 

@@ -13,53 +13,20 @@ class PhotoController extends Zend_Controller_Action
       $this->_helper->redirector ('index', 'authenticate');
     }
   }
-   /**
-     * @param This action use to be add the data into database .
-     * @version 1.0
-     * @author PathakAshish
-     */
+
+ /**
+   * @param This action work get name and id from album controller.
+   * @version 1.0
+   * @author PathakAshish
+   */
   public function indexAction()
   {  
-
-      // $id = $this->getRequest()->getParam('id');
-      // // echo $id; die;
-      // $this->view->data=$id;
-        // $sess= new \Zend_Auth_Storage_Session('frontend_user');
-        // $id= $sess->read();
-        // $data= \Extended\users::get(['id'=>$id],[]);
-        // $this->view->dataa=$data;
-      }
-
-      public function addAction()
-      {
-         $this->_helper->layout()->disableLayout();
-         $this->_helper->viewRenderer->setNoRender(true);
-         $img=array();
-         $description=array();
-         $post=$this->getRequest()->getPost();
-         // echo "<pre>"; 
-         //  print_r($post); die;
-         $id= $this->getRequest()->getParam('id');
-         // echo $id; die;
-         unset($post['id']);
-          // echo "<pre>"; 
-          // print_r($post); die;
-         
-         foreach ($post as $key => $value)
-         {
-             $description[]=$value;
-             
-         }
-       
-           $file=$_FILES;
-
-          foreach ($file as $key => $value)
-
      $name = $this->getRequest()->getParam('name');
      $id=$this->getRequest()->getParam('id');
          $this->view->data=$id;   
          $this->view->name=$name; 
       }
+
   /**
     * @param This action used to insert images into the database and upload images in directory. 
     * @version 1.0
@@ -83,54 +50,53 @@ class PhotoController extends Zend_Controller_Action
        $file=$_FILES;
       foreach ($file as $key => $value)
      {
-         $filename=$file[$key]['photo'];
+         $filename=$file[$key]['name'];
          $filetype=$file[$key]['type'];
          $tmp_name=$file[$key]['tmp_name'];
          $fileError=$file[$key]['error'];
          $fileSize=$file[$key]['size'];
-         $dest="images/album/".$name."/";
+         $dest="images/albums/".$name."/";
          if($fileError<=0)
          {
          $newName=$file[$key]['name'];
          $file_ext=explode('.',$file[$key]['name']);
          $ext=end($file_ext);
          $fname = basename($newName, ".".$ext);  
-         /*$datetime = date('d-m-Y-H:i:s');*/       
-         $image= $fname.'_'.rand(001,020).'.'.$ext;
-
+        /* $datetime = date('d-m-Y-H:i:s');       */
+         $image= $fname.'_'.rand(01,99).'.'.$ext;
          $status=move_uploaded_file($tmp_name,$dest.$image);
          }
          $img[]= $image;
      }
          $imgObj = \Extended\photo::insert($img,$description,$id);
-
          $albumId=$this->getRequest()->getParam('id');       
          $this->_helper->redirector('view', 'photo', 'default',['id'=>$albumId,'name'=>$name]);
-         echo json_encode($file);     
+
+              
   }
 
-  /**
-* @param In this action used show images in perticulate folder directory. 
-* @version 1.0
-* @author PathakAshish
-*/
-     public function viewAction()
-    {
+      /**
+    * @param In this action used show images in perticulate folder directory. 
+    * @version 1.0
+    * @author PathakAshish
+    */
+  public function viewAction()
+  {
       $id = $this->getRequest()->getParam('id');
       $name=$this->getRequest()->getParam('name');
       $userObj = \Extended\photo::get(['album'=>$id]);
       $this->view->data=$userObj;
       $this->view->name= $name;
-    }
+  }
 
     /**
 * @param In this action used only show warning. 
 * @version 1.0
 * @author PathakAshish
 */
-      public function msgAction()
-      {
+  public function msgAction()
+  {
 
-      }
+  }
 
 }   

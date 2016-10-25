@@ -48,7 +48,9 @@ class photo
 
     public function setName($name)
     {
-        $this->photo = $name;
+
+        $this->name = $name;
+
     }
 
     public function getDescription()
@@ -65,7 +67,6 @@ class photo
     {
         return $this->album;
     }
-
 
     public function setAlbum($album)
     {

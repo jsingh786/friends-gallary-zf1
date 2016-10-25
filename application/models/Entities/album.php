@@ -1,6 +1,7 @@
 <?php
 namespace Entities;
 use Doctrine\ORM\Mapping AS ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -28,8 +29,10 @@ class album
      * @ORM\Column(type="string", length=2000, nullable=true)
      */
     private $description;
-
+    
     /**
+     * @var datetime $created_at
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;

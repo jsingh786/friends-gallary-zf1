@@ -6,43 +6,44 @@
 * Time: 04:46 AM
 */
 $this->headTitle()->prepend('Photo');
-$this->headScript()->appendFile(PUBLIC_PATH . "/js/photopage.js");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/photopage.js");
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-div#con
-{
-width: 300px;
-margin-top: 30px;
-}
-</style>
-</head>
+	<head>
+		<style>	
+
+			div#con	{
+			width: 300px;
+			margin-top: 30px;
+			}
+
+		</style>
+	</head>
 <body>
-<div class="container-fluid">
-<div class="row">
-<div class="col-md-8">
-<div class="card">
-<div class="header">
-<h4 class="title">Photo</h4>
-</div>
-<div id="con">
-<form enctype="multipart/form-data" action="/<?php echo PROJECT_NAME ?>./photo/add/albumname/
-<?php echo $this->name ?>" method="post">
-<label>Select Image</label></br>
-<input type="file" name="file1" >
-<input type="hidden" value="<?php echo $this->data;?>" name="id">
-<label>Description</label></br>                           
-<textarea rows="2" columns="6" name="description1"></textarea></br>
-<button  type="submit" id="buttimg">Save Album</button>
-</form></br>
-<button id="mybutton" count="1">Add More</button>
-</div>
-</div>
-</div>
-</div>
-</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="header">
+						<h4 class="title">Photo</h4>
+					</div>
+						<div id="con">
+							<form enctype="multipart/form-data" action="/<?php echo PROJECT_NAME ?>./photo/add/albumname/
+							<?php echo $this->name ?>" method="post">
+								<label>Select Image</label></br>
+									<input type="file" name="file1" >
+									<input type="hidden" value="<?php echo $this->data;?>" name="id">
+								<label>Description</label></br>                           
+								<textarea rows="2" columns="6" name="description1"></textarea></br>
+								<button  type="submit" id="buttimg">Save Album</button>
+							</form></br>
+								<button id="mybutton" count="1">Add More</button>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

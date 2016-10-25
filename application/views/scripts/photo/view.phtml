@@ -1,73 +1,31 @@
 <?php
+/**
+* Created by sublime.
+* User: Pathakashish
+* Date: 6/10/2016
+* Time: 04:46 AM
+*/
 $this->headTitle()->prepend('view');
-$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/thumnailPopup/bootstrap.min.css");
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/thumnailPopup/jBox.css");
+$this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/frontend/thumnailPopup/viewgrid.css");
 $this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/fancybox/jquery.min.js");
-$this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/fancybox/jBox-min.js");
+$this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/fancybox/jBox-min.js");1
 ?>
 <html>
-<head>
-<style>
-  div.img {
-    display: inline-block;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 32px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 203px;
-    border: 1px solid #E5E5E5;
-    height:138px;
-    background: #fefefe;
-    position: relative;
-    margin-bottom: 100px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.05); 
-    height: 166px;
-}
-div.img img {
-    display: inline-block;
-    margin: 10px;
-    width: 181px;
-    height: 116px;
-}
-div .imgname{
-    padding: 17px;
-    text-align: center;
-    padding-top: 4px;
-    text-align: center;
-    color: #666;
-}
-
-p.desc {
-    padding: 17px;
-    text-align: center;
-}
-div.desc{
-    padding: 17px;
-    text-align: center;
-    box-shadow: 0 1px 3px rgba(159, 243, 160, 0.1);
-    background: #F9F9F9;
-}
-</style>
-</head>
 <body>
- <div class="container">           
-<?php
+ <div class="container"> 
+ <?php
 $fdir=$this->name;
 for($i=0;$i<count($this->data);$i++)
 {
- ?>  
+ ?>            
 <div class="img">
- <img class="jbox-img" src="<?php echo IMAGE_PATH ?>/album/<?php echo $this->name ?>/<?php echo $this->data[$i]->getPhoto();?>"/>  
-  <div class="desc"><?php echo $this->data[$i]->getDescription(); ?></div>
-  <p class="desc"><?php echo $this->data[$i]->getPhoto();?></p>
+ <img class="jbox-img" src="<?php echo IMAGE_PATH ?>/albums/<?php echo $this->name ?>/<?php echo $this->data[$i]->getName();?>"/>
+     <div class="desc"><?php echo $this->data[$i]->getDescription();?></div>
+     <p class="desc"><?php echo $this->data[$i]->getName();?></p>
 </div>
  <?php } ?>
     </div>
-  </div>
-</div>
-
        <div class="jbox-container">
         <div class="img-alt-text"></div>
         <img src="" />
@@ -82,10 +40,8 @@ for($i=0;$i<count($this->data);$i++)
             <path d="M512,51.75L460.25,0L256,204.25L51.75,0L0,51.75L204.25,256L0,460.25L51.75,512L256,307.75L460.25,512L512,460.25 L307.75,256L512,51.75z"/>
         </svg>
     </div>
-
-    <script>
+     <script>
     var gallery = new jBox();
-    </script>
-
+    </script>    
 </body>
 </html>

@@ -4,7 +4,7 @@ $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/msg.css");
 ?>
 
 <?php if(is_string($this->data)) { ?>
-	<div id="content1"><?php echo $this->data; ?></div> 
+  <div id="content1"><?php echo $this->data; ?></div> 
 <?php } else { ?>
 <?php for($i=0;$i<count($this->data);$i++) { ?>
    <div class ="spl">
