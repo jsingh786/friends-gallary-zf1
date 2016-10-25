@@ -21,16 +21,6 @@ class AlbumController extends Zend_Controller_Action
             $this->view->userid =\Service\Authentication::getIdentity()->getId();
         }
 
-        /**
-    * @param This action used to show create Page. 
-    * @version 1.0
-    * @author PathakAshish
-    */      
-    public function createAction()
-        {
-            
-        }
-        
     /**
     * Encode album data into JSON form 
     * @author kaurharjinder
@@ -94,23 +84,31 @@ class AlbumController extends Zend_Controller_Action
     */
     public function addAction()
         {
-            $this->_helper->viewRenderer->setNoRender(true);
-            $this->_helper->layout->disableLayout();
-            $fdir="./images/albums/";           
-            $albumName=$this->getRequest()->getParam('name');
-            $filename=$fdir.$albumName;
-            if (!file_exists($filename)) 
-            {    
             $data=$this->getRequest()->getPost();
             $profileObj = new \Extended\album();
             $id =\Service\Authentication::getIdentity()->getId();
             $result = $profileObj->create($data,$id);
-            mkdir($fdir.$albumName, 0777, true);
-            $this->_helper->redirector('index', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
+            $data=\Extended\album::get(['id'=>$result],[]);
+            $fdir="./images/albums/";
+            $albumName=$data[0]->getName();
+            if (file_exists($fdir. $albumName)) 
+            {          
+            $this->_helper->redirector('msg', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
             }
             else 
             {
-            $this->_helper->redirector('msg', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
+            mkdir($fdir.$albumName, 0777, true);
+            $this->_helper->redirector('index', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
             }
+        }
+
+    /**
+    * @param This action used to show create Page. 
+    * @version 1.0
+    * @author PathakAshish
+    */      
+    public function createAction()
+        {
+
         }
 }

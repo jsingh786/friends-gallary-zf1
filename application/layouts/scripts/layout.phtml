@@ -72,20 +72,19 @@
                                 <p>User Profile</p>
                             </a>
                         </li>
-                        <li <?php if($params['controller'] == 'album' && $params['controller'] != 'request'): echo 'class="active"'; endif; ?> >
-                            <a href="/<?php echo PROJECT_NAME; ?>album/index">
+                        
+                        <li <?php if($params['controller'] == 'album'): echo 'class="active"'; endif; ?> >
+                            <a href="/<?php echo PROJECT_NAME; ?>album/create">
                                 <i class="pe-7s-album"></i>
                                 <p>Create Album</p>
-
                             </a>
-                        </li>
-                        
-                        <li <?php if($params['controller'] == 'photo'): echo 'class="active"'; endif; ?> >
-                            <a href="/<?php echo PROJECT_NAME; ?>photo/index">
-                                <i class="pe-7s-photo"></i>
-                                <p>Photo Page</p>
+                        </li> 
+                        <li <?php if($params['controller'] == 'album' && $params['controller'] != 'request'): echo 'class="active"'; endif; ?> >
+                            <a href="/<?php echo PROJECT_NAME; ?>album/index">
+                                <i class="pe-7s-photo-gallery"></i>
+                                <p>Show Album</p>
                             </a>
-                        </li>   
+                        </li>    
                         <li <?php if($params['controller'] == 'request'): echo 'class="active"'; endif; ?> >
                             <a href="/<?php echo PROJECT_NAME; ?>request/accept">
                                 <i class="pe-7s-add-user"></i>
@@ -137,15 +136,16 @@
                                         <li><a href="#">Another notification</a></li>
                                     </ul>
                                 </li>
-                                <li> <?php if($params['controller'] != 'photo') { ?>
-                                   <!-- <form action="request/index" method="post"> -->
+                                <li> <?php if ($params['controller'] != 'photo') { ?>
                                   <form action="/<?php echo PROJECT_NAME ?>request/index" method="POST">  
-                                    <input type="search" name="search" style="margin-top: 17px;
-                                    margin-left: 68px;"required>
-                                    <button  type="submit">Search</button>
+                                    <input type="search" name="search" id="srch" style="margin-top: 17px;
+                                    margin-left: 68px;" required>
+                                    <button   class="fa fa-search" type="submit" name="searchicon" id="search" style="width: 37px; height: 33px;"></button>
                                     </form>
-                                </li>  <?php } ?>
-                            </ul>
+                                    <?php } ?>
+                                </li>
+                                </ul>
+
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="">
@@ -178,7 +178,7 @@
                     </div>
                 </nav>
                 <?php } ?>
-                <div class="content" >
+                <div class="content">
                     <?php
                     echo $this->layout()->content;
                     ?>
