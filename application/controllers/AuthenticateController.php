@@ -25,13 +25,14 @@ class AuthenticateController extends Zend_Controller_Action
 
     public function loginAction()
     {
+       # print_r($this->_getAllParams());
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         if($this->getRequest()->isPost())
         {
             $auth = Zend_Auth::getInstance();
             $auth->setStorage(new Zend_Auth_Storage_Session('frontend_user'));
-            $adapter = new Service\Authentication($this->getRequest()->getParam("email"), $this->getRequest()->getParam("pass"));
+            $adapter = new Service\Authentication($this->getRequest()->getParam("email_id"), $this->getRequest()->getParam("pwd"));
             $result = $auth->authenticate($adapter);
             
             if ( $result->getCode () == Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID

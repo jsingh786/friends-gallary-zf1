@@ -24,7 +24,7 @@ class users extends \Entities\users
         $user->setLname($data['lname']);
         $user->setEmailId($data['email_id']);
         $user->setUsername($data['username']);
-        $user->setpwd(md5($data['pwd']));
+        $user->setpwd(md5($data['password']));
         $user->setStatus($data['status']);
         $em->persist($user);
         $em->flush();
