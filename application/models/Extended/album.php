@@ -33,7 +33,7 @@ class album extends \Entities\album
        // Doctrine\Common\Util\Debug::Dump($userObj); die;
     }
 
-/**
+    /**
     * Returns album data
     * on the basis of arguments passed.
     * @param array $whereConditions (key value pair, where 'key' is column)
@@ -82,5 +82,4 @@ class album extends \Entities\album
 
         return $q_1->getQuery()->getResult();
     }
-
 }

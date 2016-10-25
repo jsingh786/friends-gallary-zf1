@@ -14,11 +14,9 @@ class profile extends \Entities\profile
     */
     public static function insert($data,$image,$id)
     {
-        $em = \Zend_Registry::get('em'); 
-        // echo '<pre>';
-        // print_r($data); die;
+        $em         = \Zend_Registry::get('em'); 
         $profileObj = new \Entities\profile();
-        $result=\Extended\users::get(['id'=>$id],[]);
+        $result     =\Extended\users::get(['id'=>$id],[]);
         // echo "<pre>";
         // \Doctrine\Common\Util\Debug::dump($result); die;
         $profileObj->setPhoto($image);
@@ -30,26 +28,21 @@ class profile extends \Entities\profile
         $profileObj->setLocation($data['location']);
         $profileObj->setUsers($result[0]);
         $em->persist($profileObj);
-        $em->flush(); //here
-            // if($query = 'data') {
-            //     $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
-            // }   else
-            // {
-            //     $this->get('session')->setFlash('my_flash_key',"Record not Inserted!");
-            //     }       
-       // echo "profile inserted"
-        
+        $em->flush(); //here        
     }
+
     /**
-    *@param Edit users data into database.
+    * Edit users data into database.
+    * @param array $data (key value pair, where 'key' is column) 
+    * @version 1.1
+    * @author goyalraghav
     */
     public static function edit($data,$image)
     {
-        $sess= new \Zend_Auth_Storage_Session('frontend_user');
-        $id= $sess->read();
-        // echo $id; die;
-        $em= \Zend_Registry::get('em');
-        $qb= $em->createQueryBuilder();
+        $sess  = new \Zend_Auth_Storage_Session('frontend_user');
+        $id    = $sess->read();
+        $em    = \Zend_Registry::get('em');
+        $qb    = $em->createQueryBuilder();
         $query = $qb->update('\Entities\profile', 'p')
         ->set('p.photo', '?2')
         ->set('p.hobbies', '?3')
@@ -69,15 +62,8 @@ class profile extends \Entities\profile
         ->setParameter(8, $data['description'])
         ->getQuery();
         $query->execute();
-        // if($query = 'data') {
-        //         $this->get('session')->setFlash('my_flash_key',"Record Inserted!");
-        //     }   else
-        //     {
-        //         $this->get('session')->setFlash('my_flash_key',"Record not Inserted!");
-        //         }
-        // echo "<pre>";
-        // \Doctrine\Common\Util\Debug::dump($query); die;
     }
+
     /**
     * Returns users data
     * on the basis of arguments passed.
@@ -128,6 +114,14 @@ class profile extends \Entities\profile
         //die;
         return $q_1->getQuery()->getResult();
     }
+
+    /**
+    * Return profile data on the basis of id.
+    * @param $id is an array of id's corresponding to which we function will fetch the details
+    * Created by Sublime text 2.  
+    * @version 1.0
+    * @author goyalraghav
+    */
     public static function select($id)
     {
         $em    = \Zend_Registry::get('em');
