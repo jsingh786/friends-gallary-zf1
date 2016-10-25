@@ -137,11 +137,6 @@ class profile extends \Entities\profile
         $query->where('p.users IN (:id)');
         $query->setParameter('id', $id);
         $data  = $query->getQuery()->getArrayResult();
-       // echo  $query->getQuery()->getSQL();
-        // echo "<pre>";
-        // print_r($data);
-        // die;
-       //  die;
         return $data; 
     }
 

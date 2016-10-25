@@ -1,21 +1,30 @@
-.spl {
+.spl 
+{   margin-top: 32px;
 	width: 179px;
-	float:left;
-	margin-right: 15px;
-	border-color: #9B9590
-    }
-	.spl img {
-		border-radius: 90px;
-		width: 136px;
-	}
-	.username{
-		margin-left: 20px;
-    }
-    .email{
-	margin-left: 37px;
+	float: left;
+	margin-bottom: 14px;
+	margin-left: 123px;
+	border-color: #9B9590; 
+}
+.spl img 
+{
+	border-radius: 66px;
+	width: 136px;
+	height: 136px;
+}
+.username
+{
+	margin-left: 20px;
+}
+.email
+{
+	margin-left: -26px;
 
 }
- .butn{
- 	margin-left: 5px;
- 	color: #323232;
- }
+.butn
+{
+	margin-left: 5px;
+	color: #323232;
+	width: 137px;
+}
+

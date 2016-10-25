@@ -61,7 +61,6 @@ class friendRequest extends \Entities\friendRequest
     }
     /**
      * To update friend request table status into 0 to 1 data into database.
-     * @param array $data (key value pair, where 'key' is column)
      * @version 1.0
      * @author singhSandeep
      * Date: 6/10/2016
@@ -82,11 +81,8 @@ class friendRequest extends \Entities\friendRequest
     }
     /**
      * To Chanje  friend request table status into 0 to 2 data into database.
-     * @param array $data (key value pair, where 'key' is column)
      * @version 1.0
      * @author singhSandeep
-     * Date: 10/10/2016
-     * Time: 3:13 PM
      */
     public static function delete($sid,$rid)
     {
@@ -102,11 +98,10 @@ class friendRequest extends \Entities\friendRequest
     }
      /**
      * To Serch new friend in search bar for making new friends.
-     * @param array $data (key value pair, where 'key' is column)
+     * @param integer $id
      * @version 1.0
      * @author singhSandeep
-     * Date: 10/10/2016
-     * Time: 6:13 PM
+     * @return integer array collection
      */
     public static function select($id)
     {
@@ -119,8 +114,25 @@ class friendRequest extends \Entities\friendRequest
        $data  = $query->getQuery()->getResult();
        return $data;
     }
-
-    public static function dispfriend($id)
+     public static function search($id)
+    {
+       $em    = \Zend_Registry::get('em');
+       $qb    = $em->createQueryBuilder();
+       $query = $qb->select('p')
+       ->from('\Entities\profile','p');
+       $query->where('p.users IN (:validated)');
+        $query->setParameter('validated', $id);
+        $data  = $query->getQuery()->getArrayResult();
+        return $data; 
+    }
+     /**
+     * To Serch new friend in search bar for making new friends.
+     * @param integer $id
+     * @version 1.0
+     * @author singhSandeep
+     * @return integer array collection
+     */
+    public static function displayFriends($id)
     {
         // echo $id; die; 
         $em    = \Zend_Registry::get('em');
@@ -128,14 +140,12 @@ class friendRequest extends \Entities\friendRequest
         $query = $qb->select('f')
         ->from('\Entities\friendRequest','f');
         $query->where('f.friendRequestSender :id');
-        // $query->orwhere('f.friendRequestReceiver :rid');
-        // $query->andWhere('f.status : status');
+        $query->orwhere('f.friendRequestReceiver :rid');
+        $query->andWhere('f.status : status');
         $query->setParameter("id" ,$id);
-        // $query->setParameter('rid', $id);
-        // $query->setParameter('status','1');
-        // echo $query->getSQL()->getQuery();
-        // die;
-        $data =$query->getQuery()->getResult();
+        $query->setParameter('rid', $id);
+        $query->setParameter('status','1');
+        $data = $query->getQuery()->getResult();
        // \Doctrine\Common\Util\Debug::dump($data); die;
        // echo $data; die;
        return $data;

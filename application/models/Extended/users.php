@@ -78,18 +78,18 @@ class users extends \Entities\users
         }
         return $q_1->getQuery()->getResult();
     }
-    public static function search($name)
+    public static function search($name,$sid)
     {
         
         $em = \Zend_Registry::get('em');
-        $id =  \Service\Authentication::getIdentity()->getId();
+        
         $qb = $em->createQueryBuilder();
         $query = $qb->select('u')
         ->from('\Entities\users','u');
         $query->where('u.fname LIKE :fname');
         $query->andWhere('u.id != :identifier');
         $query->setParameter('fname', $name.'%');
-        $query->setParameter('identifier', $id);
+        $query->setParameter('identifier', $sid);
         $data= $query->getQuery()->getArrayResult();
         return $data; 
     }

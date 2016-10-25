@@ -38,10 +38,10 @@ class UserController extends Zend_Controller_Action
     public function addAction()
 
     {
-        $data=$this->getRequest()->getPost();
-        // print_r($data); die;
-        $usersObj = new \Extended\users();
-        $usersObj->create($data);
-        $this->_helper->redirector('index', 'authenticate', 'default');
+      $data=$this->getRequest()->getPost();
+      // print_r($data); die;
+      $usersObj = new \Extended\users();
+      $usersObj->create($data);
+      $this->_helper->redirector('index', 'authenticate', 'default');
     }
 }

@@ -14,13 +14,31 @@ class RequestController extends Zend_Controller_Action
   {
     $name=$this->getRequest()->getPost('search');
     // echo $name; die;
-    $result = \Extended\users::search($name);
-    $this->view->data= $result;
+    if (preg_match("/^[a-zA-Z]*$/", $name)) {
+    $sid =  \Service\Authentication::getIdentity()->getId();
+    $user = \Extended\users::search($name,$sid);
+    if(!empty($user)){
+    for($i=0;$i<count($user);$i++)
+    {
+      $id[]=$user[$i]['id'];
+    }
+    $profile = \Extended\profile::select($id);
+    // echo "<pre>";
+    // print_r($profile);
+    // die;
+    $this->view->profile= $profile;
+    $this->view->user= $user;
+  } else {
+    echo "No record found.";
+  }
+}else{
+  echo "Enter a valid name.";
+}
     // Doctrine\Common\Util\Debug::Dump($data); die;
   }
   /** 
   * To create for  add new  friends .
-  * When Friend request is sent button shoud be chanje into "friend requset sent".
+  * When Friend request is sent. Button shoud be chanje into "friend requset sent".
   * After insert the data into database the status would be chanje 0 to 1.
   *@version 1.1
   * Date: 7/10/2016
@@ -54,14 +72,27 @@ class RequestController extends Zend_Controller_Action
   public function acceptAction()
   {
     $id     = \Service\Authentication::getIdentity()->getId(); 
-    $result = \Extended\friendRequest::get(['friendRequestReceiver'=>$id]);
+    $result = \Extended\friendRequest::get(['friendRequestReceiver'=>$id,'status'=>0]);
     $id     =array();
     for($i=0;$i<count($result);$i++)
     {
       $id[]= $result[$i]->getfriendRequestSender()->getId();
     }
-    $data = \Extended\friendRequest::select($id);
-    $this->view->data= $data;
+    if(!empty($id))
+    {
+      $data    = \Extended\friendRequest::select($id);     
+      $profile = \Extended\friendRequest::search($id);
+      //echo "<pre>";
+     //\Doctrine\Common\Util\Debug::dump($id); die;
+      $this->view->profile= $profile;
+      $this->view->data   = $data;  
+    }
+    else
+    {
+     $data = "No New Friend Request.";
+     // \Doctrine\Common\Util\Debug::dump($data); die;
+     $this->view->data= $data;
+    }
   }
   /** 
   * To create for Accept friends request.
@@ -80,9 +111,9 @@ class RequestController extends Zend_Controller_Action
     $result= \Extended\friendRequest::update($sid,$rid);
     $this->_helper->redirector('displayingfriends','request');
   }
-   /** 
+  /** 
   * To create for Decline  friends request.
-  * When we click on decline button it will chanje the status 0 to 2.
+  * When we click on decline button it will chanje the status 0 to 2 in database.
   *@version 1.1
   * Date: 13/10/2016
   * Time: 03:13 PM
@@ -95,13 +126,20 @@ class RequestController extends Zend_Controller_Action
     $sid   = $this->getRequest()->getParam('id');
     $rid   = \Service\Authentication::getIdentity()->getId();
     $result= \Extended\friendRequest::delete($sid,$rid);
-    $this->_helper->redirector('accept','request');
+    $this->_helper->redirector('index','index');
   }
-
-  public function displayingfriendsAction()
+  /** 
+  * To create for Displaying  friends.
+  * When we confirmed the request all friends are showing in Displaying Friends page.
+  *@version 1.1
+  * Date: 13/10/2016
+  * Time: 03:13 PM
+  *@author singhSandeep
+  */
+  public function displayingFriendsAction()
   {
     $id =\Service\Authentication::getIdentity()->getId();
-    $data =\Extended\friendRequest::get(['friendRequestSender'=>$id]);
+    $data =\Extended\friendRequest::displayFriends(['friendRequestSender'=>$id]);
     // echo "<pre>";
     // \Doctrine\Common\Util\Debug::dump($data); die;
     $this->view->data = $data;

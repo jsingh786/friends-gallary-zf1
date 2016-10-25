@@ -2,11 +2,29 @@
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/friends.css");
 $this->headScript()->appendFile(PUBLIC_PATH . "/js/frontend/request.js");
 ?>
-<?php for($i=0;$i<count($this->data);$i++) { ?>
-	<div class ="spl">
-	   <img src ="http://localhost/friends-gallary-zf1/public/images/static/faces/face-2.jpg">
-	   <div class ="username"><?php echo $this->data[$i]["username"] ?></div>
-	   <div class ="email"><?php echo $this->data[$i]["email_id"] ?></div>
-	   <input type="button" id="friend" class="butn" data="<?php echo $this->data[$i]["id"] ?>" value="+1Add Friend"> 	 
-	</div>
-<?php } ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <?php for ($i=0; $i<count($this->user); $i++) { ?>
+            <div class ="spl">
+            <?php if (!empty($this->profile[$i]['photo'])) { ?>
+        <img src ="<?php echo IMAGE_PATH ?>/<?php echo $this->profile[$i]['photo'] ?>" >
+                <?php } else {?>
+                    <img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/default-avatar.png" alt=""/> 
+                    <?php } ?>
+                <div class = "username"><?php echo $this->user[$i]["username"] ?>
+                </div>
+                <div class = "email"><?php echo $this->user[$i]["email_id"] ?>
+                </div>
+                <input type="button" id="friend" class="butn" data="<?php echo $this->user[$i]["id"] ?>" value="+1Add Friend">  
+                </div>
+        <?php } ?>
+    </body>
+</html>
+
+

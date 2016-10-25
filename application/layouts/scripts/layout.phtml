@@ -141,7 +141,7 @@
                                    <!-- <form action="request/index" method="post"> -->
                                   <form action="/<?php echo PROJECT_NAME ?>request/index" method="POST">  
                                     <input type="search" name="search" style="margin-top: 17px;
-                                    margin-left: 68px;">
+                                    margin-left: 68px;"required>
                                     <button  type="submit">Search</button>
                                     </form>
                                 </li>  <?php } ?>
@@ -178,7 +178,7 @@
                     </div>
                 </nav>
                 <?php } ?>
-                <div class="content">
+                <div class="content" >
                     <?php
                     echo $this->layout()->content;
                     ?>
