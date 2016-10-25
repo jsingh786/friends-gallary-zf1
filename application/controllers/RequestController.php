@@ -159,8 +159,8 @@ class RequestController extends Zend_Controller_Action
     // echo "<pre>";
     // \Doctrine\Common\Util\Debug::dump($data); die;
     $this->view->data = $data;
-    // echo<"pre">;
-    // print_r($data);
-    // die;
+    // // echo<"pre">;
+    // // print_r($data);
+    // // die;
   }
 }

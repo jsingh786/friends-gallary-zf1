@@ -32,10 +32,6 @@ class Authentication implements \Zend_Auth_Adapter_Interface
   public function authenticate()
    {
        $userObj = \Extended\users::get(['email_id'=>$this->email], ['limit'=>1, 'offset'=>0], ['order'=>'DESC', 'column'=>'id']);
-       
-       // echo "<pre>";
-       // echo $userOjb[0]->getId(); die;
-
        // \Doctrine\Common\Util\Debug::dump($userObj); die; 
        if (!$userObj)
        {
@@ -51,7 +47,7 @@ class Authentication implements \Zend_Auth_Adapter_Interface
                array ("Login failed. Your account has been disabled.") );
        }
 
-       else if ( $userObj[0]->getPwd() == md5( $this->password ) )
+       else if ( $userObj[0]->getPwd() ==  md5($this->password) )
        {
            $result = new \Zend_Auth_Result(
                \Zend_Auth_Result::SUCCESS,

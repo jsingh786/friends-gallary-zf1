@@ -134,7 +134,7 @@ class friendRequest extends \Entities\friendRequest
      */
     public static function displayFriends($id)
     {
-        // echo $id; die; 
+        echo $id; die; 
         $em    = \Zend_Registry::get('em');
         $qb    = $em->createQueryBuilder();
         $query = $qb->select('f')
