@@ -91,14 +91,9 @@ class AlbumController extends Zend_Controller_Action
             $data=\Extended\album::get(['id'=>$result],[]);
             $fdir="./images/albums/";
             $albumName=$data[0]->getName();
-            $var = $fdir. $albumName;
-            // echo "<pre>";
-            // print_r($var);
-            // die;
-            if (file_exists($var)) 
+            if (file_exists($fdir. $albumName)) 
             {          
-                echo "string";
-                $this->_helper->redirector('msg', 'photo');
+            $this->_helper->redirector('msg', 'photo', 'default',['id'=>$result,'name'=>$albumName]);
             }
             else 
             {
