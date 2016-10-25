@@ -1,0 +1,36 @@
+#content1{
+    text-align: center;
+    margin-top: 250px;
+    color: rgb(175, 135, 0);
+    font-size: 52px;
+}
+.spl 
+{
+	margin-top: 32px;  
+	width: 179px;
+	float:left;
+	margin-bottom: 14px;
+	margin-left: 123px;
+    border-color: #9B9590 
+   
+}
+.spl img 
+{
+	border-radius: 90px;
+	width: 136px;
+}
+.username
+{
+	margin-left: 33px;
+}
+.email
+{
+	margin-left: -15px;
+
+}
+.butn
+{
+	margin-left: 1px;
+	color: #323232;
+	width: 83px;
+}
