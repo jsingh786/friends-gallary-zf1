@@ -4,7 +4,7 @@ jQuery(function($)
     e.preventDefault();
     var count=parseInt($('#mybutton').attr("count"));
     var no=count+1;
-    var limit = 8;
+    var limit = 5;
     if(count < limit)
     { 
     $('#mybutton').attr("count",no);    
@@ -23,7 +23,7 @@ jQuery(function($)
     }    
     else 
       {
-      alert('Only 8 Images Upload!');
+      alert('Only 5 Images Upload!');
        $('#mybutton').hide();
        return false;
       }     

@@ -136,16 +136,10 @@
                                         <li><a href="#">Another notification</a></li>
                                     </ul>
                                 </li>
-
                                 <li>
-                                    <?php if($params['controller'] != 'album' && $params['controller'] != 'photo') { ?>
+                                    <?php if( $params['controller'] != 'photo') { ?>
                                     <form action="/<?php echo PROJECT_NAME; ?>request/index" method="post">
-                                    <input type="text" name="search" style="margin-top: 15px">
-                                     <button   class="fa fa-search" type="submit" id="searchicon" style="width: 37px; height: 33px;"></button>
-                                    </form>
-                                    <?php } else if ($params['controller'] != 'photo'){ ?>
-                                        <form action="/<?php echo PROJECT_NAME; ?>album/view" method="post">
-                                    <input type="text" name="srch" style="margin-top: 15px">
+                                    <input type="text" name="search" style="margin-top: 15px" required>
                                      <button   class="fa fa-search" type="submit" id="searchicon" style="width: 37px; height: 33px;"></button>
                                     </form>
                                     <?php } ?>

@@ -10,41 +10,42 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="header">
+                <div class="header">    
                     <h4 class="title">Create Album</h4>
-                </div>
-                <div class="content">
-                    <form action="/<?php echo PROJECT_NAME; ?>album/add" method="post">
+                    </div>
+                        <div class="content">
+                        <form action="/<?php echo PROJECT_NAME; ?>album/add" method="post"> 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Album Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="name" >
-                                </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Location</label>
-                                    <input type="text" name="location" class="form-control" placeholder="Location">
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Album Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="name" style="text-transform: capitalize;" pattern="^\S+$" required/>
                         </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea rows="5" class="form-control" placeholder="Here can be your description" name="desc"></textarea>
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Location</label>
+                        <input type="text" style="text-transform: capitalize;" name="location" class="form-control" placeholder="Location"  required/>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-12">
+                        <div class="form-group">
+                        <label>Description</label>
+                        <textarea rows="5" class="form-control"  placeholder="Here can be your description" name="desc" style="text-transform: capitalize;" required></textarea>
+                        </div>
+                        </div>
                         </div><br>
                         <button type="submit" class="btn btn-info btn-fill pull-left">Submit</button>
                         <div class="clearfix"></div>
-                    </form>
+                        </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-  
+</html>
+

@@ -21,8 +21,7 @@ class photo
 
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
-     */
-     
+     */    
     private $description;
 
     /**
@@ -52,7 +51,7 @@ class photo
         $this->name = $name;
 
     }
-
+    
     public function getDescription()
     {
         return $this->description;

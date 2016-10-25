@@ -19,7 +19,7 @@ class PhotoController extends Zend_Controller_Action
    * @version 1.0
    * @author PathakAshish
    */
-  public function indexAction()
+  public function indexAction() 
   {  
      $name = $this->getRequest()->getParam('name');
      $id=$this->getRequest()->getParam('id');

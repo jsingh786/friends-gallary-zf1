@@ -17,8 +17,6 @@ class album extends \Entities\album
     {
         
         $userObj = \Extended\users::get(['id'=>$id], ['limit'=>1, 'offset'=>0]);
-     /*   echo "<pre>";
-        print_r($userObj); die;*/
         $em = \Zend_Registry::get('em');
         $album= new \Entities\album();
         $album->setName($data['name']);
@@ -28,8 +26,7 @@ class album extends \Entities\album
         $em->persist($album);
         $em->flush();
         $id=$album->getId();
-        return $id;
-        echo"<pre>";
+        return $id;  
        // Doctrine\Common\Util\Debug::Dump($userObj); die;
     }
 
