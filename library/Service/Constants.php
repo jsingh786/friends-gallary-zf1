@@ -9,7 +9,6 @@ namespace Service;
 class Constants
 {
     public $no_Record_found;
-    public $valid_name;
     public function error($status)
     {
         if ($status == '1')
@@ -18,7 +17,7 @@ class Constants
         }
         else
         {
-            return $this->no_Record_found = "<h5><b>Enter Name Only.</b></h5>";
+            return $this->no_Record_found = "<h5><b>Invalid First name.</b></h5>";
         }
     }
 }

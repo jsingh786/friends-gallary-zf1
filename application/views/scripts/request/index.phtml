@@ -1,21 +1,21 @@
 <?php
 $this->headLink()->appendStylesheet(PUBLIC_PATH . "/css/friends.css");
 ?>
-	<div class="container-fluid">
-		<?php for ($i=0; $i<count($this->user); $i++) { ?>
-			<div class ="spl">
-				<?php if (!empty($this->profile[$i]["photo"])) { ?>
-				<img src ="<?php echo IMAGE_PATH ?>/<?php echo $this->profile[$i]["photo"] ?>" >
-				<?php } else { ?>                       
-				<img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" alt=""/> 
-				<?php } ?>
-				<div class = "username"><?php echo $this->user[$i]["username"] ?>
-				</div>
-				<div class = "email"><?php echo $this->user[$i]["email_id"] ?>
-				</div>
-				<a href= "add/id/<?php echo $this->user[$i]["id"] ?>">
-					<button type="submit" class="butn" id="button" >+1 Add Friend</button>	
-				</a>
+<div class="container-fluid">
+	<?php for ($i=0; $i<count($this->user); $i++) { ?>
+		<div class ="spl">
+			<?php if (!empty($this->profile[$i]["photo"])) { ?>
+			<img src ="<?php echo IMAGE_PATH ?>/<?php echo $this->profile[$i]["photo"] ?>" >
+			<?php } else { ?>                       
+			<img class="avatar border-gray" src="<?php echo IMAGE_PATH ?>/static/faces/face-3.jpg" alt=""/> 
+			<?php } ?>
+			<div class = "username"><?php echo $this->user[$i]["username"] ?>
 			</div>
-		<?php } ?>
-	</div>
+			<div class = "email"><?php echo $this->user[$i]["email_id"] ?>
+			</div>
+			<a href= "add/id/<?php echo $this->user[$i]["id"] ?>">
+				<button type="submit" class="butn" id="button" >+1 Add Friend</button>	
+			</a>
+		</div>
+	<?php } ?>
+</div>

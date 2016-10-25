@@ -38,14 +38,14 @@ class RequestController extends Zend_Controller_Action
             }
             else 
             {    
-                $valid  = new \Service\constants();
+                $valid  = new \Service\Constants();
                 $status ='1';
                 echo $valid->error($status);
             }
         }
         else 
         {
-            $valid  = new \Service\constants();
+            $valid  = new \Service\Constants();
             $status ='0';
             echo $valid->error($status);
         }

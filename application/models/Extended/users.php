@@ -78,7 +78,6 @@ class users extends \Entities\users
         }
         return $q_1->getQuery()->getResult();
     }
-
     /**
     * Return users data on the basis of name.
     * @param $name is the search input 
@@ -98,6 +97,5 @@ class users extends \Entities\users
         $query->setParameter('identifier', $sid);
         $data  = $query->getQuery()->getArrayResult();
         return $data; 
-    }
-    
+    }    
 }
