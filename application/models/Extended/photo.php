@@ -23,9 +23,7 @@ class photo extends \Entities\photo
        
         $em = \Zend_Registry::get('em');
         $num=count($img);
-        $no=1;
-        $result=\Extended\album::get(['id'=> $id],[]);
-             
+        $result=\Extended\album::get(['id'=> $id],[]);            
             for($i=0;$i<$num;$i++)
             {
                 $photoObj= new \Entities\photo();

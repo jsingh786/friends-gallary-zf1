@@ -23,7 +23,7 @@ height: 123px;
 }
 
 p.desc {
-    padding: 4px 2px;
+  padding: 4px 2px;
 text-align: center;
 box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
 background: #FFF;
@@ -33,11 +33,11 @@ text-overflow: ellipsis;
 width: auto;
 height: auto;
 }
+
 div.desc{
-    padding: 2px 3px;
+padding: 2px 3px;
 text-align: center;
 box-shadow: 0 1px 3px rgba(246, 249, 246, 0.1);
-
 white-space: normal;
 overflow: hidden;
 text-overflow: ellipsis;
